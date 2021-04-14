@@ -1,3 +1,0 @@
-.skewY {
-  transform: skewY(-10deg);
-}
