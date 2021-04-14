@@ -14921,7 +14921,7 @@ module.exports = class Room extends EventEmitter {
   }
 
   join(server = `ws://localhost:2345`) {
-    //  console.warn("room.join()");
+    console.log("joining ", server);
     const wsTransport = new WebSocketTransport(server);
     this.peer = new Peer(wsTransport);
     this.peer.on("open", this.onPeerOpen.bind(this));
@@ -15957,7 +15957,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63537" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54511" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
