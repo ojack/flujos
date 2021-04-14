@@ -13744,26 +13744,26 @@ Object.defineProperty(exports, "parseScalabilityMode", {
 });
 },{"./Device":"node_modules/mediasoup-client/lib/Device.js","./types":"node_modules/mediasoup-client/lib/types.js","./scalabilityModes":"node_modules/mediasoup-client/lib/scalabilityModes.js"}],"node_modules/protoo-client/package.json":[function(require,module,exports) {
 module.exports = {
-  "_from": "protoo-client",
+  "_args": [["protoo-client@4.0.6", "/Users/ojack/PROJECTS/flujos"]],
+  "_from": "protoo-client@4.0.6",
   "_id": "protoo-client@4.0.6",
   "_inBundle": false,
   "_integrity": "sha512-ZqImkKHpeJhSlgvyI6QAfZNc/aXcCgmmocMx4S1w2lAaxXtckxxeDtcVNtkOISUWm/mbC+BrmYPXoGMkfhkKOQ==",
   "_location": "/protoo-client",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "protoo-client",
+    "raw": "protoo-client@4.0.6",
     "name": "protoo-client",
     "escapedName": "protoo-client",
-    "rawSpec": "",
+    "rawSpec": "4.0.6",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.0.6"
   },
-  "_requiredBy": ["#USER", "/"],
+  "_requiredBy": ["/"],
   "_resolved": "https://registry.npmjs.org/protoo-client/-/protoo-client-4.0.6.tgz",
-  "_shasum": "02a89f997ee5a4f385dab7be938dda1a2c5158e4",
-  "_spec": "protoo-client",
+  "_spec": "4.0.6",
   "_where": "/Users/ojack/PROJECTS/flujos",
   "author": {
     "name": "Iñaki Baz Castillo",
@@ -13772,14 +13772,12 @@ module.exports = {
   "bugs": {
     "url": "https://github.com/ibc/protoo/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "debug": "^4.3.1",
     "events": "^3.2.0",
     "retry": "^0.12.0",
     "websocket": "^1.0.33"
   },
-  "deprecated": false,
   "description": "protoo JavaScript client module",
   "devDependencies": {
     "eslint": "^5.16.0"
@@ -14312,27 +14310,28 @@ module.exports = (function () {
 
 },{}],"node_modules/websocket/package.json":[function(require,module,exports) {
 module.exports = {
-  "_from": "websocket@^1.0.33",
+  "_args": [["websocket@1.0.33", "/Users/ojack/PROJECTS/flujos"]],
+  "_from": "websocket@1.0.33",
   "_id": "websocket@1.0.33",
   "_inBundle": false,
   "_integrity": "sha512-XwNqM2rN5eh3G2CUQE3OHZj+0xfdH42+OFK6LdC2yqiC0YU8e5UK0nYre220T0IyyN031V/XOvtHvXozvJYFWA==",
   "_location": "/websocket",
+  "_optional": true,
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "websocket@^1.0.33",
+    "raw": "websocket@1.0.33",
     "name": "websocket",
     "escapedName": "websocket",
-    "rawSpec": "^1.0.33",
+    "rawSpec": "1.0.33",
     "saveSpec": null,
-    "fetchSpec": "^1.0.33"
+    "fetchSpec": "1.0.33"
   },
   "_requiredBy": ["/protoo-client"],
   "_resolved": "https://registry.npmjs.org/websocket/-/websocket-1.0.33.tgz",
-  "_shasum": "407f763fc58e74a3fa41ca3ae5d78d3f5e3b82a5",
-  "_spec": "websocket@^1.0.33",
-  "_where": "/Users/ojack/PROJECTS/flujos/node_modules/protoo-client",
+  "_spec": "1.0.33",
+  "_where": "/Users/ojack/PROJECTS/flujos",
   "author": {
     "name": "Brian McKelvey",
     "email": "theturtle32@gmail.com",
@@ -14342,7 +14341,6 @@ module.exports = {
   "bugs": {
     "url": "https://github.com/theturtle32/WebSocket-Node/issues"
   },
-  "bundleDependencies": false,
   "config": {
     "verbose": false
   },
@@ -14359,7 +14357,6 @@ module.exports = {
     "utf-8-validate": "^5.0.2",
     "yaeti": "^0.0.6"
   },
-  "deprecated": false,
   "description": "Websocket Client & Server Library implementing the WebSocket protocol as specified in RFC 6455.",
   "devDependencies": {
     "buffer-equal": "^1.0.0",
@@ -15960,7 +15957,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49689" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63537" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
