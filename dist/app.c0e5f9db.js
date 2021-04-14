@@ -14922,14 +14922,19 @@ module.exports = class Room extends EventEmitter {
 
   join(server = `ws://localhost:2345`) {
     console.log("joining ", server);
-    const wsTransport = new WebSocketTransport(server);
-    this.peer = new Peer(wsTransport);
-    this.peer.on("open", this.onPeerOpen.bind(this));
-    this.peer.on("request", this.onPeerRequest.bind(this));
-    this.peer.on("notification", this.onPeerNotification.bind(this));
-    this.peer.on("failed", console.error);
-    this.peer.on("disconnected", console.error);
-    this.peer.on("close", console.error);
+
+    try {
+      const wsTransport = new WebSocketTransport(server);
+      this.peer = new Peer(wsTransport);
+      this.peer.on("open", this.onPeerOpen.bind(this));
+      this.peer.on("request", this.onPeerRequest.bind(this));
+      this.peer.on("notification", this.onPeerNotification.bind(this));
+      this.peer.on("failed", console.error);
+      this.peer.on("disconnected", console.error);
+      this.peer.on("close", console.error);
+    } catch (err) {
+      console.warn(err);
+    }
   }
 
   async sendAudio(track) {
@@ -15957,7 +15962,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54511" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57152" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

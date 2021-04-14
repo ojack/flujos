@@ -13,15 +13,19 @@ module.exports = class Room extends EventEmitter {
 
   join(server = `ws://localhost:2345`) {
     console.log("joining ", server);
-    const wsTransport = new WebSocketTransport(server);
+    try {
+      const wsTransport = new WebSocketTransport(server);
 
-    this.peer = new Peer(wsTransport);
-    this.peer.on("open", this.onPeerOpen.bind(this));
-    this.peer.on("request", this.onPeerRequest.bind(this));
-    this.peer.on("notification", this.onPeerNotification.bind(this));
-    this.peer.on("failed", console.error);
-    this.peer.on("disconnected", console.error);
-    this.peer.on("close", console.error);
+      this.peer = new Peer(wsTransport);
+      this.peer.on("open", this.onPeerOpen.bind(this));
+      this.peer.on("request", this.onPeerRequest.bind(this));
+      this.peer.on("notification", this.onPeerNotification.bind(this));
+      this.peer.on("failed", console.error);
+      this.peer.on("disconnected", console.error);
+      this.peer.on("close", console.error);
+    } catch (err) {
+      console.warn(err)
+    }
   }
 
   async sendAudio(track) {
