@@ -12,7 +12,7 @@ module.exports = class Room extends EventEmitter {
   }
 
   join(server = `ws://localhost:2345`) {
-  //  console.warn("room.join()");
+    console.log("joining ", server);
     const wsTransport = new WebSocketTransport(server);
 
     this.peer = new Peer(wsTransport);
