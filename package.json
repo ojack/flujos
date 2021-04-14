@@ -1,0 +1,29 @@
+{
+  "name": "flujos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2"
+  },
+  "browserslist": [
+    "last 3 and_chr versions",
+    "last 3 chrome versions",
+    "last 3 opera versions",
+    "last 3 ios_saf versions",
+    "last 3 safari versions"
+  ],
+  "dependencies": {
+    "events": "^3.3.0",
+    "mediasoup-client": "^3.6.29",
+    "nanohtml": "^1.9.1",
+    "protoo-client": "^4.0.6"
+  }
+}
