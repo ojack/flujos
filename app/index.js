@@ -1,7 +1,8 @@
 const initStreamingMedia = require('./init-media-sources.js')
 const initHydra = require('./init-hydra.js')
 const html = require('nanohtml')
-
+const initPixi = require('./pixi.js')
+const mouse = require('./mouse-follower.js')()
 const flokURL = "https://flok.clic.cf/s/NjUxMWM2MjUtOTFlZi00NzNiLWJhNTUtMzVhNWIwY2U0MmFm?layout=hydra,hydra&noHydra=1&bgOpacity=0"
 
 const queryString = window.location.search;
@@ -11,7 +12,7 @@ const readOnly = edit == 1 ? false : true
 
 
 initHydra()
-
+initPixi({ mouse: mouse })
 // create ui elements
 const intro = html`<div class="pa4 i f3"> <h1 class="f1 i"> flujos </h1>
     <p class="f3"> web_site_specific performance</p>
@@ -22,8 +23,10 @@ const intro = html`<div class="pa4 i f3"> <h1 class="f1 i"> flujos </h1>
 const uiContainer = html`<div class="w-100 h-100 absolute top-0 left-0 overflow-y-auto">${intro}</div>`
 
 const editor = html`<div class="absolute mb5 bottom-0 left-0 w-100 skewY" style="height:40%">
-<iframe src="${flokURL}${readOnly?'&readonly=1':''}" frameborder="0" class="w-100 h-100"></iframe>
+<iframe src="${flokURL}${readOnly?'&readonly=1':''}" frameborder="0" class="w-100 h-100" style=${readOnly?"pointer-events:none":''}></iframe>
 </div>`
+
+
 
 // execute editor events on global context
 window.addEventListener("message", function(event) {

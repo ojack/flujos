@@ -1,7 +1,7 @@
 const html = require('nanohtml')
 
 module.exports = () => {
-  const canvas = html`<canvas class="w-100 h-100"></canvas>`
+  const canvas = html`<canvas class="w-100 h-100 absolute top-0 left-0"></canvas>`
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
   document.body.appendChild(canvas)
@@ -22,4 +22,9 @@ src(o1).layer(src(o0).mask(osc(10, -0.1).rotate(0, 0.1).modulate(osc(10).thresh(
   .blend(o0, () => Math.sin(time*0.1)*0.5 + 0.5).out(o1)
 
 render(o1)
+
+window.addEventListener('resize', () => {
+  console.log('resizing')
+  setResolution(window.innerWidth, window.innerHeight)
+})
 }

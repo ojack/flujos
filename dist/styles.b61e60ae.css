@@ -1,3 +1,8 @@
+html, body, div, canvas {
+  /* cursor: url('./../assets/mouse-arrow.png'),auto; */
+  cursor: none;
+}
+
 .skewY {
   transform: skewY(-10deg);
 }
