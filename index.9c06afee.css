@@ -1,11 +1,9 @@
 html, body, div, canvas {
   /* cursor: url('./../assets/mouse-arrow.png'),auto; */
-  cursor: none;
 }
 
 .skewY {
   transform: skewY(-10deg);
 }
 
-
-/*# sourceMappingURL=/styles.b61e60ae.css.map */
+/*# sourceMappingURL=index.9c06afee.css.map */
