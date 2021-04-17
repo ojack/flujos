@@ -15820,48 +15820,54 @@ const Viewer = require('./lib/mediasoup-viewer.js'); // const hydraStartup = req
 
 const html = require('nanohtml');
 
-module.exports = () => {
-  let hasStarted = false; //  document.body.innerHTML = 'this an example viewer for the media soup broadcaster. click to start!'
+module.exports = ({
+  emitter
+} = {}) => {
+  //let hasStarted = false
+  //  document.body.innerHTML = 'this an example viewer for the media soup broadcaster. click to start!'
   //const server = `wss://livelab.app:3499`
   // const server = `wss://192.168.178.37:8000`
   //const server = `wss://localhost:8000/${window.location.search}`
   //const server = `wss://${window.location.hostname}:8000/${window.location.search}`
   // const server = `wss://${window.location.hostname}:8000/${window.location.search}`
-
   const server = "wss://mediasoup.tentacles.live:8000"; // /?stream=flujos"
   //window.onclick = () => {
+  //  if(!hasStarted) {
 
-  if (!hasStarted) {
-    const video = createVideo({}, () => {
-      setTimeout(() => {
-        //  s0.init({ src: video })
-        // osc(3, 0.2, 1.2).diff(s0).out()
-        video.play();
-      }, 600);
-    });
-    const video2 = createVideo({}, () => {
+  const video = createVideo({}, () => {
+    setTimeout(() => {
+      //  s0.init({ src: video })
+      // osc(3, 0.2, 1.2).diff(s0).out()
       video.play();
-    }); // const audioEl = html`<audio></audio>`
-    // audioEl.autoplay = true
+      emitter.emit('stream:loaded', 0, video);
+    }, 200);
+  });
+  const video2 = createVideo({}, () => {
+    setTimeout(() => {
+      video.play();
+      emitter.emit('stream:loaded', 1, video2);
+    }, 200);
+  }); // const audioEl = html`<audio></audio>`
+  // audioEl.autoplay = true
 
-    const videoHolder = html`<div class="absolute right-0 top-0 fr">${video}${video2}</div>`;
-    document.body.appendChild(videoHolder); // turn the video element into a viewer for server location `wss://localhost:8000`
+  const videoHolder = html`<div class="absolute right-0 top-0 fr">${video}${video2}</div>`; //  document.body.appendChild(videoHolder)
+  // turn the video element into a viewer for server location `wss://localhost:8000`
 
-    const viewer1 = new Viewer({
-      videoEl: video,
-      server: server,
-      streamKey: "flujos"
-    }); // const audio = new Viewer({ videoEl: audioEl, server:  server, streamKey: "flujos-audio"})
-    // // turn the video element into a viewer for server location `wss://localhost:8000`
+  const viewer1 = new Viewer({
+    videoEl: video,
+    server: server,
+    streamKey: "flujos"
+  }); // const audio = new Viewer({ videoEl: audioEl, server:  server, streamKey: "flujos-audio"})
+  // // turn the video element into a viewer for server location `wss://localhost:8000`
 
-    const viewer2 = new Viewer({
-      videoEl: video2,
-      server: server,
-      streamKey: "flujos2"
-    });
-    hasStarted = true;
-  } //}
+  const viewer2 = new Viewer({
+    videoEl: video2,
+    server: server,
+    streamKey: "flujos2"
+  });
+  hasStarted = true; //  }
 
+  return [video, video2]; //}
 };
 
 function createVideo({
@@ -15877,7 +15883,9 @@ function createVideo({
 },{"./lib/mediasoup-viewer.js":"app/lib/mediasoup-viewer.js","nanohtml":"node_modules/nanohtml/lib/browser.js"}],"app/init-hydra.js":[function(require,module,exports) {
 const html = require('nanohtml');
 
-module.exports = () => {
+module.exports = ({
+  emitter
+}) => {
   const canvas = html`<canvas class="w-100 h-100 absolute top-0 left-0"></canvas>`;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -15886,14 +15894,28 @@ module.exports = () => {
     detectAudio: false,
     canvas: canvas
   });
-  speed = 0.5; // unfoldings
+  speed = 0.5; // // unfoldings
 
-  osc(10, 0.03, 1.2).color(1.0, 0.3, 0.6).add(osc(15, -0.1).color(0.1, 0.9, 0.3)).out();
-  src(o1).layer(src(o0).mask(osc(10, -0.1).rotate(0, 0.1).modulate(osc(10).thresh(0.8, 0.4)).kaleid(2).thresh(0.9, 0)), 0).modulate(osc(20), -0.004, 1.02).modulate(src(o1).color(1, 0), 0.1).contrast(1.1).blend(o0, () => Math.sin(time * 0.1) * 0.5 + 0.5).out(o1);
-  render(o1);
-  window.addEventListener('resize', () => {
-    console.log('resizing');
-    setResolution(window.innerWidth, window.innerHeight);
+  speed = 0.1; // osc(10, 0.03, 1.2).color(1.0, 0.3, 0.6)
+  //   .add(osc(15, -0.1).color(0.1, 0.9, 0.3))
+  //   .layer(s2)
+  //   .out()
+  //
+  //
+  // src(o1).layer(src(o0).mask(osc(10, -0.1).rotate(0, 0.1).modulate(osc(10).thresh(0.8, 0.4)).kaleid(2).thresh(0.9, 0)), 0).modulate(osc(20), -0.004, 1.02)
+  //   .modulate(src(o1).color(1, 0), 0.1)
+  //   .contrast(1.1)
+  //   .blend(o0, () => Math.sin(time*0.1)*0.5 + 0.5).out(o1)
+  //
+  // render(o1)
+  //
+  // emitter.on('start', () => {
+
+  src(o0).scrollY([-0.001, 0, 0.001, 0]).scrollX([0, -0.001, 0, 0.001]).layer(s2).out(o0);
+  render(o0); //})
+
+  window.addEventListener('resize', () => {//  console.log('resizing')
+    //  setResolution(window.innerWidth, window.innerHeight)
   });
 };
 },{"nanohtml":"node_modules/nanohtml/lib/browser.js"}],"node_modules/es6-promise-polyfill/promise.js":[function(require,module,exports) {
@@ -64741,7 +64763,7 @@ const cursorImage = require('./../assets/mouse-arrow.png');
 
 module.exports = ({
   parent = document.body,
-  mouse
+  emitter
 } = {}) => {
   const app = new PIXI.Application({
     // backgroundColor: 0x1099bb
@@ -64758,15 +64780,32 @@ module.exports = ({
   console.log('images', cursorImage);
   const cursor = PIXI.Sprite.from(cursorImage);
   cursor.anchor.set(0.5);
+  cursor.width = 40;
+  cursor.height = 50;
   cursor.x = 300;
   cursor.y = 400;
+  let videoSprite = null;
   app.ticker.add(() => {
     // just for fun, let's rotate mr rabbit a little
     cursor.rotation += 0.005;
   });
-  mouse.on("move", pos => {
+  emitter.on("mouse:move", pos => {
     cursor.x = pos.x;
-    cursor.y = pos.y; // console.log(cursor)
+    cursor.y = pos.y; // if(videoSprite !== null) {
+    //   videoSprite.x = pos.x
+    //   videoSprite.y = pos.y
+    // }
+    // console.log(cursor)
+  });
+  emitter.on("stream:loaded", (index, video) => {
+    console.log('reeived video', video);
+    const texture = PIXI.Texture.from(video);
+    videoSprite = new PIXI.Sprite(texture);
+    videoSprite.width = 150;
+    videoSprite.height = 100;
+    videoSprite.x = 400;
+    videoSprite.y = 100;
+    app.stage.addChild(videoSprite);
   });
   app.stage.addChild(cursor);
   window.addEventListener('resize', () => {
@@ -64776,25 +64815,62 @@ module.exports = ({
   // app.renderer.plugins.interaction.cursorStyles.default = defaultIcon;
   // app.renderer.plugins.interaction.cursorStyles.hover = defaultIcon;
 };
-},{"pixi.js":"node_modules/pixi.js/lib/pixi.es.js","./../assets/mouse-arrow.png":"assets/mouse-arrow.png"}],"app/mouse-follower.js":[function(require,module,exports) {
-const EventEmitter = require('events');
+},{"pixi.js":"node_modules/pixi.js/lib/pixi.es.js","./../assets/mouse-arrow.png":"assets/mouse-arrow.png"}],"assets/water/1.wav":[function(require,module,exports) {
+module.exports = "/1.a2a2a013.wav";
+},{}],"assets/water/10.wav":[function(require,module,exports) {
+module.exports = "/10.63047419.wav";
+},{}],"assets/water/2.wav":[function(require,module,exports) {
+module.exports = "/2.f5a2fc28.wav";
+},{}],"assets/water/11.wav":[function(require,module,exports) {
+module.exports = "/11.77b5c052.wav";
+},{}],"assets/water/3.wav":[function(require,module,exports) {
+module.exports = "/3.bed0a8a4.wav";
+},{}],"assets/water/4.wav":[function(require,module,exports) {
+module.exports = "/4.7952b6f4.wav";
+},{}],"assets/water/5.wav":[function(require,module,exports) {
+module.exports = "/5.0a3902bc.wav";
+},{}],"assets/water/6.wav":[function(require,module,exports) {
+module.exports = "/6.75b8a3e8.wav";
+},{}],"assets/water/7.wav":[function(require,module,exports) {
+module.exports = "/7.c05441c5.wav";
+},{}],"assets/water/8.wav":[function(require,module,exports) {
+module.exports = "/8.199998a2.wav";
+},{}],"assets/water/9.wav":[function(require,module,exports) {
+module.exports = "/9.18d2cce0.wav";
+},{}],"assets/water/*.wav":[function(require,module,exports) {
+module.exports = {
+  "1": require("./1.wav"),
+  "2": require("./2.wav"),
+  "3": require("./3.wav"),
+  "4": require("./4.wav"),
+  "5": require("./5.wav"),
+  "6": require("./6.wav"),
+  "7": require("./7.wav"),
+  "8": require("./8.wav"),
+  "9": require("./9.wav"),
+  "10": require("./10.wav"),
+  "11": require("./11.wav")
+};
+},{"./1.wav":"assets/water/1.wav","./10.wav":"assets/water/10.wav","./2.wav":"assets/water/2.wav","./11.wav":"assets/water/11.wav","./3.wav":"assets/water/3.wav","./4.wav":"assets/water/4.wav","./5.wav":"assets/water/5.wav","./6.wav":"assets/water/6.wav","./7.wav":"assets/water/7.wav","./8.wav":"assets/water/8.wav","./9.wav":"assets/water/9.wav"}],"app/agua.js":[function(require,module,exports) {
+const samples = require('./../assets/water/*.wav');
 
-module.exports = () => {
+console.log('SAMPLES', samples);
+},{"./../assets/water/*.wav":"assets/water/*.wav"}],"app/mouse-follower.js":[function(require,module,exports) {
+module.exports = emitter => {
   let mouse = {
     x: 0,
     y: 0
-  };
-  const emitter = new EventEmitter();
+  }; //  const emitter = new EventEmitter()
 
   window.onmousemove = e => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
-    emitter.emit('move', mouse);
+    emitter.emit('mouse:move', mouse);
   };
 
-  return emitter;
+  return mouse;
 };
-},{"events":"node_modules/events/events.js"}],"app/index.js":[function(require,module,exports) {
+},{}],"app/index.js":[function(require,module,exports) {
 const initStreamingMedia = require('./init-media-sources.js');
 
 const initHydra = require('./init-hydra.js');
@@ -64803,16 +64879,24 @@ const html = require('nanohtml');
 
 const initPixi = require('./pixi.js');
 
-const mouse = require('./mouse-follower.js')();
+const agua = require('./agua.js');
+
+const EventEmitter = require('events');
 
 const flokURL = "https://flok.clic.cf/s/NjUxMWM2MjUtOTFlZi00NzNiLWJhNTUtMzVhNWIwY2U0MmFm?layout=hydra,hydra&noHydra=1&bgOpacity=0";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const edit = urlParams.get('edit');
 const readOnly = edit == 1 ? false : true;
-initHydra();
+const emitter = new EventEmitter();
+
+const mouse = require('./mouse-follower.js')(emitter);
+
+initHydra({
+  emitter: emitter
+});
 initPixi({
-  mouse: mouse
+  emitter: emitter
 }); // create ui elements
 
 const intro = html`<div class="pa4 i f3"> <h1 class="f1 i"> flujos </h1>
@@ -64838,12 +64922,15 @@ window.addEventListener("message", function (event) {
 function start() {
   uiContainer.innerHTML = '';
   uiContainer.appendChild(editor);
-  initStreamingMedia();
+  emitter.emit('start');
+  initStreamingMedia({
+    emitter: emitter
+  });
 }
 
 document.body.appendChild(uiContainer); //  document.body.appendChild(editor)
 //}
-},{"./init-media-sources.js":"app/init-media-sources.js","./init-hydra.js":"app/init-hydra.js","nanohtml":"node_modules/nanohtml/lib/browser.js","./pixi.js":"app/pixi.js","./mouse-follower.js":"app/mouse-follower.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./init-media-sources.js":"app/init-media-sources.js","./init-hydra.js":"app/init-hydra.js","nanohtml":"node_modules/nanohtml/lib/browser.js","./pixi.js":"app/pixi.js","./agua.js":"app/agua.js","events":"node_modules/events/events.js","./mouse-follower.js":"app/mouse-follower.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -64871,7 +64958,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51805" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61510" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

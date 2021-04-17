@@ -1,7 +1,7 @@
 const PIXI = require('pixi.js')
 const cursorImage = require('./../assets/mouse-arrow.png');
 
-module.exports = ({ parent = document.body, mouse } = {}) => {
+module.exports = ({ parent = document.body, emitter } = {}) => {
   const app = new PIXI.Application({
     // backgroundColor: 0x1099bb
     width: window.innerWidth,
@@ -19,17 +19,36 @@ module.exports = ({ parent = document.body, mouse } = {}) => {
   const cursor = PIXI.Sprite.from(cursorImage)
   cursor.anchor.set(0.5)
 
+  cursor.width = 40
+  cursor.height = 50
   cursor.x = 300;
   cursor.y = 400;
+
+  let videoSprite = null
 
   app.ticker.add(() => {
     // just for fun, let's rotate mr rabbit a little
     cursor.rotation += 0.005;
   });
-  mouse.on("move", (pos) => {
+  emitter.on("mouse:move", (pos) => {
     cursor.x = pos.x
     cursor.y = pos.y
+    // if(videoSprite !== null) {
+    //   videoSprite.x = pos.x
+    //   videoSprite.y = pos.y
+    // }
     // console.log(cursor)
+  })
+
+  emitter.on("stream:loaded", (index, video) => {
+    console.log('reeived video', video)
+     const texture = PIXI.Texture.from(video)
+     videoSprite = new PIXI.Sprite(texture)
+     videoSprite.width = 150
+     videoSprite.height = 100
+      videoSprite.x = 400
+      videoSprite.y = 100
+      app.stage.addChild(videoSprite)
   })
 
   app.stage.addChild(cursor)

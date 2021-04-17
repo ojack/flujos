@@ -3,9 +3,9 @@ const Viewer = require('./lib/mediasoup-viewer.js')
 const html = require('nanohtml')
 
 
-module.exports = () => {
+module.exports = ({ emitter } = {}) => {
 
-  let hasStarted = false
+  //let hasStarted = false
 //  document.body.innerHTML = 'this an example viewer for the media soup broadcaster. click to start!'
 
   //const server = `wss://livelab.app:3499`
@@ -20,20 +20,24 @@ module.exports = () => {
 
   const server = "wss://mediasoup.tentacles.live:8000"   // /?stream=flujos"
   //window.onclick = () => {
-    if(!hasStarted) {
+  //  if(!hasStarted) {
       const video = createVideo({}, () => {
         setTimeout(() => {
         //  s0.init({ src: video })
           // osc(3, 0.2, 1.2).diff(s0).out()
           video.play()
-        }, 600)
+          emitter.emit('stream:loaded', 0, video)
+        }, 200)
       })
 
-      const video2 = createVideo({}, () => { video.play() })
+      const video2 = createVideo({}, () => {  setTimeout(() => {
+         video.play()
+         emitter.emit('stream:loaded', 1, video2)
+       }, 200) })
       // const audioEl = html`<audio></audio>`
       // audioEl.autoplay = true
       const videoHolder = html`<div class="absolute right-0 top-0 fr">${video}${video2}</div>`
-      document.body.appendChild(videoHolder)
+    //  document.body.appendChild(videoHolder)
 
 
       // turn the video element into a viewer for server location `wss://localhost:8000`
@@ -44,7 +48,8 @@ module.exports = () => {
       // // turn the video element into a viewer for server location `wss://localhost:8000`
       const viewer2 = new Viewer({ videoEl: video2, server:  server, streamKey: "flujos2"})
       hasStarted = true
-    }
+  //  }
+    return [video, video2]
   //}
 }
 

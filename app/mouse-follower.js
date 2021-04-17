@@ -1,13 +1,12 @@
-const EventEmitter = require('events')
 
-module.exports = () => {
+module.exports = (emitter) => {
   let mouse = { x: 0, y: 0 }
-  const emitter = new EventEmitter()
+//  const emitter = new EventEmitter()
   window.onmousemove = (e) => {
     mouse.x = e.clientX
     mouse.y = e.clientY
-    emitter.emit('move', mouse)
+    emitter.emit('mouse:move', mouse)
   }
 
-  return emitter
+  return mouse
 }
