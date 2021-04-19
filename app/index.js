@@ -15,13 +15,14 @@ const readOnly = edit == 1 ? false : true
 const emitter = new EventEmitter()
 const mouse = require('./mouse-follower.js')(emitter)
 
+agua.load()
 initHydra({ emitter: emitter })
 initPixi({ emitter: emitter })
 // create ui elements
 const intro = html`<div class="pa4 i f3"> <h1 class="f1 i"> flujos </h1>
     <p class="f3"> web_site_specific performance</p>
     <p class="f3">by Celeste Betancur and Olivia Jack </p>
-    <div onclick=${start} class="pointer dim"> ${">>>"} enter ${"<<<<"} </div>
+    <div onclick=${start} class="pointer dim pa4"> ${">>>"} enter ${"<<<<"} </div>
     </div>`
 
 const uiContainer = html`<div class="w-100 h-100 absolute top-0 left-0 overflow-y-auto">${intro}</div>`
@@ -34,11 +35,16 @@ const editor = html`<div class="absolute mb5 bottom-0 left-0 w-100 skewY" style=
 
 // execute editor events on global context
 window.addEventListener("message", function(event) {
-  //console.log('received message', event)
+  console.log('received message', event)
   if(event.data) {
     if(event.data.cmd === "evaluateCode") {
       //  console.log('evaluate', event.data.args.body)
-      eval(event.data.args.body)
+      if (event.data.args.editorId == 1) {
+        agua.run(event.data.args.body)
+      } else {
+        eval(event.data.args.body)
+      }
+
     }
   }
 })

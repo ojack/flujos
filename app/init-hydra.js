@@ -30,7 +30,7 @@ speed = 0.1
 // render(o1)
 //
 // emitter.on('start', () => {
-  src(o0).scrollY([-0.001, 0, 0.001, 0]).scrollX([0, -0.001, 0, 0.001]).layer(s2).out(o0)
+  src(o0).scrollY([-0.001, 0, 0, 0.001, 0, 0]).scrollX([0, 0, -0.001, 0, 0, 0.001]).layer(s2).out(o0)
   render(o0)
 //})
 

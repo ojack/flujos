@@ -19,8 +19,8 @@ module.exports = ({ parent = document.body, emitter } = {}) => {
   const cursor = PIXI.Sprite.from(cursorImage)
   cursor.anchor.set(0.5)
 
-  cursor.width = 40
-  cursor.height = 50
+  cursor.width = 30
+  cursor.height = 40
   cursor.x = 300;
   cursor.y = 400;
 
@@ -29,6 +29,11 @@ module.exports = ({ parent = document.body, emitter } = {}) => {
   app.ticker.add(() => {
     // just for fun, let's rotate mr rabbit a little
     cursor.rotation += 0.005;
+    cursor.width = 30 + Math.sin(time*3)*20
+  //  cursor.width = 4
+    const h = 40 + Math.sin(time*3)*20
+    cursor.height = h
+    // console.log(h)
   });
   emitter.on("mouse:move", (pos) => {
     cursor.x = pos.x
