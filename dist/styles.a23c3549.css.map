@@ -1,0 +1,1 @@
+{"version":3,"sources":["css/styles.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"styles.a23c3549.css","sourceRoot":"..","sourcesContent":["html, body, div, canvas {\n  /* cursor: url('./../assets/mouse-arrow.png'),auto; */\n  cursor: none;\n}\n\n.skewY {\n  transform: skewY(-10deg);\n}\n"]}
