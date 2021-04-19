@@ -64819,14 +64819,195 @@ module.exports = ({
   // app.renderer.plugins.interaction.cursorStyles.default = defaultIcon;
   // app.renderer.plugins.interaction.cursorStyles.hover = defaultIcon;
 };
-},{"pixi.js":"node_modules/pixi.js/lib/pixi.es.js","./../assets/mouse-arrow.png":"assets/mouse-arrow.png"}],"assets/water/1.wav":[function(require,module,exports) {
+},{"pixi.js":"node_modules/pixi.js/lib/pixi.es.js","./../assets/mouse-arrow.png":"assets/mouse-arrow.png"}],"app/lib/reverb.js":[function(require,module,exports) {
+/*global ArrayBuffer, Uint8Array, window, XMLHttpRequest*/
+module.exports = {
+  extend: function (audioContext) {
+    function decodeBase64ToArrayBuffer(input) {
+      function encodedValue(input, index) {
+        var encodedCharacter,
+            x = input.charCodeAt(index);
+
+        if (index < input.length) {
+          if (x >= 65 && x <= 90) {
+            encodedCharacter = x - 65;
+          } else if (x >= 97 && x <= 122) {
+            encodedCharacter = x - 71;
+          } else if (x >= 48 && x <= 57) {
+            encodedCharacter = x + 4;
+          } else if (x === 43) {
+            encodedCharacter = 62;
+          } else if (x === 47) {
+            encodedCharacter = 63;
+          } else if (x !== 61) {
+            console.log('base64 encountered unexpected character code: ' + x);
+          }
+        }
+
+        return encodedCharacter;
+      }
+
+      if (input.length === 0 || input.length % 4 > 0) {
+        console.log('base64 encountered unexpected length: ' + input.length);
+        return;
+      }
+
+      var padding = input.match(/[=]*$/)[0].length,
+          decodedLength = input.length * 3 / 4 - padding,
+          buffer = new ArrayBuffer(decodedLength),
+          bufferView = new Uint8Array(buffer),
+          encoded = [],
+          d = 0,
+          e = 0,
+          i;
+
+      while (d < decodedLength) {
+        for (i = 0; i < 4; i += 1) {
+          encoded[i] = encodedValue(input, e);
+          e += 1;
+        }
+
+        bufferView[d] = encoded[0] * 4 + Math.floor(encoded[1] / 16);
+        d += 1;
+
+        if (d < decodedLength) {
+          bufferView[d] = encoded[1] % 16 * 16 + Math.floor(encoded[2] / 4);
+          d += 1;
+        }
+
+        if (d < decodedLength) {
+          bufferView[d] = encoded[2] % 4 * 64 + encoded[3];
+          d += 1;
+        }
+      }
+
+      return buffer;
+    }
+
+    function decodeAndSetupBuffer(node, arrayBuffer, callback) {
+      audioContext.decodeAudioData(arrayBuffer, function (audioBuffer) {
+        console.log('Finished decoding audio data.');
+        node.buffer = audioBuffer;
+
+        if (typeof callback === "function" && audioBuffer !== null) {
+          callback(node);
+        }
+      }, function (e) {
+        console.log('Could not decode audio data: ' + e);
+      });
+    }
+
+    audioContext.createReverbFromBase64 = function (audioBase64, callback) {
+      var reverbNode = audioContext.createConvolver();
+      decodeAndSetupBuffer(reverbNode, decodeBase64ToArrayBuffer(audioBase64), callback);
+      return reverbNode;
+    };
+
+    audioContext.createSourceFromBase64 = function (audioBase64, callback) {
+      var sourceNode = audioContext.createBufferSource();
+      decodeAndSetupBuffer(sourceNode, decodeBase64ToArrayBuffer(audioBase64), callback);
+      return sourceNode;
+    };
+
+    audioContext.createReverbFromUrl = function (audioUrl, callback) {
+      console.log('Downloading impulse response from ' + audioUrl);
+      var reverbNode = audioContext.createConvolver(),
+          request = new XMLHttpRequest();
+      request.open('GET', audioUrl, true);
+
+      request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log('Downloaded impulse response');
+          decodeAndSetupBuffer(reverbNode, request.response, callback);
+        }
+      };
+
+      request.onerror = function (e) {
+        console.log('There was an error receiving the response: ' + e);
+        reverbjs.networkError = e;
+      };
+
+      request.responseType = 'arraybuffer';
+      request.send();
+      return reverbNode;
+    };
+
+    audioContext.createSourceFromUrl = function (audioUrl, callback) {
+      console.log('Downloading sound from ' + audioUrl);
+      var sourceNode = audioContext.createBufferSource(),
+          request = new XMLHttpRequest();
+      request.open('GET', audioUrl, true);
+
+      request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log('Downloaded sound');
+          decodeAndSetupBuffer(sourceNode, request.response, callback);
+        }
+      };
+
+      request.onerror = function (e) {
+        console.log('There was an error receiving the response: ' + e);
+        reverbjs.networkError = e;
+      };
+
+      request.responseType = 'arraybuffer';
+      request.send();
+      return sourceNode;
+    };
+
+    audioContext.createReverbFromBase64Url = function (audioUrl, callback) {
+      console.log('Downloading base64 impulse response from ' + audioUrl);
+      var reverbNode = audioContext.createConvolver(),
+          request = new XMLHttpRequest();
+      request.open('GET', audioUrl, true);
+
+      request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log('Downloaded impulse response');
+          decodeAndSetupBuffer(reverbNode, decodeBase64ToArrayBuffer(request.response), callback);
+        }
+      };
+
+      request.onerror = function (e) {
+        console.log('There was an error receiving the response: ' + e);
+        reverbjs.networkError = e;
+      };
+
+      request.send();
+      return reverbNode;
+    };
+
+    audioContext.createSourceFromBase64Url = function (audioUrl, callback) {
+      console.log('Downloading base64 sound from ' + audioUrl);
+      var sourceNode = audioContext.createBufferSource(),
+          request = new XMLHttpRequest();
+      request.open('GET', audioUrl, true);
+
+      request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log('Downloaded sound');
+          decodeAndSetupBuffer(sourceNode, decodeBase64ToArrayBuffer(request.response), callback);
+        }
+      };
+
+      request.onerror = function (e) {
+        console.log('There was an error receiving the response: ' + e);
+        reverbjs.networkError = e;
+      };
+
+      request.send();
+      return sourceNode;
+    };
+  }
+};
+},{}],"assets/water/1.wav":[function(require,module,exports) {
 module.exports = "/1.a2a2a013.wav";
-},{}],"assets/water/2.wav":[function(require,module,exports) {
-module.exports = "/2.f5a2fc28.wav";
 },{}],"assets/water/10.wav":[function(require,module,exports) {
 module.exports = "/10.63047419.wav";
 },{}],"assets/water/11.wav":[function(require,module,exports) {
 module.exports = "/11.77b5c052.wav";
+},{}],"assets/water/2.wav":[function(require,module,exports) {
+module.exports = "/2.f5a2fc28.wav";
 },{}],"assets/water/3.wav":[function(require,module,exports) {
 module.exports = "/3.bed0a8a4.wav";
 },{}],"assets/water/4.wav":[function(require,module,exports) {
@@ -64855,7 +65036,9 @@ module.exports = {
   "10": require("./10.wav"),
   "11": require("./11.wav")
 };
-},{"./1.wav":"assets/water/1.wav","./2.wav":"assets/water/2.wav","./10.wav":"assets/water/10.wav","./11.wav":"assets/water/11.wav","./3.wav":"assets/water/3.wav","./4.wav":"assets/water/4.wav","./5.wav":"assets/water/5.wav","./6.wav":"assets/water/6.wav","./7.wav":"assets/water/7.wav","./8.wav":"assets/water/8.wav","./9.wav":"assets/water/9.wav"}],"app/agua.js":[function(require,module,exports) {
+},{"./1.wav":"assets/water/1.wav","./10.wav":"assets/water/10.wav","./11.wav":"assets/water/11.wav","./2.wav":"assets/water/2.wav","./3.wav":"assets/water/3.wav","./4.wav":"assets/water/4.wav","./5.wav":"assets/water/5.wav","./6.wav":"assets/water/6.wav","./7.wav":"assets/water/7.wav","./8.wav":"assets/water/8.wav","./9.wav":"assets/water/9.wav"}],"app/agua.js":[function(require,module,exports) {
+const reverbjs = require('./lib/reverb.js');
+
 const sampleFiles = require('./../assets/water/*.wav');
 
 console.log('SAMPLES', sampleFiles);
@@ -64970,7 +65153,7 @@ module.exports = {
 //   var x = document.getElementById("ta").value;
 //   document.getElementById("log").innerHTML = aguaDialect(x);
 // }
-},{"./../assets/water/*.wav":"assets/water/*.wav"}],"app/mouse-follower.js":[function(require,module,exports) {
+},{"./lib/reverb.js":"app/lib/reverb.js","./../assets/water/*.wav":"assets/water/*.wav"}],"app/mouse-follower.js":[function(require,module,exports) {
 module.exports = emitter => {
   let mouse = {
     x: 0,
@@ -65079,7 +65262,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54902" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55815" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

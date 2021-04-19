@@ -1,3 +1,5 @@
+const reverbjs = require('./lib/reverb.js')
+
 const sampleFiles = require('./../assets/water/*.wav')
 
 console.log('SAMPLES', sampleFiles)
