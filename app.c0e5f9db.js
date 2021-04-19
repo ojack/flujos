@@ -15911,7 +15911,7 @@ module.exports = ({
   //
   // emitter.on('start', () => {
 
-  src(o0).scrollY([-0.001, 0, 0.001, 0]).scrollX([0, -0.001, 0, 0.001]).layer(s2).out(o0);
+  src(o0).scrollY([-0.001, 0, 0, 0.001, 0, 0]).scrollX([0, 0, -0.001, 0, 0, 0.001]).layer(s2).out(o0);
   render(o0); //})
 
   window.addEventListener('resize', () => {//  console.log('resizing')
@@ -64780,14 +64780,18 @@ module.exports = ({
   console.log('images', cursorImage);
   const cursor = PIXI.Sprite.from(cursorImage);
   cursor.anchor.set(0.5);
-  cursor.width = 40;
-  cursor.height = 50;
+  cursor.width = 30;
+  cursor.height = 40;
   cursor.x = 300;
   cursor.y = 400;
   let videoSprite = null;
   app.ticker.add(() => {
     // just for fun, let's rotate mr rabbit a little
     cursor.rotation += 0.005;
+    cursor.width = 30 + Math.sin(time * 3) * 20; //  cursor.width = 4
+
+    const h = 40 + Math.sin(time * 3) * 20;
+    cursor.height = h; // console.log(h)
   });
   emitter.on("mouse:move", pos => {
     cursor.x = pos.x;
@@ -64817,10 +64821,10 @@ module.exports = ({
 };
 },{"pixi.js":"node_modules/pixi.js/lib/pixi.es.js","./../assets/mouse-arrow.png":"assets/mouse-arrow.png"}],"assets/water/1.wav":[function(require,module,exports) {
 module.exports = "/1.a2a2a013.wav";
-},{}],"assets/water/10.wav":[function(require,module,exports) {
-module.exports = "/10.63047419.wav";
 },{}],"assets/water/2.wav":[function(require,module,exports) {
 module.exports = "/2.f5a2fc28.wav";
+},{}],"assets/water/10.wav":[function(require,module,exports) {
+module.exports = "/10.63047419.wav";
 },{}],"assets/water/11.wav":[function(require,module,exports) {
 module.exports = "/11.77b5c052.wav";
 },{}],"assets/water/3.wav":[function(require,module,exports) {
@@ -64851,10 +64855,121 @@ module.exports = {
   "10": require("./10.wav"),
   "11": require("./11.wav")
 };
-},{"./1.wav":"assets/water/1.wav","./10.wav":"assets/water/10.wav","./2.wav":"assets/water/2.wav","./11.wav":"assets/water/11.wav","./3.wav":"assets/water/3.wav","./4.wav":"assets/water/4.wav","./5.wav":"assets/water/5.wav","./6.wav":"assets/water/6.wav","./7.wav":"assets/water/7.wav","./8.wav":"assets/water/8.wav","./9.wav":"assets/water/9.wav"}],"app/agua.js":[function(require,module,exports) {
-const samples = require('./../assets/water/*.wav');
+},{"./1.wav":"assets/water/1.wav","./2.wav":"assets/water/2.wav","./10.wav":"assets/water/10.wav","./11.wav":"assets/water/11.wav","./3.wav":"assets/water/3.wav","./4.wav":"assets/water/4.wav","./5.wav":"assets/water/5.wav","./6.wav":"assets/water/6.wav","./7.wav":"assets/water/7.wav","./8.wav":"assets/water/8.wav","./9.wav":"assets/water/9.wav"}],"app/agua.js":[function(require,module,exports) {
+const sampleFiles = require('./../assets/water/*.wav');
 
-console.log('SAMPLES', samples);
+console.log('SAMPLES', sampleFiles);
+const samples = [];
+const indexRegistry = [];
+let howlerStatus = 'not ready';
+
+const preloadAudio = () => {
+  for (let i = 1; i <= 11; i++) {
+    samples[i - 1] = new Howl({
+      //  src: [`water/${i}.wav`],
+      src: sampleFiles[i],
+      volume: 1,
+      _webAudio: true
+    });
+  }
+
+  ;
+  howlerStatus = `Audio setup is ready and ${samples.length} samples were loaded. `;
+  Howler.masterGain.disconnect(Howler.ctx.destination);
+  reverbjs.extend(Howler.ctx);
+  var reverbUrl = "http://reverbjs.org/Library/Basement.m4a";
+  var reverbNode = Howler.ctx.createReverbFromUrl(reverbUrl, () => {
+    reverbNode.connect(Howler.ctx.destination);
+    howlerStatus += 'Convolver node succesfully loaded. ';
+  });
+  Howler.masterGain.connect(reverbNode);
+
+  for (let samp of samples) {
+    indexRegistry.push(samp.play());
+    samp.pause();
+  }
+
+  console.log('loaded samples');
+};
+
+const aguaDialect = text => {
+  let upper = text.toUpperCase();
+  let newLines = upper.split(/\n/);
+  let tokens = [];
+  let sampWords = ['COPOS', 'VASO', 'LLUVIA', 'CORRIENTE', 'RIO', 'BRISA', 'MAREA', 'NIEBLA', 'NIEVE', 'AGUA', 'GRANIZADA']; //MAR - OCEANO - OLAS - GOTAS
+
+  let loopStateOn = ['REPITE', 'REPITEN', 'CONSTANTES', 'CONSTANTE', 'CONTINUA', 'CONTINUAS', 'CONTINUO', 'CONTINUOS', 'FLOJOS', 'FLUYEN', 'FLUYE', 'FLUIR', 'FLUIDO', 'PERPETUA', 'ETERNA', 'ETERNO', 'PERPETUO', 'CÍCLICO', 'CÍCLICA', 'CÍCLICOS', 'CÍCLICAS', 'INCONTABLE', 'INCONTABLES', 'INCALCULABLE', 'INFINITO', 'INFINITA', 'INFINITOS', 'INFINITAS', 'INTERMINABLE', 'INTERMINABLES'];
+  let stopWords = ['PARAN', 'PARA', 'DETENTE', 'FRENA', 'DETIENEN', 'DETIENE', 'PAUSA', 'PAUSAN', 'ESTANCA', 'ESTANCAN', 'REPRESA', 'REPRESAN', 'CONGELA', 'CONGELAN', 'CONGELADO', 'CONGELADA', 'CONGELADOS'];
+  let softVal = ['SUAVE', 'SUAVES', 'SUAVEMENTE', 'TRANQUILO', 'TRANQUILA', 'CALLADA', 'CALLADO', 'TRANQUILOS', 'TRANQUILAS', 'CALLADAS', 'CALLADOS', 'SILENTES', 'TENUES', 'TENUE', 'REPOSO', 'REPOSA', 'REPOSAN'];
+  let softerVal = ['MENOS', 'POCO', 'POCAS', 'POCOS', 'POCA', 'ESCASO', 'ESCASA', 'ESCASEAN', 'LIMITADO'];
+  let medVal = ['FUERTE', 'FUERTES', 'VIOLENTO', 'VIOLENTA', 'VIOLENTOS', 'VIOLENTAS', 'DUROS', 'DURAS', 'AGRESIVA', 'AGRESIVO', 'TORMENTOSA', 'TORMENTOSO', 'TORMENTOSOS', 'ROBUSTO', 'POTENTE', 'ENÉRGICO', 'ENÉRGICA'];
+  let loudVal = ['MUCHO', 'MUCHAS', 'MUCHOS', 'MUCHA', 'ABUNDANTE', 'ABUNTANTES', 'NUMEROSO', 'NUMEROSA', 'NUMEROSOS', 'NUMEROSAS', 'INMENSO', 'INMENSA'];
+  let fastVal = ['LIGERA', 'VOLATIL', 'RÁPIDA', 'RÁPIDO', 'LIGERAS', 'LIGEROS', 'VOLATILES', 'RÁPIDAS', 'RÁPIDOS'];
+  let slowVal = ['LENTA', 'LENTO', 'LENTOS', 'LENTAS', 'CALMADO', 'CALMADA', 'CALMADOS', 'CALMADAS', 'SOMNOLIENTO', 'SOMNOLIENTA', 'SOMNOLIENTAS', 'SOMNOLIENTOS', 'DESPACIO', 'PROFUNDO', 'PROFUNDA', 'PROFUNDOS', 'PROFUNDAS'];
+  let stopST = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let loopST = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let volST = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
+  let speedST = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  let playing = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  for (let i = 0; i < newLines.length; i++) {
+    let t = newLines[i].split(' ');
+
+    if (t !== '') {
+      tokens.push(t);
+    }
+  }
+
+  for (let i = 0; i < tokens.length; i++) {
+    for (let j = 0; j < tokens[i].length; j++) {
+      let index = sampWords.indexOf(tokens[i][j]);
+
+      if (index !== -1) {
+        playing[index] = 1;
+        tokens[i].forEach(e => {
+          stopST[index] += stopWords.includes(e) ? 1 : 0;
+          loopST[index] += loopStateOn.includes(e) ? 1 : 0;
+          volST[index] -= softVal.includes(e) ? 0.2 : 0;
+          volST[index] += medVal.includes(e) ? 0.2 : 0;
+          volST[index] -= softerVal.includes(e) ? 0.1 : 0;
+          volST[index] += loudVal.includes(e) ? 0.1 : 0;
+          speedST[index] += fastVal.includes(e) ? 0.5 : 0;
+          speedST[index] -= slowVal.includes(e) ? 0.2 : 0;
+        });
+
+        if (stopST[index] === 1) {
+          loopST[index] = 0;
+          samples[index].stop(indexRegistry[index]);
+        }
+
+        samples[index].loop(loopST[index] === 1 ? true : false, indexRegistry[index]);
+        samples[index].volume(volST[index], indexRegistry[index]);
+        samples[index].rate(speedST[index], indexRegistry[index]);
+
+        if (stopST[index] === 0) {
+          samples[index].play(indexRegistry[index]);
+        }
+      }
+    }
+  }
+
+  let t = `Agua(lang)
+           >>> ${howlerStatus}
+           Samp ids: ${indexRegistry}
+           Playing: ${playing}
+           Rates: ${speedST}
+           Gains: ${volST}
+           Loops: ${loopST}`;
+  return t;
+};
+
+module.exports = {
+  load: preloadAudio,
+  run: aguaDialect
+}; // function getValue() {
+//   var x = document.getElementById("ta").value;
+//   document.getElementById("log").innerHTML = aguaDialect(x);
+// }
 },{"./../assets/water/*.wav":"assets/water/*.wav"}],"app/mouse-follower.js":[function(require,module,exports) {
 module.exports = emitter => {
   let mouse = {
@@ -64892,6 +65007,7 @@ const emitter = new EventEmitter();
 
 const mouse = require('./mouse-follower.js')(emitter);
 
+agua.load();
 initHydra({
   emitter: emitter
 });
@@ -64902,7 +65018,7 @@ initPixi({
 const intro = html`<div class="pa4 i f3"> <h1 class="f1 i"> flujos </h1>
     <p class="f3"> web_site_specific performance</p>
     <p class="f3">by Celeste Betancur and Olivia Jack </p>
-    <div onclick=${start} class="pointer dim"> ${">>>"} enter ${"<<<<"} </div>
+    <div onclick=${start} class="pointer dim pa4"> ${">>>"} enter ${"<<<<"} </div>
     </div>`;
 const uiContainer = html`<div class="w-100 h-100 absolute top-0 left-0 overflow-y-auto">${intro}</div>`;
 const editor = html`<div class="absolute mb5 bottom-0 left-0 w-100 skewY" style="height:40%">
@@ -64910,11 +65026,16 @@ const editor = html`<div class="absolute mb5 bottom-0 left-0 w-100 skewY" style=
 </div>`; // execute editor events on global context
 
 window.addEventListener("message", function (event) {
-  //console.log('received message', event)
+  console.log('received message', event);
+
   if (event.data) {
     if (event.data.cmd === "evaluateCode") {
       //  console.log('evaluate', event.data.args.body)
-      eval(event.data.args.body);
+      if (event.data.args.editorId == 1) {
+        agua.run(event.data.args.body);
+      } else {
+        eval(event.data.args.body);
+      }
     }
   }
 });
@@ -64958,7 +65079,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61510" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54902" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
