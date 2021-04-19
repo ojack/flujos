@@ -1,5 +1,6 @@
 const reverbjs = require('./lib/reverb.js')
 
+const basementReverb = require('./../assets/Basement.mp4')
 const sampleFiles = require('./../assets/water/*.wav')
 
 console.log('SAMPLES', sampleFiles)
@@ -20,7 +21,8 @@ const preloadAudio = () => {
   howlerStatus = `Audio setup is ready and ${samples.length} samples were loaded. `
   Howler.masterGain.disconnect(Howler.ctx.destination);
   reverbjs.extend(Howler.ctx);
-  var reverbUrl = "http://reverbjs.org/Library/Basement.m4a";
+//  var reverbUrl = "http://reverbjs.org/Library/Basement.m4a";
+  var reverbUrl = basementReverb
   var reverbNode = Howler.ctx.createReverbFromUrl(reverbUrl, () => {
     reverbNode.connect(Howler.ctx.destination);
     howlerStatus += 'Convolver node succesfully loaded. '
