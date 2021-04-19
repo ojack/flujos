@@ -117,79 +117,188 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"reverb.js":[function(require,module,exports) {
+/*global ArrayBuffer, Uint8Array, window, XMLHttpRequest*/
+var reverbjs = {
+  extend: function (audioContext) {
+    function decodeBase64ToArrayBuffer(input) {
+      function encodedValue(input, index) {
+        var encodedCharacter,
+            x = input.charCodeAt(index);
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
+        if (index < input.length) {
+          if (x >= 65 && x <= 90) {
+            encodedCharacter = x - 65;
+          } else if (x >= 97 && x <= 122) {
+            encodedCharacter = x - 71;
+          } else if (x >= 48 && x <= 57) {
+            encodedCharacter = x + 4;
+          } else if (x === 43) {
+            encodedCharacter = 62;
+          } else if (x === 47) {
+            encodedCharacter = 63;
+          } else if (x !== 61) {
+            console.log('base64 encountered unexpected character code: ' + x);
+          }
+        }
 
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+        return encodedCharacter;
       }
+
+      if (input.length === 0 || input.length % 4 > 0) {
+        console.log('base64 encountered unexpected length: ' + input.length);
+        return;
+      }
+
+      var padding = input.match(/[=]*$/)[0].length,
+          decodedLength = input.length * 3 / 4 - padding,
+          buffer = new ArrayBuffer(decodedLength),
+          bufferView = new Uint8Array(buffer),
+          encoded = [],
+          d = 0,
+          e = 0,
+          i;
+
+      while (d < decodedLength) {
+        for (i = 0; i < 4; i += 1) {
+          encoded[i] = encodedValue(input, e);
+          e += 1;
+        }
+
+        bufferView[d] = encoded[0] * 4 + Math.floor(encoded[1] / 16);
+        d += 1;
+
+        if (d < decodedLength) {
+          bufferView[d] = encoded[1] % 16 * 16 + Math.floor(encoded[2] / 4);
+          d += 1;
+        }
+
+        if (d < decodedLength) {
+          bufferView[d] = encoded[2] % 4 * 64 + encoded[3];
+          d += 1;
+        }
+      }
+
+      return buffer;
     }
 
-    cssTimeout = null;
-  }, 50);
-}
+    function decodeAndSetupBuffer(node, arrayBuffer, callback) {
+      audioContext.decodeAudioData(arrayBuffer, function (audioBuffer) {
+        console.log('Finished decoding audio data.');
+        node.buffer = audioBuffer;
 
-module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"css/tachyons.min.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+        if (typeof callback === "function" && audioBuffer !== null) {
+          callback(node);
+        }
+      }, function (e) {
+        console.log('Could not decode audio data: ' + e);
+      });
+    }
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+    audioContext.createReverbFromBase64 = function (audioBase64, callback) {
+      var reverbNode = audioContext.createConvolver();
+      decodeAndSetupBuffer(reverbNode, decodeBase64ToArrayBuffer(audioBase64), callback);
+      return reverbNode;
+    };
+
+    audioContext.createSourceFromBase64 = function (audioBase64, callback) {
+      var sourceNode = audioContext.createBufferSource();
+      decodeAndSetupBuffer(sourceNode, decodeBase64ToArrayBuffer(audioBase64), callback);
+      return sourceNode;
+    };
+
+    audioContext.createReverbFromUrl = function (audioUrl, callback) {
+      console.log('Downloading impulse response from ' + audioUrl);
+      var reverbNode = audioContext.createConvolver(),
+          request = new XMLHttpRequest();
+      request.open('GET', audioUrl, true);
+
+      request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log('Downloaded impulse response');
+          decodeAndSetupBuffer(reverbNode, request.response, callback);
+        }
+      };
+
+      request.onerror = function (e) {
+        console.log('There was an error receiving the response: ' + e);
+        reverbjs.networkError = e;
+      };
+
+      request.responseType = 'arraybuffer';
+      request.send();
+      return reverbNode;
+    };
+
+    audioContext.createSourceFromUrl = function (audioUrl, callback) {
+      console.log('Downloading sound from ' + audioUrl);
+      var sourceNode = audioContext.createBufferSource(),
+          request = new XMLHttpRequest();
+      request.open('GET', audioUrl, true);
+
+      request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log('Downloaded sound');
+          decodeAndSetupBuffer(sourceNode, request.response, callback);
+        }
+      };
+
+      request.onerror = function (e) {
+        console.log('There was an error receiving the response: ' + e);
+        reverbjs.networkError = e;
+      };
+
+      request.responseType = 'arraybuffer';
+      request.send();
+      return sourceNode;
+    };
+
+    audioContext.createReverbFromBase64Url = function (audioUrl, callback) {
+      console.log('Downloading base64 impulse response from ' + audioUrl);
+      var reverbNode = audioContext.createConvolver(),
+          request = new XMLHttpRequest();
+      request.open('GET', audioUrl, true);
+
+      request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log('Downloaded impulse response');
+          decodeAndSetupBuffer(reverbNode, decodeBase64ToArrayBuffer(request.response), callback);
+        }
+      };
+
+      request.onerror = function (e) {
+        console.log('There was an error receiving the response: ' + e);
+        reverbjs.networkError = e;
+      };
+
+      request.send();
+      return reverbNode;
+    };
+
+    audioContext.createSourceFromBase64Url = function (audioUrl, callback) {
+      console.log('Downloading base64 sound from ' + audioUrl);
+      var sourceNode = audioContext.createBufferSource(),
+          request = new XMLHttpRequest();
+      request.open('GET', audioUrl, true);
+
+      request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log('Downloaded sound');
+          decodeAndSetupBuffer(sourceNode, decodeBase64ToArrayBuffer(request.response), callback);
+        }
+      };
+
+      request.onerror = function (e) {
+        console.log('There was an error receiving the response: ' + e);
+        reverbjs.networkError = e;
+      };
+
+      request.send();
+      return sourceNode;
+    };
+  }
+};
+},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +326,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55815" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55277" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -393,5 +502,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/tachyons.min.c616f547.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","reverb.js"], null)
+//# sourceMappingURL=/reverb.850d1206.js.map
