@@ -25,6 +25,6 @@
     "mediasoup-client": "^3.6.29",
     "nanohtml": "^1.9.1",
     "pixi.js": "^5.3.9",
-    "protoo-client": "^4.0.6",
+    "protoo-client": "^4.0.6"
   }
 }

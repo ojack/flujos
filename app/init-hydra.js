@@ -22,6 +22,7 @@ speed = 0.1
 //   .out()
 //
 //
+
 // src(o1).layer(src(o0).mask(osc(10, -0.1).rotate(0, 0.1).modulate(osc(10).thresh(0.8, 0.4)).kaleid(2).thresh(0.9, 0)), 0).modulate(osc(20), -0.004, 1.02)
 //   .modulate(src(o1).color(1, 0), 0.1)
 //   .contrast(1.1)
