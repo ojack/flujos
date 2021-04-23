@@ -1,3 +1,6 @@
+// const peers = require('./lib/deepstream.js')()
+
+// const peers = require('./lib/ws.js')
 
 module.exports = (emitter) => {
   let mouse = { x: 0, y: 0 }

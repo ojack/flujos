@@ -27,11 +27,13 @@ const intro = html`<div class="pa4 i f3"> <h1 class="f1 i"> flujos </h1>
 
 const uiContainer = html`<div class="w-100 h-100 absolute top-0 left-0 overflow-y-auto">${intro}</div>`
 
+const iframe = html`<iframe src="${flokURL}${readOnly?'&readonly=1':''}" frameborder="0" class="w-100 h-100 scale-80" style=${readOnly?"pointer-events:none":''}></iframe>`
+
 const editor = html`<div class="absolute mb5 bottom-0 left-0 w-100 skewY" style="height:40%">
-<iframe src="${flokURL}${readOnly?'&readonly=1':''}" frameborder="0" class="w-100 h-100" style=${readOnly?"pointer-events:none":''}></iframe>
+  ${iframe}
 </div>`
 
-
+window.editor = iframe
 
 // execute editor events on global context
 window.addEventListener("message", function(event) {

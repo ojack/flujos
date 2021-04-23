@@ -23,7 +23,7 @@ module.exports = ({ emitter } = {}) => {
   //  if(!hasStarted) {
       const video = createVideo({}, () => {
         setTimeout(() => {
-        //  s0.init({ src: video })
+          s0.init({ src: video })
           // osc(3, 0.2, 1.2).diff(s0).out()
           video.play()
           emitter.emit('stream:loaded', 0, video)
@@ -31,6 +31,7 @@ module.exports = ({ emitter } = {}) => {
       })
 
       const video2 = createVideo({}, () => {  setTimeout(() => {
+        s1.init({ src: video2 })
          video.play()
          emitter.emit('stream:loaded', 1, video2)
        }, 200) })

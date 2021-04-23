@@ -1,6 +1,8 @@
 const PIXI = require('pixi.js')
 const cursorImage = require('./../assets/mouse-arrow.png');
 
+const RemoteMouse = require('./lib/remoteMouse.js')
+
 module.exports = ({ parent = document.body, emitter } = {}) => {
   const app = new PIXI.Application({
     // backgroundColor: 0x1099bb
@@ -16,23 +18,26 @@ module.exports = ({ parent = document.body, emitter } = {}) => {
 
   console.log('images', cursorImage)
 
-  const cursor = PIXI.Sprite.from(cursorImage)
+  const mouseTexture = PIXI.Texture.from(cursorImage)
+  const cursor = new PIXI.Sprite(mouseTexture)
   cursor.anchor.set(0.5)
 
-  cursor.width = 30
-  cursor.height = 40
+  cursor.width = 30/2
+  cursor.height = 40/2
   cursor.x = 300;
   cursor.y = 400;
+
+  const remoteMice = new RemoteMouse({ texture: mouseTexture, container: app.stage }, emitter)
 
   let videoSprite = null
 
   app.ticker.add(() => {
     // just for fun, let's rotate mr rabbit a little
     cursor.rotation += 0.005;
-    cursor.width = 30 + Math.sin(time*3)*20
-  //  cursor.width = 4
-    const h = 40 + Math.sin(time*3)*20
-    cursor.height = h
+  //   cursor.width = (30 + Math.sin(time*3)*20)/3
+  // //  cursor.width = 4
+  //   const h = (40 + Math.sin(time*3)*20)/3
+  //   cursor.height = h
     // console.log(h)
   });
   emitter.on("mouse:move", (pos) => {
@@ -46,14 +51,14 @@ module.exports = ({ parent = document.body, emitter } = {}) => {
   })
 
   emitter.on("stream:loaded", (index, video) => {
-    console.log('reeived video', video)
-     const texture = PIXI.Texture.from(video)
-     videoSprite = new PIXI.Sprite(texture)
-     videoSprite.width = 150
-     videoSprite.height = 100
-      videoSprite.x = 400
-      videoSprite.y = 100
-      app.stage.addChild(videoSprite)
+    // console.log('reeived video', video)
+    //  const texture = PIXI.Texture.from(video)
+    //  videoSprite = new PIXI.Sprite(texture)
+    //  videoSprite.width = 150
+    //  videoSprite.height = 100
+    //   videoSprite.x = 400
+    //   videoSprite.y = 100
+    //   app.stage.addChild(videoSprite)
   })
 
   app.stage.addChild(cursor)
