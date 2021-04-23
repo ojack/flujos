@@ -21,12 +21,10 @@
     "last 3 safari versions"
   ],
   "dependencies": {
-    "@deepstream/client": "^5.2.4",
     "events": "^3.3.0",
     "mediasoup-client": "^3.6.29",
     "nanohtml": "^1.9.1",
     "pixi.js": "^5.3.9",
     "protoo-client": "^4.0.6",
-    "socket.io-client": "^1.4.3"
   }
 }
