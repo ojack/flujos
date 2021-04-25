@@ -1,7 +1,7 @@
 const reverbjs = require('./lib/reverb.js')
 
 const basementReverb = require('./../assets/Basement.mp4')
-const sampleFiles = require('./../assets/water/*.wav')
+const sampleFiles = require('./../assets/water/*.ogg')
 
 console.log('SAMPLES', sampleFiles)
 
@@ -12,16 +12,13 @@ let howlerStatus = 'not ready'
 const preloadAudio = () => {
   for(let i = 1; i <= 11; i++){
     samples[i-1] = new Howl({
-    //  src: [`water/${i}.wav`],
       src: sampleFiles[i],
-      volume: 1,
-      _webAudio: true
+      volume: 1
     })
   };
   howlerStatus = `Audio setup is ready and ${samples.length} samples were loaded. `
   Howler.masterGain.disconnect(Howler.ctx.destination);
   reverbjs.extend(Howler.ctx);
-//  var reverbUrl = "http://reverbjs.org/Library/Basement.m4a";
   var reverbUrl = basementReverb
   var reverbNode = Howler.ctx.createReverbFromUrl(reverbUrl, () => {
     reverbNode.connect(Howler.ctx.destination);
@@ -40,8 +37,8 @@ const aguaDialect = (text) => {
   let upper = text.toUpperCase()
   let newLines = upper.split(/\n/)
   let tokens = []
-  let sampWords = ['COPOS','VASO','LLUVIA','CORRIENTE','RIO','BRISA','MAREA','NIEBLA','NIEVE','AGUA','GRANIZADA'] //MAR - OCEANO - OLAS - GOTAS
-  let loopStateOn = ['REPITE','REPITEN','CONSTANTES','CONSTANTE','CONTINUA','CONTINUAS','CONTINUO','CONTINUOS','FLOJOS','FLUYEN','FLUYE','FLUIR','FLUIDO','PERPETUA','ETERNA','ETERNO','PERPETUO','CÍCLICO','CÍCLICA','CÍCLICOS','CÍCLICAS','INCONTABLE','INCONTABLES','INCALCULABLE','INFINITO','INFINITA','INFINITOS','INFINITAS','INTERMINABLE','INTERMINABLES']
+  let sampWords = ['COPOS','VASO','LLUVIA','CORRIENTE','RIO','BRISA','MAREA','NIEBLA','NIEVE','AGUA','GRANIZADA','GOTAS','MAR','OCEANO']
+  let loopStateOn = ['REPITE','REPITEN','CONSTANTES','CONSTANTE','CONTINUA','CONTINUAS','CONTINUO','CONTINUOS','FLUJOS','FLUYEN','FLUYE','FLUIR','FLUIDO','PERPETUA','ETERNA','ETERNO','PERPETUO','CÍCLICO','CÍCLICA','CÍCLICOS','CÍCLICAS','INCONTABLE','INCONTABLES','INCALCULABLE','INFINITO','INFINITA','INFINITOS','INFINITAS','INTERMINABLE','INTERMINABLES']
   let stopWords = ['PARAN','PARA','DETENTE','FRENA','DETIENEN','DETIENE','PAUSA','PAUSAN','ESTANCA','ESTANCAN','REPRESA','REPRESAN','CONGELA','CONGELAN','CONGELADO','CONGELADA','CONGELADOS']
   let softVal = ['SUAVE','SUAVES','SUAVEMENTE','TRANQUILO','TRANQUILA','CALLADA','CALLADO','TRANQUILOS','TRANQUILAS','CALLADAS','CALLADOS','SILENTES','TENUES','TENUE','REPOSO','REPOSA','REPOSAN']
   let softerVal = ['MENOS','POCO','POCAS','POCOS','POCA','ESCASO','ESCASA','ESCASEAN','LIMITADO']
@@ -52,7 +49,7 @@ const aguaDialect = (text) => {
 
   let stopST = [0,0,0,0,0,0,0,0,0,0,0]
   let loopST = [0,0,0,0,0,0,0,0,0,0,0]
-  let volST = [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]
+  let volST = [1,1,1,1,1,1,1,1,1,1,1]
   let speedST = [1,1,1,1,1,1,1,1,1,1,1]
   let playing = [0,0,0,0,0,0,0,0,0,0,0]
 
