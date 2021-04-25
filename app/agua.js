@@ -10,7 +10,7 @@ const indexRegistry = []
 let howlerStatus = 'not ready'
 
 const preloadAudio = () => {
-  for(let i = 1; i <= 11; i++){
+  for(let i = 1; i <= sampleFiles.length; i++){
     samples[i-1] = new Howl({
       src: sampleFiles[i],
       volume: 1
@@ -45,7 +45,7 @@ const aguaDialect = (text) => {
   let medVal = ['FUERTE','FUERTES','VIOLENTO','VIOLENTA','VIOLENTOS','VIOLENTAS','DUROS','DURAS','AGRESIVA','AGRESIVO','TORMENTOSA','TORMENTOSO','TORMENTOSOS','ROBUSTO','POTENTE','ENÉRGICO','ENÉRGICA']
   let loudVal = ['MUCHO','MUCHAS','MUCHOS','MUCHA','ABUNDANTE','ABUNTANTES','NUMEROSO','NUMEROSA','NUMEROSOS','NUMEROSAS','INMENSO','INMENSA']
   let fastVal = ['LIGERA','VOLATIL','RÁPIDA','RÁPIDO','LIGERAS','LIGEROS','VOLATILES','RÁPIDAS','RÁPIDOS']
-  let slowVal = ['LENTA','LENTO','LENTOS','LENTAS','CALMADO','CALMADA','CALMADOS','CALMADAS','SOMNOLIENTO','SOMNOLIENTA','SOMNOLIENTAS','SOMNOLIENTOS','DESPACIO','PROFUNDO','PROFUNDA','PROFUNDOS','PROFUNDAS']
+  let slowVal = ['LENTA','LENTO','LENTOS','LENTAS','CALMADO','CALMADA','CALMADOS','CALMADAS','SOMNOLIENTO','SOMNOLIENTA','SOMNOLIENTAS','SOMNOLIENTOS','DESPACIO','PROFUNDO','PROFUNDA','PROFUNDOS','PROFUNDAS','DORMIDA','DORMIDAS','DORMID0','DORMIDOS']
 
   let stopST = [0,0,0,0,0,0,0,0,0,0,0]
   let loopST = [0,0,0,0,0,0,0,0,0,0,0]
@@ -101,8 +101,3 @@ module.exports = {
   load: preloadAudio,
   run: aguaDialect
 }
-
-// function getValue() {
-//   var x = document.getElementById("ta").value;
-//   document.getElementById("log").innerHTML = aguaDialect(x);
-// }
