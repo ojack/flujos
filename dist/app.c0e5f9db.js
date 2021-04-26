@@ -65080,48 +65080,57 @@ module.exports = {
 };
 },{}],"assets/Basement.mp4":[function(require,module,exports) {
 module.exports = "/Basement.722a45e7.mp4";
-},{}],"assets/water/1.wav":[function(require,module,exports) {
-module.exports = "/1.a2a2a013.wav";
-},{}],"assets/water/10.wav":[function(require,module,exports) {
-module.exports = "/10.63047419.wav";
-},{}],"assets/water/11.wav":[function(require,module,exports) {
-module.exports = "/11.77b5c052.wav";
-},{}],"assets/water/2.wav":[function(require,module,exports) {
-module.exports = "/2.f5a2fc28.wav";
-},{}],"assets/water/3.wav":[function(require,module,exports) {
-module.exports = "/3.bed0a8a4.wav";
-},{}],"assets/water/4.wav":[function(require,module,exports) {
-module.exports = "/4.7952b6f4.wav";
-},{}],"assets/water/5.wav":[function(require,module,exports) {
-module.exports = "/5.0a3902bc.wav";
-},{}],"assets/water/6.wav":[function(require,module,exports) {
-module.exports = "/6.75b8a3e8.wav";
-},{}],"assets/water/7.wav":[function(require,module,exports) {
-module.exports = "/7.c05441c5.wav";
-},{}],"assets/water/8.wav":[function(require,module,exports) {
-module.exports = "/8.199998a2.wav";
-},{}],"assets/water/9.wav":[function(require,module,exports) {
-module.exports = "/9.18d2cce0.wav";
-},{}],"assets/water/*.wav":[function(require,module,exports) {
+},{}],"assets/water/1.ogg":[function(require,module,exports) {
+module.exports = "/1.51b0ed6a.ogg";
+},{}],"assets/water/10.ogg":[function(require,module,exports) {
+module.exports = "/10.e0a937a1.ogg";
+},{}],"assets/water/11.ogg":[function(require,module,exports) {
+module.exports = "/11.bf724a0b.ogg";
+},{}],"assets/water/12.ogg":[function(require,module,exports) {
+module.exports = "/12.4348e1a0.ogg";
+},{}],"assets/water/13.ogg":[function(require,module,exports) {
+module.exports = "/13.0c11618f.ogg";
+},{}],"assets/water/14.ogg":[function(require,module,exports) {
+module.exports = "/14.eb3e54fd.ogg";
+},{}],"assets/water/2.ogg":[function(require,module,exports) {
+module.exports = "/2.441bbecd.ogg";
+},{}],"assets/water/3.ogg":[function(require,module,exports) {
+module.exports = "/3.f3816339.ogg";
+},{}],"assets/water/4.ogg":[function(require,module,exports) {
+module.exports = "/4.2b88f5a6.ogg";
+},{}],"assets/water/5.ogg":[function(require,module,exports) {
+module.exports = "/5.7046c250.ogg";
+},{}],"assets/water/6.ogg":[function(require,module,exports) {
+module.exports = "/6.1f16a2f1.ogg";
+},{}],"assets/water/7.ogg":[function(require,module,exports) {
+module.exports = "/7.b43b29a2.ogg";
+},{}],"assets/water/8.ogg":[function(require,module,exports) {
+module.exports = "/8.a3afa939.ogg";
+},{}],"assets/water/9.ogg":[function(require,module,exports) {
+module.exports = "/9.0b97b11b.ogg";
+},{}],"assets/water/*.ogg":[function(require,module,exports) {
 module.exports = {
-  "1": require("./1.wav"),
-  "2": require("./2.wav"),
-  "3": require("./3.wav"),
-  "4": require("./4.wav"),
-  "5": require("./5.wav"),
-  "6": require("./6.wav"),
-  "7": require("./7.wav"),
-  "8": require("./8.wav"),
-  "9": require("./9.wav"),
-  "10": require("./10.wav"),
-  "11": require("./11.wav")
+  "1": require("./1.ogg"),
+  "2": require("./2.ogg"),
+  "3": require("./3.ogg"),
+  "4": require("./4.ogg"),
+  "5": require("./5.ogg"),
+  "6": require("./6.ogg"),
+  "7": require("./7.ogg"),
+  "8": require("./8.ogg"),
+  "9": require("./9.ogg"),
+  "10": require("./10.ogg"),
+  "11": require("./11.ogg"),
+  "12": require("./12.ogg"),
+  "13": require("./13.ogg"),
+  "14": require("./14.ogg")
 };
-},{"./1.wav":"assets/water/1.wav","./10.wav":"assets/water/10.wav","./11.wav":"assets/water/11.wav","./2.wav":"assets/water/2.wav","./3.wav":"assets/water/3.wav","./4.wav":"assets/water/4.wav","./5.wav":"assets/water/5.wav","./6.wav":"assets/water/6.wav","./7.wav":"assets/water/7.wav","./8.wav":"assets/water/8.wav","./9.wav":"assets/water/9.wav"}],"app/agua.js":[function(require,module,exports) {
+},{"./1.ogg":"assets/water/1.ogg","./10.ogg":"assets/water/10.ogg","./11.ogg":"assets/water/11.ogg","./12.ogg":"assets/water/12.ogg","./13.ogg":"assets/water/13.ogg","./14.ogg":"assets/water/14.ogg","./2.ogg":"assets/water/2.ogg","./3.ogg":"assets/water/3.ogg","./4.ogg":"assets/water/4.ogg","./5.ogg":"assets/water/5.ogg","./6.ogg":"assets/water/6.ogg","./7.ogg":"assets/water/7.ogg","./8.ogg":"assets/water/8.ogg","./9.ogg":"assets/water/9.ogg"}],"app/agua.js":[function(require,module,exports) {
 const reverbjs = require('./lib/reverb.js');
 
 const basementReverb = require('./../assets/Basement.mp4');
 
-const sampleFiles = require('./../assets/water/*.wav');
+const sampleFiles = require('./../assets/water/*.ogg');
 
 console.log('SAMPLES', sampleFiles);
 const samples = [];
@@ -65129,20 +65138,17 @@ const indexRegistry = [];
 let howlerStatus = 'not ready';
 
 const preloadAudio = () => {
-  for (let i = 1; i <= 11; i++) {
+  for (let i = 1; i <= Object.keys(sampleFiles).length; i++) {
     samples[i - 1] = new Howl({
-      //  src: [`water/${i}.wav`],
       src: sampleFiles[i],
-      volume: 1,
-      _webAudio: true
+      volume: 1
     });
   }
 
   ;
   howlerStatus = `Audio setup is ready and ${samples.length} samples were loaded. `;
   Howler.masterGain.disconnect(Howler.ctx.destination);
-  reverbjs.extend(Howler.ctx); //  var reverbUrl = "http://reverbjs.org/Library/Basement.m4a";
-
+  reverbjs.extend(Howler.ctx);
   var reverbUrl = basementReverb;
   var reverbNode = Howler.ctx.createReverbFromUrl(reverbUrl, () => {
     reverbNode.connect(Howler.ctx.destination);
@@ -65162,19 +65168,18 @@ const aguaDialect = text => {
   let upper = text.toUpperCase();
   let newLines = upper.split(/\n/);
   let tokens = [];
-  let sampWords = ['COPOS', 'VASO', 'LLUVIA', 'CORRIENTE', 'RIO', 'BRISA', 'MAREA', 'NIEBLA', 'NIEVE', 'AGUA', 'GRANIZADA']; //MAR - OCEANO - OLAS - GOTAS
-
-  let loopStateOn = ['REPITE', 'REPITEN', 'CONSTANTES', 'CONSTANTE', 'CONTINUA', 'CONTINUAS', 'CONTINUO', 'CONTINUOS', 'FLOJOS', 'FLUYEN', 'FLUYE', 'FLUIR', 'FLUIDO', 'PERPETUA', 'ETERNA', 'ETERNO', 'PERPETUO', 'CÍCLICO', 'CÍCLICA', 'CÍCLICOS', 'CÍCLICAS', 'INCONTABLE', 'INCONTABLES', 'INCALCULABLE', 'INFINITO', 'INFINITA', 'INFINITOS', 'INFINITAS', 'INTERMINABLE', 'INTERMINABLES'];
+  let sampWords = ['COPOS', 'VASO', 'LLUVIA', 'CORRIENTE', 'RIO', 'BRISA', 'MAREA', 'NIEBLA', 'NIEVE', 'AGUA', 'GRANIZADA', 'GOTAS', 'MAR', 'OCEANO'];
+  let loopStateOn = ['REPITE', 'REPITEN', 'CONSTANTES', 'CONSTANTE', 'CONTINUA', 'CONTINUAS', 'CONTINUO', 'CONTINUOS', 'FLUJOS', 'FLUYEN', 'FLUYE', 'FLUIR', 'FLUIDO', 'PERPETUA', 'ETERNA', 'ETERNO', 'PERPETUO', 'CÍCLICO', 'CÍCLICA', 'CÍCLICOS', 'CÍCLICAS', 'INCONTABLE', 'INCONTABLES', 'INCALCULABLE', 'INFINITO', 'INFINITA', 'INFINITOS', 'INFINITAS', 'INTERMINABLE', 'INTERMINABLES'];
   let stopWords = ['PARAN', 'PARA', 'DETENTE', 'FRENA', 'DETIENEN', 'DETIENE', 'PAUSA', 'PAUSAN', 'ESTANCA', 'ESTANCAN', 'REPRESA', 'REPRESAN', 'CONGELA', 'CONGELAN', 'CONGELADO', 'CONGELADA', 'CONGELADOS'];
   let softVal = ['SUAVE', 'SUAVES', 'SUAVEMENTE', 'TRANQUILO', 'TRANQUILA', 'CALLADA', 'CALLADO', 'TRANQUILOS', 'TRANQUILAS', 'CALLADAS', 'CALLADOS', 'SILENTES', 'TENUES', 'TENUE', 'REPOSO', 'REPOSA', 'REPOSAN'];
   let softerVal = ['MENOS', 'POCO', 'POCAS', 'POCOS', 'POCA', 'ESCASO', 'ESCASA', 'ESCASEAN', 'LIMITADO'];
   let medVal = ['FUERTE', 'FUERTES', 'VIOLENTO', 'VIOLENTA', 'VIOLENTOS', 'VIOLENTAS', 'DUROS', 'DURAS', 'AGRESIVA', 'AGRESIVO', 'TORMENTOSA', 'TORMENTOSO', 'TORMENTOSOS', 'ROBUSTO', 'POTENTE', 'ENÉRGICO', 'ENÉRGICA'];
   let loudVal = ['MUCHO', 'MUCHAS', 'MUCHOS', 'MUCHA', 'ABUNDANTE', 'ABUNTANTES', 'NUMEROSO', 'NUMEROSA', 'NUMEROSOS', 'NUMEROSAS', 'INMENSO', 'INMENSA'];
   let fastVal = ['LIGERA', 'VOLATIL', 'RÁPIDA', 'RÁPIDO', 'LIGERAS', 'LIGEROS', 'VOLATILES', 'RÁPIDAS', 'RÁPIDOS'];
-  let slowVal = ['LENTA', 'LENTO', 'LENTOS', 'LENTAS', 'CALMADO', 'CALMADA', 'CALMADOS', 'CALMADAS', 'SOMNOLIENTO', 'SOMNOLIENTA', 'SOMNOLIENTAS', 'SOMNOLIENTOS', 'DESPACIO', 'PROFUNDO', 'PROFUNDA', 'PROFUNDOS', 'PROFUNDAS'];
+  let slowVal = ['LENTA', 'LENTO', 'LENTOS', 'LENTAS', 'CALMADO', 'CALMADA', 'CALMADOS', 'CALMADAS', 'SOMNOLIENTO', 'SOMNOLIENTA', 'SOMNOLIENTAS', 'SOMNOLIENTOS', 'DESPACIO', 'PROFUNDO', 'PROFUNDA', 'PROFUNDOS', 'PROFUNDAS', 'DORMIDA', 'DORMIDAS', 'DORMID0', 'DORMIDOS'];
   let stopST = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   let loopST = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let volST = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
+  let volST = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   let speedST = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   let playing = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -65232,11 +65237,8 @@ const aguaDialect = text => {
 module.exports = {
   load: preloadAudio,
   run: aguaDialect
-}; // function getValue() {
-//   var x = document.getElementById("ta").value;
-//   document.getElementById("log").innerHTML = aguaDialect(x);
-// }
-},{"./lib/reverb.js":"app/lib/reverb.js","./../assets/Basement.mp4":"assets/Basement.mp4","./../assets/water/*.wav":"assets/water/*.wav"}],"app/mouse-follower.js":[function(require,module,exports) {
+};
+},{"./lib/reverb.js":"app/lib/reverb.js","./../assets/Basement.mp4":"assets/Basement.mp4","./../assets/water/*.ogg":"assets/water/*.ogg"}],"app/mouse-follower.js":[function(require,module,exports) {
 // const peers = require('./lib/deepstream.js')()
 // const peers = require('./lib/ws.js')
 module.exports = emitter => {
@@ -65349,7 +65351,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62654" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53897" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

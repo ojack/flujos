@@ -10,7 +10,7 @@ const indexRegistry = []
 let howlerStatus = 'not ready'
 
 const preloadAudio = () => {
-  for(let i = 1; i <= sampleFiles.length; i++){
+  for(let i = 1; i <= Object.keys(sampleFiles).length; i++){
     samples[i-1] = new Howl({
       src: sampleFiles[i],
       volume: 1
