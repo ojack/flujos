@@ -1,1 +1,0 @@
-{"version":3,"sources":["css/styles.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA","file":"styles.5b03bcb5.css","sourceRoot":"..","sourcesContent":[".skewY {\n  transform: skewY(-10deg);\n}\n"]}

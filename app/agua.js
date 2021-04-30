@@ -8,15 +8,17 @@ console.log('SAMPLES', sampleFiles)
 const samples = []
 const indexRegistry = []
 let howlerStatus = 'not ready'
+const numSamples = Object.keys(sampleFiles).length
 
 const preloadAudio = () => {
-  for(let i = 1; i <= Object.keys(sampleFiles).length; i++){
+  for(let i = 1; i <= numSamples; i++){
     samples[i-1] = new Howl({
       src: sampleFiles[i],
       volume: 1
     })
   };
   howlerStatus = `Audio setup is ready and ${samples.length} samples were loaded. `
+  console.log(howlerStatus)
   Howler.masterGain.disconnect(Howler.ctx.destination);
   reverbjs.extend(Howler.ctx);
   var reverbUrl = basementReverb
@@ -30,7 +32,7 @@ const preloadAudio = () => {
     indexRegistry.push(samp.play());
     samp.pause();
   }
-  console.log('loaded samples')
+  console.log('loaded samples', indexRegistry)
 }
 
 const aguaDialect = (text) => {
@@ -47,11 +49,11 @@ const aguaDialect = (text) => {
   let fastVal = ['LIGERA','VOLATIL','RÁPIDA','RÁPIDO','LIGERAS','LIGEROS','VOLATILES','RÁPIDAS','RÁPIDOS']
   let slowVal = ['LENTA','LENTO','LENTOS','LENTAS','CALMADO','CALMADA','CALMADOS','CALMADAS','SOMNOLIENTO','SOMNOLIENTA','SOMNOLIENTAS','SOMNOLIENTOS','DESPACIO','PROFUNDO','PROFUNDA','PROFUNDOS','PROFUNDAS','DORMIDA','DORMIDAS','DORMID0','DORMIDOS']
 
-  let stopST = [0,0,0,0,0,0,0,0,0,0,0]
-  let loopST = [0,0,0,0,0,0,0,0,0,0,0]
-  let volST = [1,1,1,1,1,1,1,1,1,1,1]
-  let speedST = [1,1,1,1,1,1,1,1,1,1,1]
-  let playing = [0,0,0,0,0,0,0,0,0,0,0]
+  let stopST = new Array(numSamples).fill(0)//[0,0,0,0,0,0,0,0,0,0,0]
+  let loopST = new Array(numSamples).fill(0)//[0,0,0,0,0,0,0,0,0,0,0]
+  let volST = new Array(numSamples).fill(1)// [1,1,1,1,1,1,1,1,1,1,1]
+  let speedST = new Array(numSamples).fill(1)//[1,1,1,1,1,1,1,1,1,1,1]
+  let playing = new Array(numSamples).fill(0)//[0,0,0,0,0,0,0,0,0,0,0]
 
   for(let i = 0; i < newLines.length; i++){
         let t = newLines[i].split(' ')
