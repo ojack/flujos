@@ -3,7 +3,16 @@ const cursorImage = require('./../assets/mouse-arrow.png');
 
 const RemoteMouse = require('./lib/remoteMouse.js')
 
-module.exports = ({ parent = document.body, emitter } = {}) => {
+let mouseProps = {
+  width: 76,
+  height: 120,
+  scale: 1,
+  rotate: 0.005
+}
+
+
+
+module.exports = ({ parent = document.body, emitter } = {}, state) => {
   const app = new PIXI.Application({
     // backgroundColor: 0x1099bb
     width: window.innerWidth,
@@ -29,11 +38,23 @@ module.exports = ({ parent = document.body, emitter } = {}) => {
 
   const remoteMice = new RemoteMouse({ texture: mouseTexture, container: app.stage }, emitter)
 
+  window.Mouse = function (opts) {
+    mouseProps = Object.assign({}, mouseProps, opts)
+    const w = mouseProps.width * mouseProps.scale
+    const h = mouseProps.height * mouseProps.scale
+    Object.values(remoteMice.mice).forEach((mouse) => {
+      mouse.width = w
+      mouse.height = h
+      cursor.width = w
+      cursor.height = h
+    })
+  }
+
   let videoSprite = null
 
   app.ticker.add(() => {
     // just for fun, let's rotate mr rabbit a little
-    cursor.rotation += 0.005;
+  //  cursor.rotation += 0.005;
   //   cursor.width = (30 + Math.sin(time*3)*20)/3
   // //  cursor.width = 4
   //   const h = (40 + Math.sin(time*3)*20)/3

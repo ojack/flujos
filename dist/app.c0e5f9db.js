@@ -15890,10 +15890,10 @@ const html = require('nanohtml');
 
 module.exports = ({
   emitter
-}) => {
-  const canvas = html`<canvas class="w-100 h-100 absolute top-0 left-0"></canvas>`;
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+}, state) => {
+  const canvas = html`<canvas class="w-100 h-100 absolute top-0 left-0" style="image-rendering:pixelated"></canvas>`;
+  canvas.width = state.width;
+  canvas.height = state.height;
   document.body.appendChild(canvas);
   const hydra = new Hydra({
     detectAudio: false,
@@ -15916,10 +15916,18 @@ module.exports = ({
   //
   // emitter.on('start', () => {
   //src(o0).scrollX([0, -0.001, 0, 0.001].ease('sin')).scrollY([-0.001, 0, 0.001, 0].ease('sin')).layer(s2).out(o0)
+  //})
 
-  src(o0).layer(s2).out(o0);
-  render(o0); //})
+  window.color = () => osc(5, 1, 1.2).color(0.4, 0.4, 1.2).add(osc(2, -0.4, 1.3).color(1, -0.5, 0.8));
 
+  window.celeste = (scale = 0.9, x = 0, y = 0) => src(s1).contrast(1.4).mult(window.color()).mask(shape(4, scale, 0)).scale(0.7).scroll(x, y);
+
+  window.olivia = (scale = 0.9, x = 0, y = 0) => src(s0).contrast(1.4).mult(window.color()).mask(shape(4, scale, 0)).scale(0.7).scroll(x, y);
+
+  src(o2).layer(src(s2)).out(o2); //src(o2).out(o0)
+
+  window.color().diff(o2).out();
+  render(o0);
   window.addEventListener('resize', () => {//  console.log('resizing')
     //  setResolution(window.innerWidth, window.innerHeight)
   });
@@ -64835,10 +64843,17 @@ const cursorImage = require('./../assets/mouse-arrow.png');
 
 const RemoteMouse = require('./lib/remoteMouse.js');
 
+let mouseProps = {
+  width: 76,
+  height: 120,
+  scale: 1,
+  rotate: 0.005
+};
+
 module.exports = ({
   parent = document.body,
   emitter
-} = {}) => {
+} = {}, state) => {
   const app = new PIXI.Application({
     // backgroundColor: 0x1099bb
     width: window.innerWidth,
@@ -64863,10 +64878,23 @@ module.exports = ({
     texture: mouseTexture,
     container: app.stage
   }, emitter);
+
+  window.Mouse = function (opts) {
+    mouseProps = Object.assign({}, mouseProps, opts);
+    const w = mouseProps.width * mouseProps.scale;
+    const h = mouseProps.height * mouseProps.scale;
+    Object.values(remoteMice.mice).forEach(mouse => {
+      mouse.width = w;
+      mouse.height = h;
+      cursor.width = w;
+      cursor.height = h;
+    });
+  };
+
   let videoSprite = null;
-  app.ticker.add(() => {
-    // just for fun, let's rotate mr rabbit a little
-    cursor.rotation += 0.005; //   cursor.width = (30 + Math.sin(time*3)*20)/3
+  app.ticker.add(() => {// just for fun, let's rotate mr rabbit a little
+    //  cursor.rotation += 0.005;
+    //   cursor.width = (30 + Math.sin(time*3)*20)/3
     // //  cursor.width = 4
     //   const h = (40 + Math.sin(time*3)*20)/3
     //   cursor.height = h
@@ -65255,6 +65283,31 @@ module.exports = emitter => {
 
   return mouse;
 };
+},{}],"app/lib/countdown.js":[function(require,module,exports) {
+module.exports = () => {
+  var countDownDate = new Date("May 1, 2021 21:30:00 UTC").getTime();
+  const el = document.createElement('span'); // Update the count down every 1 second
+
+  var x = setInterval(function () {
+    // Get today's date and time
+    var now = new Date().getTime(); // Find the distance between now and the count down date
+
+    var distance = countDownDate - now; // Time calculations for days, hours, minutes and seconds
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+    var minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
+    var seconds = Math.floor(distance % (1000 * 60) / 1000); // Display the result in the element with id="demo"
+
+    el.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s "; // If the count down is finished, write some text
+
+    if (distance < 0) {
+      clearInterval(x);
+      el.innerHTML = "";
+    }
+  }, 1000);
+  return el;
+};
 },{}],"app/index.js":[function(require,module,exports) {
 const initStreamingMedia = require('./init-media-sources.js');
 
@@ -65277,36 +65330,61 @@ const emitter = new EventEmitter();
 
 const mouse = require('./mouse-follower.js')(emitter);
 
+const countdown = require('./lib/countdown.js');
+
+const state = {
+  width: window.innerWidth * 0.8,
+  height: window.innerHeight * 0.8
+};
 agua.load();
 initHydra({
   emitter: emitter
-});
+}, state);
 initPixi({
   emitter: emitter
-}); // create ui elements
+}, state); // create ui elements
 
-const intro = html`<div class="pa4 i f3"> <h1 class="f1 i"> flujos </h1>
-    <p class="f3"> web_site_specific performance</p>
-    <p class="f3">by Celeste Betancur and Olivia Jack </p>
-    <div onclick=${start} class="pointer dim pa4"> ${">>>"} enter ${"<<<<"} </div>
-    </div>`;
-const uiContainer = html`<div class="w-100 h-100 absolute top-0 left-0 overflow-y-auto">${intro}</div>`;
-const iframe = html`<iframe src="${flokURL}${readOnly ? '&readonly=1' : ''}" frameborder="0" class="w-100 h-100 scale-80" style=${readOnly ? "pointer-events:none" : ''}></iframe>`;
-const editor = html`<div class="absolute mb5 bottom-0 left-0 w-100 skewY" style="height:40%">
+const intro = html`<div class="pa4 i f2"> <h1 class="f1 i"> flujos </h1>
+    <p class=""> live website performance <br> by Celeste Betancur and Olivia Jack</p>
+    <p class=""> part of <a class="black ul dim" href="https://oscillation-festival.be/#about" target="_blank">Oscillation Festival</a> </p>
+    May 1, 2021 @ 11:30pm Brussels / 4:30pm Medellín / 2:30pm San Francisco
+      <div class="white">${countdown()}</div>
+    <div onclick=${start} class="mt5 ph4 bg-black white br-pill pointer dim dib pa2"> ${">>>"} enter ${"<<<<"} </div>
+
+
+  </div>`;
+const uiContainer = html`<div class="w-100 h-100 absolute top-0 left-0 overflow-y-auto flex items-center justify-center">${intro}</div>`;
+const iframe = html`<iframe src="${flokURL}${readOnly ? '&readonly=1' : ''}" frameborder="0" class="w-100 h-100" style="margin-top:-40px;${readOnly ? "pointer-events:none" : ''}"></iframe>`;
+const editor = html`<div class="absolute mb5 bottom-0 left-0 w-100 skewY overflow-hidden pa2" style="height:60%;transition: opacity 1s;">
   ${iframe}
 </div>`;
-window.editor = iframe; // execute editor events on global context
+
+if (readOnly) {
+  setTimeout(() => editor.style.opacity = 1, 5000);
+}
+
+window.editor = iframe;
+let hasSynced = false;
+let timeout = null; // execute editor events on global context
 
 window.addEventListener("message", function (event) {
-  console.log('received message', event);
-
+  //console.log('received message', event)
   if (event.data) {
     if (event.data.cmd === "evaluateCode") {
       //  console.log('evaluate', event.data.args.body)
+      editor.style.opacity = 1;
+      if (readOnly) setTimeout(() => editor.style.opacity = 1, 2000);
+
       if (event.data.args.editorId == 1) {
         agua.run(event.data.args.body);
       } else {
         eval(event.data.args.body);
+      }
+    } else if (event.data.cmd === "initialSync") {
+      if (!hasSynced) {
+        const editorText = event.data.args.editors;
+        if (editorText[0]) eval(editorText[0]);
+        if (editorText[1]) agua.run(editorText[1]);
       }
     }
   }
@@ -65323,7 +65401,7 @@ function start() {
 
 document.body.appendChild(uiContainer); //  document.body.appendChild(editor)
 //}
-},{"./init-media-sources.js":"app/init-media-sources.js","./init-hydra.js":"app/init-hydra.js","nanohtml":"node_modules/nanohtml/lib/browser.js","./pixi.js":"app/pixi.js","./agua.js":"app/agua.js","events":"node_modules/events/events.js","./mouse-follower.js":"app/mouse-follower.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./init-media-sources.js":"app/init-media-sources.js","./init-hydra.js":"app/init-hydra.js","nanohtml":"node_modules/nanohtml/lib/browser.js","./pixi.js":"app/pixi.js","./agua.js":"app/agua.js","events":"node_modules/events/events.js","./mouse-follower.js":"app/mouse-follower.js","./lib/countdown.js":"app/lib/countdown.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -65351,7 +65429,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53897" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49966" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

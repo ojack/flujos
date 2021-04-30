@@ -14,39 +14,58 @@ const readOnly = edit == 1 ? false : true
 
 const emitter = new EventEmitter()
 const mouse = require('./mouse-follower.js')(emitter)
+const countdown = require('./lib/countdown.js')
+const state = { width: window.innerWidth*0.8, height: window.innerHeight*0.8}
 
 agua.load()
-initHydra({ emitter: emitter })
-initPixi({ emitter: emitter })
+initHydra({ emitter: emitter }, state)
+initPixi({ emitter: emitter }, state)
 // create ui elements
-const intro = html`<div class="pa4 i f3"> <h1 class="f1 i"> flujos </h1>
-    <p class="f3"> web_site_specific performance</p>
-    <p class="f3">by Celeste Betancur and Olivia Jack </p>
-    <div onclick=${start} class="pointer dim pa4"> ${">>>"} enter ${"<<<<"} </div>
-    </div>`
+const intro = html`<div class="pa4 i f2"> <h1 class="f1 i"> flujos </h1>
+    <p class=""> live website performance <br> by Celeste Betancur and Olivia Jack</p>
+    <p class=""> part of <a class="black ul dim" href="https://oscillation-festival.be/#about" target="_blank">Oscillation Festival</a> </p>
+    May 1, 2021 @ 11:30pm Brussels / 4:30pm Medellín / 2:30pm San Francisco
+      <div class="white">${countdown()}</div>
+    <div onclick=${start} class="mt5 ph4 bg-black white br-pill pointer dim dib pa2"> ${">>>"} enter ${"<<<<"} </div>
 
-const uiContainer = html`<div class="w-100 h-100 absolute top-0 left-0 overflow-y-auto">${intro}</div>`
 
-const iframe = html`<iframe src="${flokURL}${readOnly?'&readonly=1':''}" frameborder="0" class="w-100 h-100 scale-80" style=${readOnly?"pointer-events:none":''}></iframe>`
+  </div>`
 
-const editor = html`<div class="absolute mb5 bottom-0 left-0 w-100 skewY" style="height:40%">
+const uiContainer = html`<div class="w-100 h-100 absolute top-0 left-0 overflow-y-auto flex items-center justify-center">${intro}</div>`
+
+const iframe = html`<iframe src="${flokURL}${readOnly?'&readonly=1':''}" frameborder="0" class="w-100 h-100" style="margin-top:-40px;${readOnly?"pointer-events:none":''}"></iframe>`
+
+const editor = html`<div class="absolute mb5 bottom-0 left-0 w-100 skewY overflow-hidden pa2" style="height:60%;transition: opacity 1s;">
   ${iframe}
 </div>`
 
-window.editor = iframe
+if(readOnly) {
+  setTimeout(() => editor.style.opacity = 1, 5000)
+}
 
+window.editor = iframe
+let hasSynced = false
+let timeout = null
 // execute editor events on global context
 window.addEventListener("message", function(event) {
-  console.log('received message', event)
+  //console.log('received message', event)
   if(event.data) {
     if(event.data.cmd === "evaluateCode") {
       //  console.log('evaluate', event.data.args.body)
+      editor.style.opacity = 1
+      if(readOnly) setTimeout(() => editor.style.opacity = 1, 2000)
       if (event.data.args.editorId == 1) {
         agua.run(event.data.args.body)
       } else {
         eval(event.data.args.body)
       }
 
+    } else if (event.data.cmd === "initialSync") {
+      if(!hasSynced) {
+        const editorText = event.data.args.editors
+        if(editorText[0]) eval(editorText[0])
+        if(editorText[1]) agua.run(editorText[1])
+      }
     }
   }
 })
