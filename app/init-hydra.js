@@ -54,7 +54,7 @@ window.olivia = (scale = 0.9, x = 0, y= 0) => src(s0).contrast(1.4)
 
 src(o2).layer(src(s2)).out(o2)
 //src(o2).out(o0)
-window.color().diff(o2).out()
+window.color().add(o2, 0.5).out()
   render(o0)
 
 window.addEventListener('resize', () => {

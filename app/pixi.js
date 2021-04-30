@@ -6,7 +6,7 @@ const RemoteMouse = require('./lib/remoteMouse.js')
 let mouseProps = {
   width: 76,
   height: 120,
-  scale: 1,
+  scale: 0.5,
   rotate: 0.005
 }
 
@@ -24,15 +24,16 @@ module.exports = ({ parent = document.body, emitter } = {}, state) => {
   s2.init({ src: app.view })
   // app.view.style.zIndex = 100
   app.view.style.position = "absolute"
-
-  console.log('images', cursorImage)
+  app.view.style.pointerEvents = "none"
+  app.view.style.zIndex = 100
+//  console.log('images', cursorImage)
 
   const mouseTexture = PIXI.Texture.from(cursorImage)
   const cursor = new PIXI.Sprite(mouseTexture)
   cursor.anchor.set(0.5)
 
-  cursor.width = 30/2
-  cursor.height = 40/2
+  cursor.width = mouseProps.width * mouseProps.scale
+  cursor.height = mouseProps.height * mouseProps.scale
   cursor.x = 300;
   cursor.y = 400;
 

@@ -15,7 +15,7 @@ const readOnly = edit == 1 ? false : true
 const emitter = new EventEmitter()
 const mouse = require('./mouse-follower.js')(emitter)
 const countdown = require('./lib/countdown.js')
-const state = { width: window.innerWidth*0.8, height: window.innerHeight*0.8}
+const state = { width: window.innerWidth, height: window.innerHeight}
 
 agua.load()
 initHydra({ emitter: emitter }, state)
