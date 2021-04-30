@@ -15926,7 +15926,7 @@ module.exports = ({
 
   src(o2).layer(src(s2)).out(o2); //src(o2).out(o0)
 
-  window.color().diff(o2).out();
+  window.color().add(o2, 0.5).out();
   render(o0);
   window.addEventListener('resize', () => {//  console.log('resizing')
     //  setResolution(window.innerWidth, window.innerHeight)
@@ -64846,7 +64846,7 @@ const RemoteMouse = require('./lib/remoteMouse.js');
 let mouseProps = {
   width: 76,
   height: 120,
-  scale: 1,
+  scale: 0.5,
   rotate: 0.005
 };
 
@@ -64866,12 +64866,14 @@ module.exports = ({
   }); // app.view.style.zIndex = 100
 
   app.view.style.position = "absolute";
-  console.log('images', cursorImage);
+  app.view.style.pointerEvents = "none";
+  app.view.style.zIndex = 100; //  console.log('images', cursorImage)
+
   const mouseTexture = PIXI.Texture.from(cursorImage);
   const cursor = new PIXI.Sprite(mouseTexture);
   cursor.anchor.set(0.5);
-  cursor.width = 30 / 2;
-  cursor.height = 40 / 2;
+  cursor.width = mouseProps.width * mouseProps.scale;
+  cursor.height = mouseProps.height * mouseProps.scale;
   cursor.x = 300;
   cursor.y = 400;
   const remoteMice = new RemoteMouse({
@@ -65333,8 +65335,8 @@ const mouse = require('./mouse-follower.js')(emitter);
 const countdown = require('./lib/countdown.js');
 
 const state = {
-  width: window.innerWidth * 0.8,
-  height: window.innerHeight * 0.8
+  width: window.innerWidth,
+  height: window.innerHeight
 };
 agua.load();
 initHydra({
