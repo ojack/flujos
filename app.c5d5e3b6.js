@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"node_modules/events/events.js":[function(require,module,exports) {
+})({"wIHY":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -584,10 +584,10 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
     throw new TypeError('The "emitter" argument must be of type EventEmitter. Received type ' + typeof emitter);
   }
 }
-},{}],"node_modules/bowser/es5.js":[function(require,module,exports) {
+},{}],"JSid":[function(require,module,exports) {
 var define;
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.bowser=t():e.bowser=t()}(this,(function(){return function(e){var t={};function r(n){if(t[n])return t[n].exports;var i=t[n]={i:n,l:!1,exports:{}};return e[n].call(i.exports,i,i.exports,r),i.l=!0,i.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)r.d(n,i,function(t){return e[t]}.bind(null,i));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=90)}({17:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var n=r(18),i=function(){function e(){}return e.getFirstMatch=function(e,t){var r=t.match(e);return r&&r.length>0&&r[1]||""},e.getSecondMatch=function(e,t){var r=t.match(e);return r&&r.length>1&&r[2]||""},e.matchAndReturnConst=function(e,t,r){if(e.test(t))return r},e.getWindowsVersionName=function(e){switch(e){case"NT":return"NT";case"XP":return"XP";case"NT 5.0":return"2000";case"NT 5.1":return"XP";case"NT 5.2":return"2003";case"NT 6.0":return"Vista";case"NT 6.1":return"7";case"NT 6.2":return"8";case"NT 6.3":return"8.1";case"NT 10.0":return"10";default:return}},e.getMacOSVersionName=function(e){var t=e.split(".").splice(0,2).map((function(e){return parseInt(e,10)||0}));if(t.push(0),10===t[0])switch(t[1]){case 5:return"Leopard";case 6:return"Snow Leopard";case 7:return"Lion";case 8:return"Mountain Lion";case 9:return"Mavericks";case 10:return"Yosemite";case 11:return"El Capitan";case 12:return"Sierra";case 13:return"High Sierra";case 14:return"Mojave";case 15:return"Catalina";default:return}},e.getAndroidVersionName=function(e){var t=e.split(".").splice(0,2).map((function(e){return parseInt(e,10)||0}));if(t.push(0),!(1===t[0]&&t[1]<5))return 1===t[0]&&t[1]<6?"Cupcake":1===t[0]&&t[1]>=6?"Donut":2===t[0]&&t[1]<2?"Eclair":2===t[0]&&2===t[1]?"Froyo":2===t[0]&&t[1]>2?"Gingerbread":3===t[0]?"Honeycomb":4===t[0]&&t[1]<1?"Ice Cream Sandwich":4===t[0]&&t[1]<4?"Jelly Bean":4===t[0]&&t[1]>=4?"KitKat":5===t[0]?"Lollipop":6===t[0]?"Marshmallow":7===t[0]?"Nougat":8===t[0]?"Oreo":9===t[0]?"Pie":void 0},e.getVersionPrecision=function(e){return e.split(".").length},e.compareVersions=function(t,r,n){void 0===n&&(n=!1);var i=e.getVersionPrecision(t),s=e.getVersionPrecision(r),a=Math.max(i,s),o=0,u=e.map([t,r],(function(t){var r=a-e.getVersionPrecision(t),n=t+new Array(r+1).join(".0");return e.map(n.split("."),(function(e){return new Array(20-e.length).join("0")+e})).reverse()}));for(n&&(o=a-Math.min(i,s)),a-=1;a>=o;){if(u[0][a]>u[1][a])return 1;if(u[0][a]===u[1][a]){if(a===o)return 0;a-=1}else if(u[0][a]<u[1][a])return-1}},e.map=function(e,t){var r,n=[];if(Array.prototype.map)return Array.prototype.map.call(e,t);for(r=0;r<e.length;r+=1)n.push(t(e[r]));return n},e.find=function(e,t){var r,n;if(Array.prototype.find)return Array.prototype.find.call(e,t);for(r=0,n=e.length;r<n;r+=1){var i=e[r];if(t(i,r))return i}},e.assign=function(e){for(var t,r,n=e,i=arguments.length,s=new Array(i>1?i-1:0),a=1;a<i;a++)s[a-1]=arguments[a];if(Object.assign)return Object.assign.apply(Object,[e].concat(s));var o=function(){var e=s[t];"object"==typeof e&&null!==e&&Object.keys(e).forEach((function(t){n[t]=e[t]}))};for(t=0,r=s.length;t<r;t+=1)o();return e},e.getBrowserAlias=function(e){return n.BROWSER_ALIASES_MAP[e]},e.getBrowserTypeByAlias=function(e){return n.BROWSER_MAP[e]||""},e}();t.default=i,e.exports=t.default},18:function(e,t,r){"use strict";t.__esModule=!0,t.ENGINE_MAP=t.OS_MAP=t.PLATFORMS_MAP=t.BROWSER_MAP=t.BROWSER_ALIASES_MAP=void 0;t.BROWSER_ALIASES_MAP={"Amazon Silk":"amazon_silk","Android Browser":"android",Bada:"bada",BlackBerry:"blackberry",Chrome:"chrome",Chromium:"chromium",Electron:"electron",Epiphany:"epiphany",Firefox:"firefox",Focus:"focus",Generic:"generic","Google Search":"google_search",Googlebot:"googlebot","Internet Explorer":"ie","K-Meleon":"k_meleon",Maxthon:"maxthon","Microsoft Edge":"edge","MZ Browser":"mz","NAVER Whale Browser":"naver",Opera:"opera","Opera Coast":"opera_coast",PhantomJS:"phantomjs",Puffin:"puffin",QupZilla:"qupzilla",QQ:"qq",QQLite:"qqlite",Safari:"safari",Sailfish:"sailfish","Samsung Internet for Android":"samsung_internet",SeaMonkey:"seamonkey",Sleipnir:"sleipnir",Swing:"swing",Tizen:"tizen","UC Browser":"uc",Vivaldi:"vivaldi","WebOS Browser":"webos",WeChat:"wechat","Yandex Browser":"yandex",Roku:"roku"};t.BROWSER_MAP={amazon_silk:"Amazon Silk",android:"Android Browser",bada:"Bada",blackberry:"BlackBerry",chrome:"Chrome",chromium:"Chromium",electron:"Electron",epiphany:"Epiphany",firefox:"Firefox",focus:"Focus",generic:"Generic",googlebot:"Googlebot",google_search:"Google Search",ie:"Internet Explorer",k_meleon:"K-Meleon",maxthon:"Maxthon",edge:"Microsoft Edge",mz:"MZ Browser",naver:"NAVER Whale Browser",opera:"Opera",opera_coast:"Opera Coast",phantomjs:"PhantomJS",puffin:"Puffin",qupzilla:"QupZilla",qq:"QQ Browser",qqlite:"QQ Browser Lite",safari:"Safari",sailfish:"Sailfish",samsung_internet:"Samsung Internet for Android",seamonkey:"SeaMonkey",sleipnir:"Sleipnir",swing:"Swing",tizen:"Tizen",uc:"UC Browser",vivaldi:"Vivaldi",webos:"WebOS Browser",wechat:"WeChat",yandex:"Yandex Browser"};t.PLATFORMS_MAP={tablet:"tablet",mobile:"mobile",desktop:"desktop",tv:"tv"};t.OS_MAP={WindowsPhone:"Windows Phone",Windows:"Windows",MacOS:"macOS",iOS:"iOS",Android:"Android",WebOS:"WebOS",BlackBerry:"BlackBerry",Bada:"Bada",Tizen:"Tizen",Linux:"Linux",ChromeOS:"Chrome OS",PlayStation4:"PlayStation 4",Roku:"Roku"};t.ENGINE_MAP={EdgeHTML:"EdgeHTML",Blink:"Blink",Trident:"Trident",Presto:"Presto",Gecko:"Gecko",WebKit:"WebKit"}},90:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var n,i=(n=r(91))&&n.__esModule?n:{default:n},s=r(18);function a(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}var o=function(){function e(){}var t,r,n;return e.getParser=function(e,t){if(void 0===t&&(t=!1),"string"!=typeof e)throw new Error("UserAgent should be a string");return new i.default(e,t)},e.parse=function(e){return new i.default(e).getResult()},t=e,n=[{key:"BROWSER_MAP",get:function(){return s.BROWSER_MAP}},{key:"ENGINE_MAP",get:function(){return s.ENGINE_MAP}},{key:"OS_MAP",get:function(){return s.OS_MAP}},{key:"PLATFORMS_MAP",get:function(){return s.PLATFORMS_MAP}}],(r=null)&&a(t.prototype,r),n&&a(t,n),e}();t.default=o,e.exports=t.default},91:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var n=u(r(92)),i=u(r(93)),s=u(r(94)),a=u(r(95)),o=u(r(17));function u(e){return e&&e.__esModule?e:{default:e}}var d=function(){function e(e,t){if(void 0===t&&(t=!1),null==e||""===e)throw new Error("UserAgent parameter can't be empty");this._ua=e,this.parsedResult={},!0!==t&&this.parse()}var t=e.prototype;return t.getUA=function(){return this._ua},t.test=function(e){return e.test(this._ua)},t.parseBrowser=function(){var e=this;this.parsedResult.browser={};var t=o.default.find(n.default,(function(t){if("function"==typeof t.test)return t.test(e);if(t.test instanceof Array)return t.test.some((function(t){return e.test(t)}));throw new Error("Browser's test function is not valid")}));return t&&(this.parsedResult.browser=t.describe(this.getUA())),this.parsedResult.browser},t.getBrowser=function(){return this.parsedResult.browser?this.parsedResult.browser:this.parseBrowser()},t.getBrowserName=function(e){return e?String(this.getBrowser().name).toLowerCase()||"":this.getBrowser().name||""},t.getBrowserVersion=function(){return this.getBrowser().version},t.getOS=function(){return this.parsedResult.os?this.parsedResult.os:this.parseOS()},t.parseOS=function(){var e=this;this.parsedResult.os={};var t=o.default.find(i.default,(function(t){if("function"==typeof t.test)return t.test(e);if(t.test instanceof Array)return t.test.some((function(t){return e.test(t)}));throw new Error("Browser's test function is not valid")}));return t&&(this.parsedResult.os=t.describe(this.getUA())),this.parsedResult.os},t.getOSName=function(e){var t=this.getOS().name;return e?String(t).toLowerCase()||"":t||""},t.getOSVersion=function(){return this.getOS().version},t.getPlatform=function(){return this.parsedResult.platform?this.parsedResult.platform:this.parsePlatform()},t.getPlatformType=function(e){void 0===e&&(e=!1);var t=this.getPlatform().type;return e?String(t).toLowerCase()||"":t||""},t.parsePlatform=function(){var e=this;this.parsedResult.platform={};var t=o.default.find(s.default,(function(t){if("function"==typeof t.test)return t.test(e);if(t.test instanceof Array)return t.test.some((function(t){return e.test(t)}));throw new Error("Browser's test function is not valid")}));return t&&(this.parsedResult.platform=t.describe(this.getUA())),this.parsedResult.platform},t.getEngine=function(){return this.parsedResult.engine?this.parsedResult.engine:this.parseEngine()},t.getEngineName=function(e){return e?String(this.getEngine().name).toLowerCase()||"":this.getEngine().name||""},t.parseEngine=function(){var e=this;this.parsedResult.engine={};var t=o.default.find(a.default,(function(t){if("function"==typeof t.test)return t.test(e);if(t.test instanceof Array)return t.test.some((function(t){return e.test(t)}));throw new Error("Browser's test function is not valid")}));return t&&(this.parsedResult.engine=t.describe(this.getUA())),this.parsedResult.engine},t.parse=function(){return this.parseBrowser(),this.parseOS(),this.parsePlatform(),this.parseEngine(),this},t.getResult=function(){return o.default.assign({},this.parsedResult)},t.satisfies=function(e){var t=this,r={},n=0,i={},s=0;if(Object.keys(e).forEach((function(t){var a=e[t];"string"==typeof a?(i[t]=a,s+=1):"object"==typeof a&&(r[t]=a,n+=1)})),n>0){var a=Object.keys(r),u=o.default.find(a,(function(e){return t.isOS(e)}));if(u){var d=this.satisfies(r[u]);if(void 0!==d)return d}var c=o.default.find(a,(function(e){return t.isPlatform(e)}));if(c){var f=this.satisfies(r[c]);if(void 0!==f)return f}}if(s>0){var l=Object.keys(i),h=o.default.find(l,(function(e){return t.isBrowser(e,!0)}));if(void 0!==h)return this.compareVersion(i[h])}},t.isBrowser=function(e,t){void 0===t&&(t=!1);var r=this.getBrowserName().toLowerCase(),n=e.toLowerCase(),i=o.default.getBrowserTypeByAlias(n);return t&&i&&(n=i.toLowerCase()),n===r},t.compareVersion=function(e){var t=[0],r=e,n=!1,i=this.getBrowserVersion();if("string"==typeof i)return">"===e[0]||"<"===e[0]?(r=e.substr(1),"="===e[1]?(n=!0,r=e.substr(2)):t=[],">"===e[0]?t.push(1):t.push(-1)):"="===e[0]?r=e.substr(1):"~"===e[0]&&(n=!0,r=e.substr(1)),t.indexOf(o.default.compareVersions(i,r,n))>-1},t.isOS=function(e){return this.getOSName(!0)===String(e).toLowerCase()},t.isPlatform=function(e){return this.getPlatformType(!0)===String(e).toLowerCase()},t.isEngine=function(e){return this.getEngineName(!0)===String(e).toLowerCase()},t.is=function(e,t){return void 0===t&&(t=!1),this.isBrowser(e,t)||this.isOS(e)||this.isPlatform(e)},t.some=function(e){var t=this;return void 0===e&&(e=[]),e.some((function(e){return t.is(e)}))},e}();t.default=d,e.exports=t.default},92:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var n,i=(n=r(17))&&n.__esModule?n:{default:n};var s=/version\/(\d+(\.?_?\d+)+)/i,a=[{test:[/googlebot/i],describe:function(e){var t={name:"Googlebot"},r=i.default.getFirstMatch(/googlebot\/(\d+(\.\d+))/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/opera/i],describe:function(e){var t={name:"Opera"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/(?:opera)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/opr\/|opios/i],describe:function(e){var t={name:"Opera"},r=i.default.getFirstMatch(/(?:opr|opios)[\s/](\S+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/SamsungBrowser/i],describe:function(e){var t={name:"Samsung Internet for Android"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/(?:SamsungBrowser)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/Whale/i],describe:function(e){var t={name:"NAVER Whale Browser"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/(?:whale)[\s/](\d+(?:\.\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/MZBrowser/i],describe:function(e){var t={name:"MZ Browser"},r=i.default.getFirstMatch(/(?:MZBrowser)[\s/](\d+(?:\.\d+)+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/focus/i],describe:function(e){var t={name:"Focus"},r=i.default.getFirstMatch(/(?:focus)[\s/](\d+(?:\.\d+)+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/swing/i],describe:function(e){var t={name:"Swing"},r=i.default.getFirstMatch(/(?:swing)[\s/](\d+(?:\.\d+)+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/coast/i],describe:function(e){var t={name:"Opera Coast"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/(?:coast)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/opt\/\d+(?:.?_?\d+)+/i],describe:function(e){var t={name:"Opera Touch"},r=i.default.getFirstMatch(/(?:opt)[\s/](\d+(\.?_?\d+)+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/yabrowser/i],describe:function(e){var t={name:"Yandex Browser"},r=i.default.getFirstMatch(/(?:yabrowser)[\s/](\d+(\.?_?\d+)+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/ucbrowser/i],describe:function(e){var t={name:"UC Browser"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/(?:ucbrowser)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/Maxthon|mxios/i],describe:function(e){var t={name:"Maxthon"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/(?:Maxthon|mxios)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/epiphany/i],describe:function(e){var t={name:"Epiphany"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/(?:epiphany)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/puffin/i],describe:function(e){var t={name:"Puffin"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/(?:puffin)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/sleipnir/i],describe:function(e){var t={name:"Sleipnir"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/(?:sleipnir)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/k-meleon/i],describe:function(e){var t={name:"K-Meleon"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/(?:k-meleon)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/micromessenger/i],describe:function(e){var t={name:"WeChat"},r=i.default.getFirstMatch(/(?:micromessenger)[\s/](\d+(\.?_?\d+)+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/qqbrowser/i],describe:function(e){var t={name:/qqbrowserlite/i.test(e)?"QQ Browser Lite":"QQ Browser"},r=i.default.getFirstMatch(/(?:qqbrowserlite|qqbrowser)[/](\d+(\.?_?\d+)+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/msie|trident/i],describe:function(e){var t={name:"Internet Explorer"},r=i.default.getFirstMatch(/(?:msie |rv:)(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/\sedg\//i],describe:function(e){var t={name:"Microsoft Edge"},r=i.default.getFirstMatch(/\sedg\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/edg([ea]|ios)/i],describe:function(e){var t={name:"Microsoft Edge"},r=i.default.getSecondMatch(/edg([ea]|ios)\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/vivaldi/i],describe:function(e){var t={name:"Vivaldi"},r=i.default.getFirstMatch(/vivaldi\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/seamonkey/i],describe:function(e){var t={name:"SeaMonkey"},r=i.default.getFirstMatch(/seamonkey\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/sailfish/i],describe:function(e){var t={name:"Sailfish"},r=i.default.getFirstMatch(/sailfish\s?browser\/(\d+(\.\d+)?)/i,e);return r&&(t.version=r),t}},{test:[/silk/i],describe:function(e){var t={name:"Amazon Silk"},r=i.default.getFirstMatch(/silk\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/phantom/i],describe:function(e){var t={name:"PhantomJS"},r=i.default.getFirstMatch(/phantomjs\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/slimerjs/i],describe:function(e){var t={name:"SlimerJS"},r=i.default.getFirstMatch(/slimerjs\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/blackberry|\bbb\d+/i,/rim\stablet/i],describe:function(e){var t={name:"BlackBerry"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/blackberry[\d]+\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/(web|hpw)[o0]s/i],describe:function(e){var t={name:"WebOS Browser"},r=i.default.getFirstMatch(s,e)||i.default.getFirstMatch(/w(?:eb)?[o0]sbrowser\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/bada/i],describe:function(e){var t={name:"Bada"},r=i.default.getFirstMatch(/dolfin\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/tizen/i],describe:function(e){var t={name:"Tizen"},r=i.default.getFirstMatch(/(?:tizen\s?)?browser\/(\d+(\.?_?\d+)+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/qupzilla/i],describe:function(e){var t={name:"QupZilla"},r=i.default.getFirstMatch(/(?:qupzilla)[\s/](\d+(\.?_?\d+)+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/firefox|iceweasel|fxios/i],describe:function(e){var t={name:"Firefox"},r=i.default.getFirstMatch(/(?:firefox|iceweasel|fxios)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/electron/i],describe:function(e){var t={name:"Electron"},r=i.default.getFirstMatch(/(?:electron)\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/MiuiBrowser/i],describe:function(e){var t={name:"Miui"},r=i.default.getFirstMatch(/(?:MiuiBrowser)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/chromium/i],describe:function(e){var t={name:"Chromium"},r=i.default.getFirstMatch(/(?:chromium)[\s/](\d+(\.?_?\d+)+)/i,e)||i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/chrome|crios|crmo/i],describe:function(e){var t={name:"Chrome"},r=i.default.getFirstMatch(/(?:chrome|crios|crmo)\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/GSA/i],describe:function(e){var t={name:"Google Search"},r=i.default.getFirstMatch(/(?:GSA)\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:function(e){var t=!e.test(/like android/i),r=e.test(/android/i);return t&&r},describe:function(e){var t={name:"Android Browser"},r=i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/playstation 4/i],describe:function(e){var t={name:"PlayStation 4"},r=i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/safari|applewebkit/i],describe:function(e){var t={name:"Safari"},r=i.default.getFirstMatch(s,e);return r&&(t.version=r),t}},{test:[/.*/i],describe:function(e){var t=-1!==e.search("\\(")?/^(.*)\/(.*)[ \t]\((.*)/:/^(.*)\/(.*) /;return{name:i.default.getFirstMatch(t,e),version:i.default.getSecondMatch(t,e)}}}];t.default=a,e.exports=t.default},93:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var n,i=(n=r(17))&&n.__esModule?n:{default:n},s=r(18);var a=[{test:[/Roku\/DVP/],describe:function(e){var t=i.default.getFirstMatch(/Roku\/DVP-(\d+\.\d+)/i,e);return{name:s.OS_MAP.Roku,version:t}}},{test:[/windows phone/i],describe:function(e){var t=i.default.getFirstMatch(/windows phone (?:os)?\s?(\d+(\.\d+)*)/i,e);return{name:s.OS_MAP.WindowsPhone,version:t}}},{test:[/windows /i],describe:function(e){var t=i.default.getFirstMatch(/Windows ((NT|XP)( \d\d?.\d)?)/i,e),r=i.default.getWindowsVersionName(t);return{name:s.OS_MAP.Windows,version:t,versionName:r}}},{test:[/Macintosh(.*?) FxiOS(.*?)\//],describe:function(e){var t={name:s.OS_MAP.iOS},r=i.default.getSecondMatch(/(Version\/)(\d[\d.]+)/,e);return r&&(t.version=r),t}},{test:[/macintosh/i],describe:function(e){var t=i.default.getFirstMatch(/mac os x (\d+(\.?_?\d+)+)/i,e).replace(/[_\s]/g,"."),r=i.default.getMacOSVersionName(t),n={name:s.OS_MAP.MacOS,version:t};return r&&(n.versionName=r),n}},{test:[/(ipod|iphone|ipad)/i],describe:function(e){var t=i.default.getFirstMatch(/os (\d+([_\s]\d+)*) like mac os x/i,e).replace(/[_\s]/g,".");return{name:s.OS_MAP.iOS,version:t}}},{test:function(e){var t=!e.test(/like android/i),r=e.test(/android/i);return t&&r},describe:function(e){var t=i.default.getFirstMatch(/android[\s/-](\d+(\.\d+)*)/i,e),r=i.default.getAndroidVersionName(t),n={name:s.OS_MAP.Android,version:t};return r&&(n.versionName=r),n}},{test:[/(web|hpw)[o0]s/i],describe:function(e){var t=i.default.getFirstMatch(/(?:web|hpw)[o0]s\/(\d+(\.\d+)*)/i,e),r={name:s.OS_MAP.WebOS};return t&&t.length&&(r.version=t),r}},{test:[/blackberry|\bbb\d+/i,/rim\stablet/i],describe:function(e){var t=i.default.getFirstMatch(/rim\stablet\sos\s(\d+(\.\d+)*)/i,e)||i.default.getFirstMatch(/blackberry\d+\/(\d+([_\s]\d+)*)/i,e)||i.default.getFirstMatch(/\bbb(\d+)/i,e);return{name:s.OS_MAP.BlackBerry,version:t}}},{test:[/bada/i],describe:function(e){var t=i.default.getFirstMatch(/bada\/(\d+(\.\d+)*)/i,e);return{name:s.OS_MAP.Bada,version:t}}},{test:[/tizen/i],describe:function(e){var t=i.default.getFirstMatch(/tizen[/\s](\d+(\.\d+)*)/i,e);return{name:s.OS_MAP.Tizen,version:t}}},{test:[/linux/i],describe:function(){return{name:s.OS_MAP.Linux}}},{test:[/CrOS/],describe:function(){return{name:s.OS_MAP.ChromeOS}}},{test:[/PlayStation 4/],describe:function(e){var t=i.default.getFirstMatch(/PlayStation 4[/\s](\d+(\.\d+)*)/i,e);return{name:s.OS_MAP.PlayStation4,version:t}}}];t.default=a,e.exports=t.default},94:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var n,i=(n=r(17))&&n.__esModule?n:{default:n},s=r(18);var a=[{test:[/googlebot/i],describe:function(){return{type:"bot",vendor:"Google"}}},{test:[/huawei/i],describe:function(e){var t=i.default.getFirstMatch(/(can-l01)/i,e)&&"Nova",r={type:s.PLATFORMS_MAP.mobile,vendor:"Huawei"};return t&&(r.model=t),r}},{test:[/nexus\s*(?:7|8|9|10).*/i],describe:function(){return{type:s.PLATFORMS_MAP.tablet,vendor:"Nexus"}}},{test:[/ipad/i],describe:function(){return{type:s.PLATFORMS_MAP.tablet,vendor:"Apple",model:"iPad"}}},{test:[/Macintosh(.*?) FxiOS(.*?)\//],describe:function(){return{type:s.PLATFORMS_MAP.tablet,vendor:"Apple",model:"iPad"}}},{test:[/kftt build/i],describe:function(){return{type:s.PLATFORMS_MAP.tablet,vendor:"Amazon",model:"Kindle Fire HD 7"}}},{test:[/silk/i],describe:function(){return{type:s.PLATFORMS_MAP.tablet,vendor:"Amazon"}}},{test:[/tablet(?! pc)/i],describe:function(){return{type:s.PLATFORMS_MAP.tablet}}},{test:function(e){var t=e.test(/ipod|iphone/i),r=e.test(/like (ipod|iphone)/i);return t&&!r},describe:function(e){var t=i.default.getFirstMatch(/(ipod|iphone)/i,e);return{type:s.PLATFORMS_MAP.mobile,vendor:"Apple",model:t}}},{test:[/nexus\s*[0-6].*/i,/galaxy nexus/i],describe:function(){return{type:s.PLATFORMS_MAP.mobile,vendor:"Nexus"}}},{test:[/[^-]mobi/i],describe:function(){return{type:s.PLATFORMS_MAP.mobile}}},{test:function(e){return"blackberry"===e.getBrowserName(!0)},describe:function(){return{type:s.PLATFORMS_MAP.mobile,vendor:"BlackBerry"}}},{test:function(e){return"bada"===e.getBrowserName(!0)},describe:function(){return{type:s.PLATFORMS_MAP.mobile}}},{test:function(e){return"windows phone"===e.getBrowserName()},describe:function(){return{type:s.PLATFORMS_MAP.mobile,vendor:"Microsoft"}}},{test:function(e){var t=Number(String(e.getOSVersion()).split(".")[0]);return"android"===e.getOSName(!0)&&t>=3},describe:function(){return{type:s.PLATFORMS_MAP.tablet}}},{test:function(e){return"android"===e.getOSName(!0)},describe:function(){return{type:s.PLATFORMS_MAP.mobile}}},{test:function(e){return"macos"===e.getOSName(!0)},describe:function(){return{type:s.PLATFORMS_MAP.desktop,vendor:"Apple"}}},{test:function(e){return"windows"===e.getOSName(!0)},describe:function(){return{type:s.PLATFORMS_MAP.desktop}}},{test:function(e){return"linux"===e.getOSName(!0)},describe:function(){return{type:s.PLATFORMS_MAP.desktop}}},{test:function(e){return"playstation 4"===e.getOSName(!0)},describe:function(){return{type:s.PLATFORMS_MAP.tv}}},{test:function(e){return"roku"===e.getOSName(!0)},describe:function(){return{type:s.PLATFORMS_MAP.tv}}}];t.default=a,e.exports=t.default},95:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var n,i=(n=r(17))&&n.__esModule?n:{default:n},s=r(18);var a=[{test:function(e){return"microsoft edge"===e.getBrowserName(!0)},describe:function(e){if(/\sedg\//i.test(e))return{name:s.ENGINE_MAP.Blink};var t=i.default.getFirstMatch(/edge\/(\d+(\.?_?\d+)+)/i,e);return{name:s.ENGINE_MAP.EdgeHTML,version:t}}},{test:[/trident/i],describe:function(e){var t={name:s.ENGINE_MAP.Trident},r=i.default.getFirstMatch(/trident\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:function(e){return e.test(/presto/i)},describe:function(e){var t={name:s.ENGINE_MAP.Presto},r=i.default.getFirstMatch(/presto\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:function(e){var t=e.test(/gecko/i),r=e.test(/like gecko/i);return t&&!r},describe:function(e){var t={name:s.ENGINE_MAP.Gecko},r=i.default.getFirstMatch(/gecko\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/(apple)?webkit\/537\.36/i],describe:function(){return{name:s.ENGINE_MAP.Blink}}},{test:[/(apple)?webkit/i],describe:function(e){var t={name:s.ENGINE_MAP.WebKit},r=i.default.getFirstMatch(/webkit\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}}];t.default=a,e.exports=t.default}})}));
-},{}],"node_modules/ms/index.js":[function(require,module,exports) {
+},{}],"LVkZ":[function(require,module,exports) {
 /**
  * Helpers.
  */
@@ -751,7 +751,7 @@ function plural(ms, msAbs, n, name) {
   return Math.round(ms / n) + ' ' + name + (isPlural ? 's' : '');
 }
 
-},{}],"node_modules/debug/src/common.js":[function(require,module,exports) {
+},{}],"MTTc":[function(require,module,exports) {
 /**
  * This is the common logic for both the Node.js and web browser
  * implementations of `debug()`.
@@ -1006,7 +1006,7 @@ function setup(env) {
 }
 
 module.exports = setup;
-},{"ms":"node_modules/ms/index.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
+},{"ms":"LVkZ"}],"g5IB":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -1215,7 +1215,7 @@ process.chdir = function (dir) {
 process.umask = function () {
   return 0;
 };
-},{}],"node_modules/debug/src/browser.js":[function(require,module,exports) {
+},{}],"jD9Y":[function(require,module,exports) {
 var process = require("process");
 /* eslint-env browser */
 
@@ -1400,7 +1400,7 @@ formatters.j = function (v) {
     return '[UnexpectedJSONParseError]: ' + error.message;
   }
 };
-},{"./common":"node_modules/debug/src/common.js","process":"node_modules/process/browser.js"}],"node_modules/mediasoup-client/lib/Logger.js":[function(require,module,exports) {
+},{"./common":"MTTc","process":"g5IB"}],"andi":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -1453,7 +1453,7 @@ class Logger {
 }
 
 exports.Logger = Logger;
-},{"debug":"node_modules/debug/src/browser.js"}],"node_modules/mediasoup-client/lib/EnhancedEventEmitter.js":[function(require,module,exports) {
+},{"debug":"jD9Y"}],"P3Oo":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1498,7 +1498,7 @@ class EnhancedEventEmitter extends events_1.EventEmitter {
 }
 
 exports.EnhancedEventEmitter = EnhancedEventEmitter;
-},{"events":"node_modules/events/events.js","./Logger":"node_modules/mediasoup-client/lib/Logger.js"}],"node_modules/mediasoup-client/lib/errors.js":[function(require,module,exports) {
+},{"events":"wIHY","./Logger":"andi"}],"hNUz":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1547,7 +1547,7 @@ class InvalidStateError extends Error {
 }
 
 exports.InvalidStateError = InvalidStateError;
-},{}],"node_modules/mediasoup-client/lib/utils.js":[function(require,module,exports) {
+},{}],"fnp2":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1573,7 +1573,7 @@ function generateRandomNumber() {
 }
 
 exports.generateRandomNumber = generateRandomNumber;
-},{}],"node_modules/h264-profile-level-id/index.js":[function(require,module,exports) {
+},{}],"lc3R":[function(require,module,exports) {
 const debug = require('debug')('h264-profile-level-id');
 /* eslint-disable no-console */
 
@@ -1938,7 +1938,7 @@ function isLevelAsymmetryAllowed(params = {}) {
   const level_asymmetry_allowed = params['level-asymmetry-allowed'];
   return level_asymmetry_allowed === 1 || level_asymmetry_allowed === '1';
 }
-},{"debug":"node_modules/debug/src/browser.js"}],"node_modules/mediasoup-client/lib/ortc.js":[function(require,module,exports) {
+},{"debug":"jD9Y"}],"y0TR":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -2782,7 +2782,7 @@ function reduceRtcpFeedback(codecA, codecB) {
 
   return reducedRtcpFeedback;
 }
-},{"h264-profile-level-id":"node_modules/h264-profile-level-id/index.js","./utils":"node_modules/mediasoup-client/lib/utils.js"}],"node_modules/awaitqueue/lib/index.js":[function(require,module,exports) {
+},{"h264-profile-level-id":"lc3R","./utils":"fnp2"}],"OGUt":[function(require,module,exports) {
 "use strict";
 
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
@@ -2974,7 +2974,7 @@ class AwaitQueue {
 }
 
 exports.AwaitQueue = AwaitQueue;
-},{}],"node_modules/mediasoup-client/lib/Producer.js":[function(require,module,exports) {
+},{}],"dKU8":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3326,7 +3326,7 @@ class Producer extends EnhancedEventEmitter_1.EnhancedEventEmitter {
 }
 
 exports.Producer = Producer;
-},{"./Logger":"node_modules/mediasoup-client/lib/Logger.js","./EnhancedEventEmitter":"node_modules/mediasoup-client/lib/EnhancedEventEmitter.js","./errors":"node_modules/mediasoup-client/lib/errors.js"}],"node_modules/mediasoup-client/lib/Consumer.js":[function(require,module,exports) {
+},{"./Logger":"andi","./EnhancedEventEmitter":"P3Oo","./errors":"hNUz"}],"QQSC":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3577,7 +3577,7 @@ class Consumer extends EnhancedEventEmitter_1.EnhancedEventEmitter {
 }
 
 exports.Consumer = Consumer;
-},{"./Logger":"node_modules/mediasoup-client/lib/Logger.js","./EnhancedEventEmitter":"node_modules/mediasoup-client/lib/EnhancedEventEmitter.js","./errors":"node_modules/mediasoup-client/lib/errors.js"}],"node_modules/mediasoup-client/lib/DataProducer.js":[function(require,module,exports) {
+},{"./Logger":"andi","./EnhancedEventEmitter":"P3Oo","./errors":"hNUz"}],"Z0Ve":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3810,7 +3810,7 @@ class DataProducer extends EnhancedEventEmitter_1.EnhancedEventEmitter {
 }
 
 exports.DataProducer = DataProducer;
-},{"./Logger":"node_modules/mediasoup-client/lib/Logger.js","./EnhancedEventEmitter":"node_modules/mediasoup-client/lib/EnhancedEventEmitter.js","./errors":"node_modules/mediasoup-client/lib/errors.js"}],"node_modules/mediasoup-client/lib/DataConsumer.js":[function(require,module,exports) {
+},{"./Logger":"andi","./EnhancedEventEmitter":"P3Oo","./errors":"hNUz"}],"g5am":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4025,7 +4025,7 @@ class DataConsumer extends EnhancedEventEmitter_1.EnhancedEventEmitter {
 }
 
 exports.DataConsumer = DataConsumer;
-},{"./Logger":"node_modules/mediasoup-client/lib/Logger.js","./EnhancedEventEmitter":"node_modules/mediasoup-client/lib/EnhancedEventEmitter.js"}],"node_modules/mediasoup-client/lib/Transport.js":[function(require,module,exports) {
+},{"./Logger":"andi","./EnhancedEventEmitter":"P3Oo"}],"BHpp":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -4662,7 +4662,7 @@ class Transport extends EnhancedEventEmitter_1.EnhancedEventEmitter {
 }
 
 exports.Transport = Transport;
-},{"awaitqueue":"node_modules/awaitqueue/lib/index.js","./Logger":"node_modules/mediasoup-client/lib/Logger.js","./EnhancedEventEmitter":"node_modules/mediasoup-client/lib/EnhancedEventEmitter.js","./errors":"node_modules/mediasoup-client/lib/errors.js","./utils":"node_modules/mediasoup-client/lib/utils.js","./ortc":"node_modules/mediasoup-client/lib/ortc.js","./Producer":"node_modules/mediasoup-client/lib/Producer.js","./Consumer":"node_modules/mediasoup-client/lib/Consumer.js","./DataProducer":"node_modules/mediasoup-client/lib/DataProducer.js","./DataConsumer":"node_modules/mediasoup-client/lib/DataConsumer.js"}],"node_modules/sdp-transform/lib/grammar.js":[function(require,module,exports) {
+},{"awaitqueue":"OGUt","./Logger":"andi","./EnhancedEventEmitter":"P3Oo","./errors":"hNUz","./utils":"fnp2","./ortc":"y0TR","./Producer":"dKU8","./Consumer":"QQSC","./DataProducer":"Z0Ve","./DataConsumer":"g5am"}],"VF80":[function(require,module,exports) {
 var grammar = module.exports = {
   v: [{
     name: 'version',
@@ -5158,7 +5158,7 @@ Object.keys(grammar).forEach(function (key) {
   });
 });
 
-},{}],"node_modules/sdp-transform/lib/parser.js":[function(require,module,exports) {
+},{}],"pJ4u":[function(require,module,exports) {
 var toIntIfInt = function (v) {
   return String(Number(v)) === v ? Number(v) : v;
 };
@@ -5284,7 +5284,7 @@ exports.parseSimulcastStreamList = function (str) {
   });
 };
 
-},{"./grammar":"node_modules/sdp-transform/lib/grammar.js"}],"node_modules/sdp-transform/lib/writer.js":[function(require,module,exports) {
+},{"./grammar":"VF80"}],"dFSN":[function(require,module,exports) {
 var grammar = require('./grammar');
 
 // customized util.format - discards excess arguments and can void middle ones
@@ -5400,7 +5400,7 @@ module.exports = function (session, opts) {
   return sdp.join('\r\n') + '\r\n';
 };
 
-},{"./grammar":"node_modules/sdp-transform/lib/grammar.js"}],"node_modules/sdp-transform/lib/index.js":[function(require,module,exports) {
+},{"./grammar":"VF80"}],"CfIM":[function(require,module,exports) {
 var parser = require('./parser');
 var writer = require('./writer');
 
@@ -5413,7 +5413,7 @@ exports.parseRemoteCandidates = parser.parseRemoteCandidates;
 exports.parseImageAttributes = parser.parseImageAttributes;
 exports.parseSimulcastStreamList = parser.parseSimulcastStreamList;
 
-},{"./parser":"node_modules/sdp-transform/lib/parser.js","./writer":"node_modules/sdp-transform/lib/writer.js"}],"node_modules/mediasoup-client/lib/handlers/sdp/commonUtils.js":[function(require,module,exports) {
+},{"./parser":"pJ4u","./writer":"dFSN"}],"p5WR":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -5640,7 +5640,7 @@ function applyCodecParameters({
 }
 
 exports.applyCodecParameters = applyCodecParameters;
-},{"sdp-transform":"node_modules/sdp-transform/lib/index.js"}],"node_modules/mediasoup-client/lib/handlers/sdp/unifiedPlanUtils.js":[function(require,module,exports) {
+},{"sdp-transform":"CfIM"}],"C7JJ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5780,7 +5780,7 @@ function addLegacySimulcast({
 }
 
 exports.addLegacySimulcast = addLegacySimulcast;
-},{}],"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js":[function(require,module,exports) {
+},{}],"JfyM":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5806,7 +5806,7 @@ class HandlerInterface extends EnhancedEventEmitter_1.EnhancedEventEmitter {
 }
 
 exports.HandlerInterface = HandlerInterface;
-},{"../EnhancedEventEmitter":"node_modules/mediasoup-client/lib/EnhancedEventEmitter.js"}],"node_modules/mediasoup-client/lib/handlers/sdp/MediaSection.js":[function(require,module,exports) {
+},{"../EnhancedEventEmitter":"P3Oo"}],"SdHv":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -6414,7 +6414,7 @@ function getCodecName(codec) {
   if (!mimeTypeMatch) throw new TypeError('invalid codec.mimeType');
   return mimeTypeMatch[2];
 }
-},{"../../utils":"node_modules/mediasoup-client/lib/utils.js"}],"node_modules/mediasoup-client/lib/handlers/sdp/RemoteSdp.js":[function(require,module,exports) {
+},{"../../utils":"fnp2"}],"vZFf":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -6787,7 +6787,7 @@ class RemoteSdp {
 }
 
 exports.RemoteSdp = RemoteSdp;
-},{"sdp-transform":"node_modules/sdp-transform/lib/index.js","../../Logger":"node_modules/mediasoup-client/lib/Logger.js","./MediaSection":"node_modules/mediasoup-client/lib/handlers/sdp/MediaSection.js"}],"node_modules/mediasoup-client/lib/scalabilityModes.js":[function(require,module,exports) {
+},{"sdp-transform":"CfIM","../../Logger":"andi","./MediaSection":"SdHv"}],"LIqw":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6813,7 +6813,7 @@ function parse(scalabilityMode) {
 }
 
 exports.parse = parse;
-},{}],"node_modules/mediasoup-client/lib/handlers/Chrome74.js":[function(require,module,exports) {
+},{}],"YvS6":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -7506,7 +7506,7 @@ class Chrome74 extends HandlerInterface_1.HandlerInterface {
 }
 
 exports.Chrome74 = Chrome74;
-},{"sdp-transform":"node_modules/sdp-transform/lib/index.js","../Logger":"node_modules/mediasoup-client/lib/Logger.js","../utils":"node_modules/mediasoup-client/lib/utils.js","../ortc":"node_modules/mediasoup-client/lib/ortc.js","./sdp/commonUtils":"node_modules/mediasoup-client/lib/handlers/sdp/commonUtils.js","./sdp/unifiedPlanUtils":"node_modules/mediasoup-client/lib/handlers/sdp/unifiedPlanUtils.js","./HandlerInterface":"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js","./sdp/RemoteSdp":"node_modules/mediasoup-client/lib/handlers/sdp/RemoteSdp.js","../scalabilityModes":"node_modules/mediasoup-client/lib/scalabilityModes.js"}],"node_modules/mediasoup-client/lib/handlers/Chrome70.js":[function(require,module,exports) {
+},{"sdp-transform":"CfIM","../Logger":"andi","../utils":"fnp2","../ortc":"y0TR","./sdp/commonUtils":"p5WR","./sdp/unifiedPlanUtils":"C7JJ","./HandlerInterface":"JfyM","./sdp/RemoteSdp":"vZFf","../scalabilityModes":"LIqw"}],"fEjk":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -8219,7 +8219,7 @@ class Chrome70 extends HandlerInterface_1.HandlerInterface {
 }
 
 exports.Chrome70 = Chrome70;
-},{"sdp-transform":"node_modules/sdp-transform/lib/index.js","../Logger":"node_modules/mediasoup-client/lib/Logger.js","../utils":"node_modules/mediasoup-client/lib/utils.js","../ortc":"node_modules/mediasoup-client/lib/ortc.js","./sdp/commonUtils":"node_modules/mediasoup-client/lib/handlers/sdp/commonUtils.js","./sdp/unifiedPlanUtils":"node_modules/mediasoup-client/lib/handlers/sdp/unifiedPlanUtils.js","./HandlerInterface":"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js","./sdp/RemoteSdp":"node_modules/mediasoup-client/lib/handlers/sdp/RemoteSdp.js","../scalabilityModes":"node_modules/mediasoup-client/lib/scalabilityModes.js"}],"node_modules/mediasoup-client/lib/handlers/sdp/planBUtils.js":[function(require,module,exports) {
+},{"sdp-transform":"CfIM","../Logger":"andi","../utils":"fnp2","../ortc":"y0TR","./sdp/commonUtils":"p5WR","./sdp/unifiedPlanUtils":"C7JJ","./HandlerInterface":"JfyM","./sdp/RemoteSdp":"vZFf","../scalabilityModes":"LIqw"}],"Upxu":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8380,7 +8380,7 @@ function addLegacySimulcast({
 }
 
 exports.addLegacySimulcast = addLegacySimulcast;
-},{}],"node_modules/mediasoup-client/lib/handlers/Chrome67.js":[function(require,module,exports) {
+},{}],"RFT0":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -9092,7 +9092,7 @@ class Chrome67 extends HandlerInterface_1.HandlerInterface {
 }
 
 exports.Chrome67 = Chrome67;
-},{"sdp-transform":"node_modules/sdp-transform/lib/index.js","../Logger":"node_modules/mediasoup-client/lib/Logger.js","../utils":"node_modules/mediasoup-client/lib/utils.js","../ortc":"node_modules/mediasoup-client/lib/ortc.js","./sdp/commonUtils":"node_modules/mediasoup-client/lib/handlers/sdp/commonUtils.js","./sdp/planBUtils":"node_modules/mediasoup-client/lib/handlers/sdp/planBUtils.js","./HandlerInterface":"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js","./sdp/RemoteSdp":"node_modules/mediasoup-client/lib/handlers/sdp/RemoteSdp.js"}],"node_modules/mediasoup-client/lib/handlers/Chrome55.js":[function(require,module,exports) {
+},{"sdp-transform":"CfIM","../Logger":"andi","../utils":"fnp2","../ortc":"y0TR","./sdp/commonUtils":"p5WR","./sdp/planBUtils":"Upxu","./HandlerInterface":"JfyM","./sdp/RemoteSdp":"vZFf"}],"vy33":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -9758,7 +9758,7 @@ class Chrome55 extends HandlerInterface_1.HandlerInterface {
 }
 
 exports.Chrome55 = Chrome55;
-},{"sdp-transform":"node_modules/sdp-transform/lib/index.js","../Logger":"node_modules/mediasoup-client/lib/Logger.js","../errors":"node_modules/mediasoup-client/lib/errors.js","../utils":"node_modules/mediasoup-client/lib/utils.js","../ortc":"node_modules/mediasoup-client/lib/ortc.js","./sdp/commonUtils":"node_modules/mediasoup-client/lib/handlers/sdp/commonUtils.js","./sdp/planBUtils":"node_modules/mediasoup-client/lib/handlers/sdp/planBUtils.js","./HandlerInterface":"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js","./sdp/RemoteSdp":"node_modules/mediasoup-client/lib/handlers/sdp/RemoteSdp.js"}],"node_modules/mediasoup-client/lib/handlers/Firefox60.js":[function(require,module,exports) {
+},{"sdp-transform":"CfIM","../Logger":"andi","../errors":"hNUz","../utils":"fnp2","../ortc":"y0TR","./sdp/commonUtils":"p5WR","./sdp/planBUtils":"Upxu","./HandlerInterface":"JfyM","./sdp/RemoteSdp":"vZFf"}],"rkz5":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -10481,7 +10481,7 @@ class Firefox60 extends HandlerInterface_1.HandlerInterface {
 }
 
 exports.Firefox60 = Firefox60;
-},{"sdp-transform":"node_modules/sdp-transform/lib/index.js","../Logger":"node_modules/mediasoup-client/lib/Logger.js","../errors":"node_modules/mediasoup-client/lib/errors.js","../utils":"node_modules/mediasoup-client/lib/utils.js","../ortc":"node_modules/mediasoup-client/lib/ortc.js","./sdp/commonUtils":"node_modules/mediasoup-client/lib/handlers/sdp/commonUtils.js","./sdp/unifiedPlanUtils":"node_modules/mediasoup-client/lib/handlers/sdp/unifiedPlanUtils.js","./HandlerInterface":"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js","./sdp/RemoteSdp":"node_modules/mediasoup-client/lib/handlers/sdp/RemoteSdp.js"}],"node_modules/mediasoup-client/lib/handlers/Safari12.js":[function(require,module,exports) {
+},{"sdp-transform":"CfIM","../Logger":"andi","../errors":"hNUz","../utils":"fnp2","../ortc":"y0TR","./sdp/commonUtils":"p5WR","./sdp/unifiedPlanUtils":"C7JJ","./HandlerInterface":"JfyM","./sdp/RemoteSdp":"vZFf"}],"Xquh":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -11148,7 +11148,7 @@ class Safari12 extends HandlerInterface_1.HandlerInterface {
 }
 
 exports.Safari12 = Safari12;
-},{"sdp-transform":"node_modules/sdp-transform/lib/index.js","../Logger":"node_modules/mediasoup-client/lib/Logger.js","../utils":"node_modules/mediasoup-client/lib/utils.js","../ortc":"node_modules/mediasoup-client/lib/ortc.js","./sdp/commonUtils":"node_modules/mediasoup-client/lib/handlers/sdp/commonUtils.js","./sdp/unifiedPlanUtils":"node_modules/mediasoup-client/lib/handlers/sdp/unifiedPlanUtils.js","./HandlerInterface":"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js","./sdp/RemoteSdp":"node_modules/mediasoup-client/lib/handlers/sdp/RemoteSdp.js"}],"node_modules/mediasoup-client/lib/handlers/Safari11.js":[function(require,module,exports) {
+},{"sdp-transform":"CfIM","../Logger":"andi","../utils":"fnp2","../ortc":"y0TR","./sdp/commonUtils":"p5WR","./sdp/unifiedPlanUtils":"C7JJ","./HandlerInterface":"JfyM","./sdp/RemoteSdp":"vZFf"}],"wFon":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -11852,7 +11852,7 @@ class Safari11 extends HandlerInterface_1.HandlerInterface {
 }
 
 exports.Safari11 = Safari11;
-},{"sdp-transform":"node_modules/sdp-transform/lib/index.js","../Logger":"node_modules/mediasoup-client/lib/Logger.js","../utils":"node_modules/mediasoup-client/lib/utils.js","../ortc":"node_modules/mediasoup-client/lib/ortc.js","./sdp/commonUtils":"node_modules/mediasoup-client/lib/handlers/sdp/commonUtils.js","./sdp/planBUtils":"node_modules/mediasoup-client/lib/handlers/sdp/planBUtils.js","./HandlerInterface":"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js","./sdp/RemoteSdp":"node_modules/mediasoup-client/lib/handlers/sdp/RemoteSdp.js"}],"node_modules/mediasoup-client/lib/handlers/ortc/edgeUtils.js":[function(require,module,exports) {
+},{"sdp-transform":"CfIM","../Logger":"andi","../utils":"fnp2","../ortc":"y0TR","./sdp/commonUtils":"p5WR","./sdp/planBUtils":"Upxu","./HandlerInterface":"JfyM","./sdp/RemoteSdp":"vZFf"}],"pBRA":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -11955,7 +11955,7 @@ function mangleRtpParameters(rtpParameters) {
 }
 
 exports.mangleRtpParameters = mangleRtpParameters;
-},{"../../utils":"node_modules/mediasoup-client/lib/utils.js"}],"node_modules/mediasoup-client/lib/handlers/Edge11.js":[function(require,module,exports) {
+},{"../../utils":"fnp2"}],"H8eT":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -12455,7 +12455,7 @@ class Edge11 extends HandlerInterface_1.HandlerInterface {
 }
 
 exports.Edge11 = Edge11;
-},{"../Logger":"node_modules/mediasoup-client/lib/Logger.js","../errors":"node_modules/mediasoup-client/lib/errors.js","../utils":"node_modules/mediasoup-client/lib/utils.js","../ortc":"node_modules/mediasoup-client/lib/ortc.js","./ortc/edgeUtils":"node_modules/mediasoup-client/lib/handlers/ortc/edgeUtils.js","./HandlerInterface":"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js"}],"node_modules/mediasoup-client/lib/handlers/ReactNative.js":[function(require,module,exports) {
+},{"../Logger":"andi","../errors":"hNUz","../utils":"fnp2","../ortc":"y0TR","./ortc/edgeUtils":"pBRA","./HandlerInterface":"JfyM"}],"DJ68":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -13127,7 +13127,7 @@ class ReactNative extends HandlerInterface_1.HandlerInterface {
 }
 
 exports.ReactNative = ReactNative;
-},{"sdp-transform":"node_modules/sdp-transform/lib/index.js","../Logger":"node_modules/mediasoup-client/lib/Logger.js","../errors":"node_modules/mediasoup-client/lib/errors.js","../utils":"node_modules/mediasoup-client/lib/utils.js","../ortc":"node_modules/mediasoup-client/lib/ortc.js","./sdp/commonUtils":"node_modules/mediasoup-client/lib/handlers/sdp/commonUtils.js","./sdp/planBUtils":"node_modules/mediasoup-client/lib/handlers/sdp/planBUtils.js","./HandlerInterface":"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js","./sdp/RemoteSdp":"node_modules/mediasoup-client/lib/handlers/sdp/RemoteSdp.js"}],"node_modules/mediasoup-client/lib/Device.js":[function(require,module,exports) {
+},{"sdp-transform":"CfIM","../Logger":"andi","../errors":"hNUz","../utils":"fnp2","../ortc":"y0TR","./sdp/commonUtils":"p5WR","./sdp/planBUtils":"Upxu","./HandlerInterface":"JfyM","./sdp/RemoteSdp":"vZFf"}],"kWtX":[function(require,module,exports) {
 "use strict";
 /* global RTCRtpTransceiver */
 
@@ -13608,7 +13608,7 @@ class Device {
 }
 
 exports.Device = Device;
-},{"bowser":"node_modules/bowser/es5.js","./Logger":"node_modules/mediasoup-client/lib/Logger.js","./EnhancedEventEmitter":"node_modules/mediasoup-client/lib/EnhancedEventEmitter.js","./errors":"node_modules/mediasoup-client/lib/errors.js","./utils":"node_modules/mediasoup-client/lib/utils.js","./ortc":"node_modules/mediasoup-client/lib/ortc.js","./Transport":"node_modules/mediasoup-client/lib/Transport.js","./handlers/Chrome74":"node_modules/mediasoup-client/lib/handlers/Chrome74.js","./handlers/Chrome70":"node_modules/mediasoup-client/lib/handlers/Chrome70.js","./handlers/Chrome67":"node_modules/mediasoup-client/lib/handlers/Chrome67.js","./handlers/Chrome55":"node_modules/mediasoup-client/lib/handlers/Chrome55.js","./handlers/Firefox60":"node_modules/mediasoup-client/lib/handlers/Firefox60.js","./handlers/Safari12":"node_modules/mediasoup-client/lib/handlers/Safari12.js","./handlers/Safari11":"node_modules/mediasoup-client/lib/handlers/Safari11.js","./handlers/Edge11":"node_modules/mediasoup-client/lib/handlers/Edge11.js","./handlers/ReactNative":"node_modules/mediasoup-client/lib/handlers/ReactNative.js"}],"node_modules/mediasoup-client/lib/RtpParameters.js":[function(require,module,exports) {
+},{"bowser":"JSid","./Logger":"andi","./EnhancedEventEmitter":"P3Oo","./errors":"hNUz","./utils":"fnp2","./ortc":"y0TR","./Transport":"BHpp","./handlers/Chrome74":"YvS6","./handlers/Chrome70":"fEjk","./handlers/Chrome67":"RFT0","./handlers/Chrome55":"vy33","./handlers/Firefox60":"rkz5","./handlers/Safari12":"Xquh","./handlers/Safari11":"wFon","./handlers/Edge11":"H8eT","./handlers/ReactNative":"DJ68"}],"Zn1c":[function(require,module,exports) {
 "use strict";
 /**
  * The RTP capabilities define what mediasoup or an endpoint can receive at
@@ -13618,13 +13618,13 @@ exports.Device = Device;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-},{}],"node_modules/mediasoup-client/lib/SctpParameters.js":[function(require,module,exports) {
+},{}],"BZdl":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-},{}],"node_modules/mediasoup-client/lib/types.js":[function(require,module,exports) {
+},{}],"pJdj":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -13667,7 +13667,7 @@ __exportStar(require("./SctpParameters"), exports);
 __exportStar(require("./handlers/HandlerInterface"), exports);
 
 __exportStar(require("./errors"), exports);
-},{"./Device":"node_modules/mediasoup-client/lib/Device.js","./Transport":"node_modules/mediasoup-client/lib/Transport.js","./Producer":"node_modules/mediasoup-client/lib/Producer.js","./Consumer":"node_modules/mediasoup-client/lib/Consumer.js","./DataProducer":"node_modules/mediasoup-client/lib/DataProducer.js","./DataConsumer":"node_modules/mediasoup-client/lib/DataConsumer.js","./RtpParameters":"node_modules/mediasoup-client/lib/RtpParameters.js","./SctpParameters":"node_modules/mediasoup-client/lib/SctpParameters.js","./handlers/HandlerInterface":"node_modules/mediasoup-client/lib/handlers/HandlerInterface.js","./errors":"node_modules/mediasoup-client/lib/errors.js"}],"node_modules/mediasoup-client/lib/index.js":[function(require,module,exports) {
+},{"./Device":"kWtX","./Transport":"BHpp","./Producer":"dKU8","./Consumer":"QQSC","./DataProducer":"Z0Ve","./DataConsumer":"g5am","./RtpParameters":"Zn1c","./SctpParameters":"BZdl","./handlers/HandlerInterface":"JfyM","./errors":"hNUz"}],"CWXY":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -13742,7 +13742,7 @@ Object.defineProperty(exports, "parseScalabilityMode", {
     return scalabilityModes_1.parse;
   }
 });
-},{"./Device":"node_modules/mediasoup-client/lib/Device.js","./types":"node_modules/mediasoup-client/lib/types.js","./scalabilityModes":"node_modules/mediasoup-client/lib/scalabilityModes.js"}],"node_modules/protoo-client/package.json":[function(require,module,exports) {
+},{"./Device":"kWtX","./types":"pJdj","./scalabilityModes":"LIqw"}],"C6pA":[function(require,module,exports) {
 module.exports = {
   "_args": [["protoo-client@4.0.6", "/Users/ojack/PROJECTS/flujos"]],
   "_from": "protoo-client@4.0.6",
@@ -13802,7 +13802,7 @@ module.exports = {
   },
   "version": "4.0.6"
 };
-},{}],"node_modules/protoo-client/lib/Logger.js":[function(require,module,exports) {
+},{}],"UkIf":[function(require,module,exports) {
 const debug = require('debug');
 
 const APP_NAME = 'protoo-client';
@@ -13842,7 +13842,7 @@ class Logger {
 }
 
 module.exports = Logger;
-},{"debug":"node_modules/debug/src/browser.js"}],"node_modules/protoo-client/lib/EnhancedEventEmitter.js":[function(require,module,exports) {
+},{"debug":"jD9Y"}],"Aog5":[function(require,module,exports) {
 const {
   EventEmitter
 } = require('events');
@@ -13873,7 +13873,7 @@ class EnhancedEventEmitter extends EventEmitter {
 }
 
 module.exports = EnhancedEventEmitter;
-},{"events":"node_modules/events/events.js","./Logger":"node_modules/protoo-client/lib/Logger.js"}],"node_modules/protoo-client/lib/utils.js":[function(require,module,exports) {
+},{"events":"wIHY","./Logger":"UkIf"}],"l708":[function(require,module,exports) {
 /**
  * Generates a random positive integer.
  *
@@ -13882,7 +13882,7 @@ module.exports = EnhancedEventEmitter;
 exports.generateRandomNumber = function () {
   return Math.round(Math.random() * 10000000);
 };
-},{}],"node_modules/protoo-client/lib/Message.js":[function(require,module,exports) {
+},{}],"Isju":[function(require,module,exports) {
 const Logger = require('./Logger');
 
 const {
@@ -14008,7 +14008,7 @@ class Message {
 }
 
 module.exports = Message;
-},{"./Logger":"node_modules/protoo-client/lib/Logger.js","./utils":"node_modules/protoo-client/lib/utils.js"}],"node_modules/protoo-client/lib/Peer.js":[function(require,module,exports) {
+},{"./Logger":"UkIf","./utils":"l708"}],"PyVj":[function(require,module,exports) {
 const Logger = require('./Logger');
 
 const EnhancedEventEmitter = require('./EnhancedEventEmitter');
@@ -14271,7 +14271,7 @@ class Peer extends EnhancedEventEmitter {
 }
 
 module.exports = Peer;
-},{"./Logger":"node_modules/protoo-client/lib/Logger.js","./EnhancedEventEmitter":"node_modules/protoo-client/lib/EnhancedEventEmitter.js","./Message":"node_modules/protoo-client/lib/Message.js"}],"node_modules/es5-ext/global.js":[function(require,module,exports) {
+},{"./Logger":"UkIf","./EnhancedEventEmitter":"Aog5","./Message":"Isju"}],"NPI8":[function(require,module,exports) {
 var naiveFallback = function () {
 	if (typeof self === "object" && self) return self;
 	if (typeof window === "object" && window) return window;
@@ -14308,7 +14308,7 @@ module.exports = (function () {
 	}
 })();
 
-},{}],"node_modules/websocket/package.json":[function(require,module,exports) {
+},{}],"VKXw":[function(require,module,exports) {
 module.exports = {
   "_args": [["websocket@1.0.33", "/Users/ojack/PROJECTS/flujos"]],
   "_from": "websocket@1.0.33",
@@ -14387,9 +14387,9 @@ module.exports = {
   },
   "version": "1.0.33"
 };
-},{}],"node_modules/websocket/lib/version.js":[function(require,module,exports) {
+},{}],"CI7o":[function(require,module,exports) {
 module.exports = require('../package.json').version;
-},{"../package.json":"node_modules/websocket/package.json"}],"node_modules/websocket/lib/browser.js":[function(require,module,exports) {
+},{"../package.json":"VKXw"}],"zPp5":[function(require,module,exports) {
 var _globalThis;
 
 try {
@@ -14450,7 +14450,7 @@ module.exports = {
   'w3cwebsocket': NativeWebSocket ? W3CWebSocket : null,
   'version': websocket_version
 };
-},{"es5-ext/global":"node_modules/es5-ext/global.js","./version":"node_modules/websocket/lib/version.js"}],"node_modules/retry/lib/retry_operation.js":[function(require,module,exports) {
+},{"es5-ext/global":"NPI8","./version":"CI7o"}],"PqWU":[function(require,module,exports) {
 function RetryOperation(timeouts, options) {
   // Compatibility for the old (timeouts, retryForever) signature
   if (typeof options === 'boolean') {
@@ -14618,7 +14618,7 @@ RetryOperation.prototype.mainError = function () {
 
   return mainError;
 };
-},{}],"node_modules/retry/lib/retry.js":[function(require,module,exports) {
+},{}],"Wk2y":[function(require,module,exports) {
 var RetryOperation = require('./retry_operation');
 
 exports.operation = function (options) {
@@ -14718,9 +14718,9 @@ exports.wrap = function (obj, options, methods) {
     obj[method].options = options;
   }
 };
-},{"./retry_operation":"node_modules/retry/lib/retry_operation.js"}],"node_modules/retry/index.js":[function(require,module,exports) {
+},{"./retry_operation":"PqWU"}],"NFGJ":[function(require,module,exports) {
 module.exports = require('./lib/retry');
-},{"./lib/retry":"node_modules/retry/lib/retry.js"}],"node_modules/protoo-client/lib/transports/WebSocketTransport.js":[function(require,module,exports) {
+},{"./lib/retry":"Wk2y"}],"ziqe":[function(require,module,exports) {
 const W3CWebSocket = require('websocket').w3cwebsocket;
 
 const retry = require('retry');
@@ -14868,7 +14868,7 @@ class WebSocketTransport extends EnhancedEventEmitter {
 }
 
 module.exports = WebSocketTransport;
-},{"websocket":"node_modules/websocket/lib/browser.js","retry":"node_modules/retry/index.js","../Logger":"node_modules/protoo-client/lib/Logger.js","../EnhancedEventEmitter":"node_modules/protoo-client/lib/EnhancedEventEmitter.js","../Message":"node_modules/protoo-client/lib/Message.js"}],"node_modules/protoo-client/lib/index.js":[function(require,module,exports) {
+},{"websocket":"zPp5","retry":"NFGJ","../Logger":"UkIf","../EnhancedEventEmitter":"Aog5","../Message":"Isju"}],"DLpz":[function(require,module,exports) {
 const {
   version
 } = require('../package.json');
@@ -14898,7 +14898,7 @@ exports.Peer = Peer;
  */
 
 exports.WebSocketTransport = WebSocketTransport;
-},{"../package.json":"node_modules/protoo-client/package.json","./Peer":"node_modules/protoo-client/lib/Peer.js","./transports/WebSocketTransport":"node_modules/protoo-client/lib/transports/WebSocketTransport.js"}],"app/lib/room.js":[function(require,module,exports) {
+},{"../package.json":"C6pA","./Peer":"PyVj","./transports/WebSocketTransport":"ziqe"}],"rxNS":[function(require,module,exports) {
 const {
   EventEmitter
 } = require("events");
@@ -15083,7 +15083,7 @@ module.exports = class Room extends EventEmitter {
   }
 
 };
-},{"events":"node_modules/events/events.js","mediasoup-client":"node_modules/mediasoup-client/lib/index.js","protoo-client":"node_modules/protoo-client/lib/index.js"}],"app/lib/mediasoup-viewer.js":[function(require,module,exports) {
+},{"events":"wIHY","mediasoup-client":"CWXY","protoo-client":"DLpz"}],"GAh9":[function(require,module,exports) {
 const Room = require('./room.js');
 
 const EventEmitter = require('events');
@@ -15204,7 +15204,7 @@ module.exports = class Viewer extends EventEmitter {
 //     isActive: isActive
 //   }
 // }
-},{"./room.js":"app/lib/room.js","events":"node_modules/events/events.js"}],"node_modules/hyperscript-attribute-to-property/index.js":[function(require,module,exports) {
+},{"./room.js":"rxNS","events":"wIHY"}],"Fszt":[function(require,module,exports) {
 module.exports = attributeToProperty
 
 var transform = {
@@ -15225,7 +15225,7 @@ function attributeToProperty (h) {
   }
 }
 
-},{}],"node_modules/hyperx/index.js":[function(require,module,exports) {
+},{}],"P8fc":[function(require,module,exports) {
 var attrToProp = require('hyperscript-attribute-to-property')
 
 var VAR = 0, TEXT = 1, OPEN = 2, CLOSE = 3, ATTR = 4
@@ -15522,7 +15522,7 @@ var closeRE = RegExp('^(' + [
 ].join('|') + ')(?:[\.#][a-zA-Z0-9\u007F-\uFFFF_:-]+)*$')
 function selfClosing (tag) { return closeRE.test(tag) }
 
-},{"hyperscript-attribute-to-property":"node_modules/hyperscript-attribute-to-property/index.js"}],"node_modules/nanohtml/lib/append-child.js":[function(require,module,exports) {
+},{"hyperscript-attribute-to-property":"Fszt"}],"gPFH":[function(require,module,exports) {
 'use strict'
 
 var trailingNewlineRegex = /\n[\s]+$/
@@ -15656,7 +15656,7 @@ module.exports = function appendChild (el, childs) {
   }
 }
 
-},{}],"node_modules/nanohtml/lib/svg-tags.js":[function(require,module,exports) {
+},{}],"yLdR":[function(require,module,exports) {
 'use strict'
 
 module.exports = [
@@ -15676,7 +15676,7 @@ module.exports = [
   'tspan', 'use', 'view', 'vkern'
 ]
 
-},{}],"node_modules/nanohtml/lib/bool-props.js":[function(require,module,exports) {
+},{}],"YVSa":[function(require,module,exports) {
 'use strict'
 
 module.exports = [
@@ -15686,14 +15686,14 @@ module.exports = [
   'readonly', 'required', 'reversed', 'selected'
 ]
 
-},{}],"node_modules/nanohtml/lib/direct-props.js":[function(require,module,exports) {
+},{}],"XElX":[function(require,module,exports) {
 'use strict'
 
 module.exports = [
   'indeterminate'
 ]
 
-},{}],"node_modules/nanohtml/lib/dom.js":[function(require,module,exports) {
+},{}],"Ot7I":[function(require,module,exports) {
 'use strict'
 
 var hyperx = require('hyperx')
@@ -15811,10 +15811,10 @@ module.exports = function (document) {
   return exports
 }
 
-},{"hyperx":"node_modules/hyperx/index.js","./append-child":"node_modules/nanohtml/lib/append-child.js","./svg-tags":"node_modules/nanohtml/lib/svg-tags.js","./bool-props":"node_modules/nanohtml/lib/bool-props.js","./direct-props":"node_modules/nanohtml/lib/direct-props.js"}],"node_modules/nanohtml/lib/browser.js":[function(require,module,exports) {
+},{"hyperx":"P8fc","./append-child":"gPFH","./svg-tags":"yLdR","./bool-props":"YVSa","./direct-props":"XElX"}],"QR4u":[function(require,module,exports) {
 module.exports = require('./dom')(document)
 
-},{"./dom":"node_modules/nanohtml/lib/dom.js"}],"app/init-media-sources.js":[function(require,module,exports) {
+},{"./dom":"Ot7I"}],"tsca":[function(require,module,exports) {
 const Viewer = require('./lib/mediasoup-viewer.js'); // const hydraStartup = require('./hydra-startup')
 
 
@@ -15885,7 +15885,7 @@ function createVideo({
   vid.addEventListener('loadeddata', onload);
   return vid;
 }
-},{"./lib/mediasoup-viewer.js":"app/lib/mediasoup-viewer.js","nanohtml":"node_modules/nanohtml/lib/browser.js"}],"app/init-hydra.js":[function(require,module,exports) {
+},{"./lib/mediasoup-viewer.js":"GAh9","nanohtml":"QR4u"}],"HQUh":[function(require,module,exports) {
 const html = require('nanohtml');
 
 module.exports = ({
@@ -15942,7 +15942,7 @@ module.exports = ({
     //  setResolution(window.innerWidth, window.innerHeight)
   });
 };
-},{"nanohtml":"node_modules/nanohtml/lib/browser.js"}],"node_modules/es6-promise-polyfill/promise.js":[function(require,module,exports) {
+},{"nanohtml":"QR4u"}],"IHN5":[function(require,module,exports) {
 var global = arguments[3];
 var define;
 (function(global){
@@ -16292,7 +16292,7 @@ Promise.reject = function(reason){
 
 })(typeof window != 'undefined' ? window : typeof global != 'undefined' ? global : typeof self != 'undefined' ? self : this);
 
-},{}],"node_modules/object-assign/index.js":[function(require,module,exports) {
+},{}],"YOwE":[function(require,module,exports) {
 /*
 object-assign
 (c) Sindre Sorhus
@@ -16388,7 +16388,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
   return to;
 };
-},{}],"node_modules/@pixi/polyfill/lib/polyfill.es.js":[function(require,module,exports) {
+},{}],"jbXN":[function(require,module,exports) {
 "use strict";
 
 var _es6PromisePolyfill = require("es6-promise-polyfill");
@@ -16526,7 +16526,7 @@ if (!window.Uint8Array) {
 if (!window.Int32Array) {
   window.Int32Array = Array;
 }
-},{"es6-promise-polyfill":"node_modules/es6-promise-polyfill/promise.js","object-assign":"node_modules/object-assign/index.js"}],"node_modules/ismobilejs/esm/isMobile.js":[function(require,module,exports) {
+},{"es6-promise-polyfill":"IHN5","object-assign":"YOwE"}],"Hp9w":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16636,7 +16636,7 @@ function isMobile(param) {
   result.tablet = result.apple.tablet || result.android.tablet || result.windows.tablet;
   return result;
 }
-},{}],"node_modules/ismobilejs/esm/index.js":[function(require,module,exports) {
+},{}],"uJg3":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16667,7 +16667,7 @@ Object.keys(_isMobile).forEach(function (key) {
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-},{"./isMobile":"node_modules/ismobilejs/esm/isMobile.js"}],"node_modules/@pixi/settings/lib/settings.es.js":[function(require,module,exports) {
+},{"./isMobile":"Hp9w"}],"Xe2x":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16981,7 +16981,7 @@ var settings = {
   ROUND_PIXELS: false
 };
 exports.settings = settings;
-},{"ismobilejs":"node_modules/ismobilejs/esm/index.js"}],"node_modules/eventemitter3/index.js":[function(require,module,exports) {
+},{"ismobilejs":"uJg3"}],"LqgX":[function(require,module,exports) {
 'use strict';
 
 var has = Object.prototype.hasOwnProperty
@@ -17319,7 +17319,7 @@ if ('undefined' !== typeof module) {
   module.exports = EventEmitter;
 }
 
-},{}],"node_modules/earcut/src/earcut.js":[function(require,module,exports) {
+},{}],"d3f1":[function(require,module,exports) {
 'use strict';
 
 module.exports = earcut;
@@ -18000,7 +18000,7 @@ earcut.flatten = function (data) {
     return result;
 };
 
-},{}],"node_modules/punycode/punycode.js":[function(require,module,exports) {
+},{}],"sBBS":[function(require,module,exports) {
 var global = arguments[3];
 var define;
 /*! https://mths.be/punycode v1.3.2 by @mathias */
@@ -18534,7 +18534,7 @@ var define;
 
 }(this));
 
-},{}],"node_modules/url/util.js":[function(require,module,exports) {
+},{}],"oHuK":[function(require,module,exports) {
 'use strict';
 
 module.exports = {
@@ -18552,7 +18552,7 @@ module.exports = {
   }
 };
 
-},{}],"node_modules/querystring-es3/decode.js":[function(require,module,exports) {
+},{}],"ObZ4":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -18638,7 +18638,7 @@ module.exports = function (qs, sep, eq, options) {
 var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
-},{}],"node_modules/querystring-es3/encode.js":[function(require,module,exports) {
+},{}],"XK8a":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -18727,12 +18727,12 @@ var objectKeys = Object.keys || function (obj) {
 
   return res;
 };
-},{}],"node_modules/querystring-es3/index.js":[function(require,module,exports) {
+},{}],"SF0R":[function(require,module,exports) {
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
-},{"./decode":"node_modules/querystring-es3/decode.js","./encode":"node_modules/querystring-es3/encode.js"}],"node_modules/url/url.js":[function(require,module,exports) {
+},{"./decode":"ObZ4","./encode":"XK8a"}],"j37I":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19466,7 +19466,7 @@ Url.prototype.parseHost = function() {
   if (host) this.hostname = host;
 };
 
-},{"punycode":"node_modules/punycode/punycode.js","./util":"node_modules/url/util.js","querystring":"node_modules/querystring-es3/index.js"}],"node_modules/@pixi/constants/lib/constants.es.js":[function(require,module,exports) {
+},{"punycode":"sBBS","./util":"oHuK","querystring":"SF0R"}],"djkr":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -19980,7 +19980,7 @@ exports.MSAA_QUALITY = MSAA_QUALITY;
   MSAA_QUALITY[MSAA_QUALITY["MEDIUM"] = 4] = "MEDIUM";
   MSAA_QUALITY[MSAA_QUALITY["HIGH"] = 8] = "HIGH";
 })(MSAA_QUALITY || (exports.MSAA_QUALITY = MSAA_QUALITY = {}));
-},{}],"node_modules/@pixi/utils/lib/utils.es.js":[function(require,module,exports) {
+},{}],"X4iF":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21061,7 +21061,7 @@ function getResolutionOfUrl(url, defaultValue) {
  * console.log(PIXI.utils.hex2string(0xff00ff)); // returns: "#ff00ff"
  * @namespace PIXI.utils
  */
-},{"@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js","eventemitter3":"node_modules/eventemitter3/index.js","earcut":"node_modules/earcut/src/earcut.js","url":"node_modules/url/url.js","@pixi/constants":"node_modules/@pixi/constants/lib/constants.es.js"}],"node_modules/@pixi/math/lib/math.es.js":[function(require,module,exports) {
+},{"@pixi/settings":"Xe2x","eventemitter3":"LqgX","earcut":"d3f1","url":"j37I","@pixi/constants":"djkr"}],"w9h1":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -23399,7 +23399,7 @@ function () {
 
 
 exports.Transform = Transform;
-},{}],"node_modules/@pixi/display/lib/display.es.js":[function(require,module,exports) {
+},{}],"qvzw":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25381,7 +25381,7 @@ function (_super) {
 
 exports.Container = Container;
 Container.prototype.containerUpdateTransform = Container.prototype.updateTransform;
-},{"@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js"}],"node_modules/@pixi/accessibility/lib/accessibility.es.js":[function(require,module,exports) {
+},{"@pixi/settings":"Xe2x","@pixi/math":"w9h1","@pixi/utils":"X4iF"}],"JMFw":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26068,7 +26068,7 @@ function () {
 }();
 
 exports.AccessibilityManager = AccessibilityManager;
-},{"@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js"}],"node_modules/@pixi/ticker/lib/ticker.es.js":[function(require,module,exports) {
+},{"@pixi/display":"qvzw","@pixi/utils":"X4iF"}],"AWzT":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27055,7 +27055,7 @@ function () {
 }();
 
 exports.TickerPlugin = TickerPlugin;
-},{"@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js"}],"node_modules/@pixi/interaction/lib/interaction.es.js":[function(require,module,exports) {
+},{"@pixi/settings":"Xe2x"}],"hG98":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29655,7 +29655,7 @@ function (_super) {
 }(_utils.EventEmitter);
 
 exports.InteractionManager = InteractionManager;
-},{"@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/ticker":"node_modules/@pixi/ticker/lib/ticker.es.js","@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js"}],"node_modules/@pixi/runner/lib/runner.es.js":[function(require,module,exports) {
+},{"@pixi/math":"w9h1","@pixi/ticker":"AWzT","@pixi/display":"qvzw","@pixi/utils":"X4iF"}],"KLq2":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29892,7 +29892,7 @@ Object.defineProperties(Runner.prototype, {
     value: Runner.prototype.emit
   }
 });
-},{}],"node_modules/@pixi/core/lib/core.es.js":[function(require,module,exports) {
+},{}],"lj2a":[function(require,module,exports) {
 
 "use strict";
 
@@ -42998,7 +42998,7 @@ function () {
 exports.BatchPluginFactory = BatchPluginFactory;
 var BatchRenderer = BatchPluginFactory.create();
 exports.BatchRenderer = BatchRenderer;
-},{"@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js","@pixi/constants":"node_modules/@pixi/constants/lib/constants.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js","@pixi/runner":"node_modules/@pixi/runner/lib/runner.es.js","@pixi/ticker":"node_modules/@pixi/ticker/lib/ticker.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js"}],"node_modules/@pixi/app/lib/app.es.js":[function(require,module,exports) {
+},{"@pixi/settings":"Xe2x","@pixi/constants":"djkr","@pixi/utils":"X4iF","@pixi/runner":"KLq2","@pixi/ticker":"AWzT","@pixi/math":"w9h1"}],"ExZK":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43322,7 +43322,7 @@ function () {
 }();
 
 Application.registerPlugin(ResizePlugin);
-},{"@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js"}],"node_modules/@pixi/extract/lib/extract.es.js":[function(require,module,exports) {
+},{"@pixi/display":"qvzw","@pixi/core":"lj2a"}],"ZH8o":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43576,7 +43576,7 @@ function () {
 }();
 
 exports.Extract = Extract;
-},{"@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js"}],"node_modules/parse-uri/index.js":[function(require,module,exports) {
+},{"@pixi/utils":"X4iF","@pixi/math":"w9h1","@pixi/core":"lj2a"}],"YnZR":[function(require,module,exports) {
 'use strict';
 
 function parseURI(str, opts) {
@@ -43607,7 +43607,7 @@ function parseURI(str, opts) {
 }
 
 module.exports = parseURI;
-},{}],"node_modules/mini-signals/lib/mini-signals.js":[function(require,module,exports) {
+},{}],"LmWK":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -43774,7 +43774,7 @@ MiniSignal.MiniSignalBinding = MiniSignalBinding;
 exports['default'] = MiniSignal;
 module.exports = exports['default'];
 
-},{}],"node_modules/resource-loader/dist/resource-loader.esm.js":[function(require,module,exports) {
+},{}],"zWx3":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46124,7 +46124,7 @@ Loader.use = function LoaderUseStatic(fn) {
 
   return Loader;
 };
-},{"parse-uri":"node_modules/parse-uri/index.js","mini-signals":"node_modules/mini-signals/lib/mini-signals.js"}],"node_modules/@pixi/loaders/lib/loaders.es.js":[function(require,module,exports) {
+},{"parse-uri":"YnZR","mini-signals":"LmWK"}],"bw5V":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46519,7 +46519,7 @@ function () {
 }();
 
 exports.AppLoaderPlugin = AppLoaderPlugin;
-},{"resource-loader":"node_modules/resource-loader/dist/resource-loader.esm.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js"}],"node_modules/@pixi/particles/lib/particles.es.js":[function(require,module,exports) {
+},{"resource-loader":"zWx3","@pixi/core":"lj2a"}],"in9j":[function(require,module,exports) {
 
 "use strict";
 
@@ -47468,7 +47468,7 @@ function (_super) {
 }(_core.ObjectRenderer);
 
 exports.ParticleRenderer = ParticleRenderer;
-},{"@pixi/constants":"node_modules/@pixi/constants/lib/constants.es.js","@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js"}],"node_modules/@pixi/graphics/lib/graphics.es.js":[function(require,module,exports) {
+},{"@pixi/constants":"djkr","@pixi/display":"qvzw","@pixi/utils":"X4iF","@pixi/core":"lj2a","@pixi/math":"w9h1"}],"I0PC":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51359,7 +51359,7 @@ function (_super) {
 }(_display.Container);
 
 exports.Graphics = Graphics;
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js","@pixi/constants":"node_modules/@pixi/constants/lib/constants.es.js","@pixi/display":"node_modules/@pixi/display/lib/display.es.js"}],"node_modules/@pixi/sprite/lib/sprite.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a","@pixi/math":"w9h1","@pixi/utils":"X4iF","@pixi/constants":"djkr","@pixi/display":"qvzw"}],"XG9w":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52037,7 +52037,7 @@ function (_super) {
 }(_display.Container);
 
 exports.Sprite = Sprite;
-},{"@pixi/constants":"node_modules/@pixi/constants/lib/constants.es.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js"}],"node_modules/@pixi/text/lib/text.es.js":[function(require,module,exports) {
+},{"@pixi/constants":"djkr","@pixi/core":"lj2a","@pixi/display":"qvzw","@pixi/math":"w9h1","@pixi/settings":"Xe2x","@pixi/utils":"X4iF"}],"aZY8":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54303,7 +54303,7 @@ function (_super) {
 }(_sprite.Sprite);
 
 exports.Text = Text;
-},{"@pixi/sprite":"node_modules/@pixi/sprite/lib/sprite.es.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js"}],"node_modules/@pixi/prepare/lib/prepare.es.js":[function(require,module,exports) {
+},{"@pixi/sprite":"XG9w","@pixi/core":"lj2a","@pixi/settings":"Xe2x","@pixi/math":"w9h1","@pixi/utils":"X4iF"}],"cawE":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55084,7 +55084,7 @@ function () {
 }();
 
 exports.TimeLimiter = TimeLimiter;
-},{"@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/graphics":"node_modules/@pixi/graphics/lib/graphics.es.js","@pixi/ticker":"node_modules/@pixi/ticker/lib/ticker.es.js","@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/text":"node_modules/@pixi/text/lib/text.es.js"}],"node_modules/@pixi/spritesheet/lib/spritesheet.es.js":[function(require,module,exports) {
+},{"@pixi/settings":"Xe2x","@pixi/core":"lj2a","@pixi/graphics":"I0PC","@pixi/ticker":"AWzT","@pixi/display":"qvzw","@pixi/text":"aZY8"}],"O2FJ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55494,7 +55494,7 @@ function () {
 }();
 
 exports.SpritesheetLoader = SpritesheetLoader;
-},{"@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js","@pixi/loaders":"node_modules/@pixi/loaders/lib/loaders.es.js"}],"node_modules/@pixi/sprite-tiling/lib/sprite-tiling.es.js":[function(require,module,exports) {
+},{"@pixi/math":"w9h1","@pixi/core":"lj2a","@pixi/utils":"X4iF","@pixi/loaders":"bw5V"}],"hxhD":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55988,7 +55988,7 @@ function (_super) {
 }(_core.ObjectRenderer);
 
 exports.TilingSpriteRenderer = TilingSpriteRenderer;
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/sprite":"node_modules/@pixi/sprite/lib/sprite.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js","@pixi/constants":"node_modules/@pixi/constants/lib/constants.es.js"}],"node_modules/@pixi/mesh/lib/mesh.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a","@pixi/math":"w9h1","@pixi/sprite":"XG9w","@pixi/utils":"X4iF","@pixi/constants":"djkr"}],"KkZL":[function(require,module,exports) {
 
 "use strict";
 
@@ -56832,7 +56832,7 @@ function (_super) {
 }(_core.Geometry);
 
 exports.MeshGeometry = MeshGeometry;
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/constants":"node_modules/@pixi/constants/lib/constants.es.js","@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js"}],"node_modules/@pixi/text-bitmap/lib/text-bitmap.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a","@pixi/math":"w9h1","@pixi/constants":"djkr","@pixi/display":"qvzw","@pixi/settings":"Xe2x","@pixi/utils":"X4iF"}],"wAzD":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58921,7 +58921,7 @@ function () {
 }();
 
 exports.BitmapFontLoader = BitmapFontLoader;
-},{"@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js","@pixi/mesh":"node_modules/@pixi/mesh/lib/mesh.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/text":"node_modules/@pixi/text/lib/text.es.js","@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/loaders":"node_modules/@pixi/loaders/lib/loaders.es.js"}],"node_modules/@pixi/filter-alpha/lib/filter-alpha.es.js":[function(require,module,exports) {
+},{"@pixi/math":"w9h1","@pixi/settings":"Xe2x","@pixi/mesh":"KkZL","@pixi/utils":"X4iF","@pixi/core":"lj2a","@pixi/text":"aZY8","@pixi/display":"qvzw","@pixi/loaders":"bw5V"}],"RZoz":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59042,7 +59042,7 @@ function (_super) {
 }(_core.Filter);
 
 exports.AlphaFilter = AlphaFilter;
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js"}],"node_modules/@pixi/filter-blur/lib/filter-blur.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a"}],"WUS5":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59984,7 +59984,7 @@ function (_super) {
 }(_core.Filter);
 
 exports.BlurFilter = BlurFilter;
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js"}],"node_modules/@pixi/filter-color-matrix/lib/filter-color-matrix.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a","@pixi/settings":"Xe2x"}],"ts1g":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60525,7 +60525,7 @@ function (_super) {
 
 exports.ColorMatrixFilter = ColorMatrixFilter;
 ColorMatrixFilter.prototype.grayscale = ColorMatrixFilter.prototype.greyscale;
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js"}],"node_modules/@pixi/filter-displacement/lib/filter-displacement.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a"}],"XNHP":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60697,7 +60697,7 @@ function (_super) {
 }(_core.Filter);
 
 exports.DisplacementFilter = DisplacementFilter;
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js"}],"node_modules/@pixi/filter-fxaa/lib/filter-fxaa.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a","@pixi/math":"w9h1"}],"d2iI":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60785,7 +60785,7 @@ function (_super) {
 }(_core.Filter);
 
 exports.FXAAFilter = FXAAFilter;
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js"}],"node_modules/@pixi/filter-noise/lib/filter-noise.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a"}],"Y0eQ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60923,7 +60923,7 @@ function (_super) {
 }(_core.Filter);
 
 exports.NoiseFilter = NoiseFilter;
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js"}],"node_modules/@pixi/mixin-cache-as-bitmap/lib/mixin-cache-as-bitmap.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a"}],"vc4X":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61315,7 +61315,7 @@ _display.DisplayObject.prototype._cacheAsBitmapDestroy = function _cacheAsBitmap
   this.cacheAsBitmap = false;
   this.destroy(options);
 };
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/sprite":"node_modules/@pixi/sprite/lib/sprite.es.js","@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js","@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js"}],"node_modules/@pixi/mixin-get-child-by-name/lib/mixin-get-child-by-name.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a","@pixi/sprite":"XG9w","@pixi/display":"qvzw","@pixi/math":"w9h1","@pixi/utils":"X4iF","@pixi/settings":"Xe2x"}],"k2x1":[function(require,module,exports) {
 "use strict";
 
 var _display = require("@pixi/display");
@@ -61372,7 +61372,7 @@ _display.Container.prototype.getChildByName = function getChildByName(name, deep
 
   return null;
 };
-},{"@pixi/display":"node_modules/@pixi/display/lib/display.es.js"}],"node_modules/@pixi/mixin-get-global-position/lib/mixin-get-global-position.es.js":[function(require,module,exports) {
+},{"@pixi/display":"qvzw"}],"hqMH":[function(require,module,exports) {
 "use strict";
 
 var _display = require("@pixi/display");
@@ -61416,7 +61416,7 @@ _display.DisplayObject.prototype.getGlobalPosition = function getGlobalPosition(
 
   return point;
 };
-},{"@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js"}],"node_modules/@pixi/mesh-extras/lib/mesh-extras.es.js":[function(require,module,exports) {
+},{"@pixi/display":"qvzw","@pixi/math":"w9h1"}],"vnLX":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62332,7 +62332,7 @@ function (_super) {
 }(SimplePlane);
 
 exports.NineSlicePlane = NineSlicePlane;
-},{"@pixi/mesh":"node_modules/@pixi/mesh/lib/mesh.es.js","@pixi/constants":"node_modules/@pixi/constants/lib/constants.es.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js"}],"node_modules/@pixi/sprite-animated/lib/sprite-animated.es.js":[function(require,module,exports) {
+},{"@pixi/mesh":"KkZL","@pixi/constants":"djkr","@pixi/core":"lj2a"}],"fDWR":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62898,7 +62898,7 @@ function (_super) {
 
 
 exports.AnimatedSprite = AnimatedSprite;
-},{"@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/sprite":"node_modules/@pixi/sprite/lib/sprite.es.js","@pixi/ticker":"node_modules/@pixi/ticker/lib/ticker.es.js"}],"node_modules/pixi.js/lib/pixi.es.js":[function(require,module,exports) {
+},{"@pixi/core":"lj2a","@pixi/sprite":"XG9w","@pixi/ticker":"AWzT"}],"aQiP":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64778,9 +64778,9 @@ var filters = {
   NoiseFilter: _filterNoise.NoiseFilter
 };
 exports.filters = filters;
-},{"@pixi/polyfill":"node_modules/@pixi/polyfill/lib/polyfill.es.js","@pixi/utils":"node_modules/@pixi/utils/lib/utils.es.js","@pixi/accessibility":"node_modules/@pixi/accessibility/lib/accessibility.es.js","@pixi/interaction":"node_modules/@pixi/interaction/lib/interaction.es.js","@pixi/app":"node_modules/@pixi/app/lib/app.es.js","@pixi/core":"node_modules/@pixi/core/lib/core.es.js","@pixi/extract":"node_modules/@pixi/extract/lib/extract.es.js","@pixi/loaders":"node_modules/@pixi/loaders/lib/loaders.es.js","@pixi/particles":"node_modules/@pixi/particles/lib/particles.es.js","@pixi/prepare":"node_modules/@pixi/prepare/lib/prepare.es.js","@pixi/spritesheet":"node_modules/@pixi/spritesheet/lib/spritesheet.es.js","@pixi/sprite-tiling":"node_modules/@pixi/sprite-tiling/lib/sprite-tiling.es.js","@pixi/text-bitmap":"node_modules/@pixi/text-bitmap/lib/text-bitmap.es.js","@pixi/ticker":"node_modules/@pixi/ticker/lib/ticker.es.js","@pixi/filter-alpha":"node_modules/@pixi/filter-alpha/lib/filter-alpha.es.js","@pixi/filter-blur":"node_modules/@pixi/filter-blur/lib/filter-blur.es.js","@pixi/filter-color-matrix":"node_modules/@pixi/filter-color-matrix/lib/filter-color-matrix.es.js","@pixi/filter-displacement":"node_modules/@pixi/filter-displacement/lib/filter-displacement.es.js","@pixi/filter-fxaa":"node_modules/@pixi/filter-fxaa/lib/filter-fxaa.es.js","@pixi/filter-noise":"node_modules/@pixi/filter-noise/lib/filter-noise.es.js","@pixi/mixin-cache-as-bitmap":"node_modules/@pixi/mixin-cache-as-bitmap/lib/mixin-cache-as-bitmap.es.js","@pixi/mixin-get-child-by-name":"node_modules/@pixi/mixin-get-child-by-name/lib/mixin-get-child-by-name.es.js","@pixi/mixin-get-global-position":"node_modules/@pixi/mixin-get-global-position/lib/mixin-get-global-position.es.js","@pixi/constants":"node_modules/@pixi/constants/lib/constants.es.js","@pixi/display":"node_modules/@pixi/display/lib/display.es.js","@pixi/graphics":"node_modules/@pixi/graphics/lib/graphics.es.js","@pixi/math":"node_modules/@pixi/math/lib/math.es.js","@pixi/mesh":"node_modules/@pixi/mesh/lib/mesh.es.js","@pixi/mesh-extras":"node_modules/@pixi/mesh-extras/lib/mesh-extras.es.js","@pixi/runner":"node_modules/@pixi/runner/lib/runner.es.js","@pixi/sprite":"node_modules/@pixi/sprite/lib/sprite.es.js","@pixi/sprite-animated":"node_modules/@pixi/sprite-animated/lib/sprite-animated.es.js","@pixi/text":"node_modules/@pixi/text/lib/text.es.js","@pixi/settings":"node_modules/@pixi/settings/lib/settings.es.js"}],"assets/mouse-arrow.png":[function(require,module,exports) {
-module.exports = "/mouse-arrow.3463a8dc.png";
-},{}],"app/lib/remoteMouse.js":[function(require,module,exports) {
+},{"@pixi/polyfill":"jbXN","@pixi/utils":"X4iF","@pixi/accessibility":"JMFw","@pixi/interaction":"hG98","@pixi/app":"ExZK","@pixi/core":"lj2a","@pixi/extract":"ZH8o","@pixi/loaders":"bw5V","@pixi/particles":"in9j","@pixi/prepare":"cawE","@pixi/spritesheet":"O2FJ","@pixi/sprite-tiling":"hxhD","@pixi/text-bitmap":"wAzD","@pixi/ticker":"AWzT","@pixi/filter-alpha":"RZoz","@pixi/filter-blur":"WUS5","@pixi/filter-color-matrix":"ts1g","@pixi/filter-displacement":"XNHP","@pixi/filter-fxaa":"d2iI","@pixi/filter-noise":"Y0eQ","@pixi/mixin-cache-as-bitmap":"vc4X","@pixi/mixin-get-child-by-name":"k2x1","@pixi/mixin-get-global-position":"hqMH","@pixi/constants":"djkr","@pixi/display":"qvzw","@pixi/graphics":"I0PC","@pixi/math":"w9h1","@pixi/mesh":"KkZL","@pixi/mesh-extras":"vnLX","@pixi/runner":"KLq2","@pixi/sprite":"XG9w","@pixi/sprite-animated":"fDWR","@pixi/text":"aZY8","@pixi/settings":"Xe2x"}],"xElv":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/mouse-arrow.9aabf261.png";
+},{}],"F6sF":[function(require,module,exports) {
 // const io = require("socket.io-client")
 const PIXI = require('pixi.js');
 
@@ -64846,7 +64846,7 @@ module.exports = class RemoteMouse {
   }
 
 };
-},{"pixi.js":"node_modules/pixi.js/lib/pixi.es.js"}],"app/pixi.js":[function(require,module,exports) {
+},{"pixi.js":"aQiP"}],"GzbA":[function(require,module,exports) {
 const PIXI = require('pixi.js');
 
 const cursorImage = require('./../assets/mouse-arrow.png');
@@ -64937,7 +64937,7 @@ module.exports = ({
   // app.renderer.plugins.interaction.cursorStyles.default = defaultIcon;
   // app.renderer.plugins.interaction.cursorStyles.hover = defaultIcon;
 };
-},{"pixi.js":"node_modules/pixi.js/lib/pixi.es.js","./../assets/mouse-arrow.png":"assets/mouse-arrow.png","./lib/remoteMouse.js":"app/lib/remoteMouse.js"}],"app/lib/reverb.js":[function(require,module,exports) {
+},{"pixi.js":"aQiP","./../assets/mouse-arrow.png":"xElv","./lib/remoteMouse.js":"F6sF"}],"epwj":[function(require,module,exports) {
 /*global ArrayBuffer, Uint8Array, window, XMLHttpRequest*/
 module.exports = {
   extend: function (audioContext) {
@@ -65118,37 +65118,37 @@ module.exports = {
     };
   }
 };
-},{}],"assets/Basement.mp4":[function(require,module,exports) {
-module.exports = "/Basement.722a45e7.mp4";
-},{}],"assets/water/1.ogg":[function(require,module,exports) {
-module.exports = "/1.51b0ed6a.ogg";
-},{}],"assets/water/10.ogg":[function(require,module,exports) {
-module.exports = "/10.e0a937a1.ogg";
-},{}],"assets/water/11.ogg":[function(require,module,exports) {
-module.exports = "/11.bf724a0b.ogg";
-},{}],"assets/water/12.ogg":[function(require,module,exports) {
-module.exports = "/12.4348e1a0.ogg";
-},{}],"assets/water/13.ogg":[function(require,module,exports) {
-module.exports = "/13.0c11618f.ogg";
-},{}],"assets/water/14.ogg":[function(require,module,exports) {
-module.exports = "/14.eb3e54fd.ogg";
-},{}],"assets/water/2.ogg":[function(require,module,exports) {
-module.exports = "/2.441bbecd.ogg";
-},{}],"assets/water/3.ogg":[function(require,module,exports) {
-module.exports = "/3.f3816339.ogg";
-},{}],"assets/water/4.ogg":[function(require,module,exports) {
-module.exports = "/4.2b88f5a6.ogg";
-},{}],"assets/water/5.ogg":[function(require,module,exports) {
-module.exports = "/5.7046c250.ogg";
-},{}],"assets/water/6.ogg":[function(require,module,exports) {
-module.exports = "/6.1f16a2f1.ogg";
-},{}],"assets/water/7.ogg":[function(require,module,exports) {
-module.exports = "/7.b43b29a2.ogg";
-},{}],"assets/water/8.ogg":[function(require,module,exports) {
-module.exports = "/8.a3afa939.ogg";
-},{}],"assets/water/9.ogg":[function(require,module,exports) {
-module.exports = "/9.0b97b11b.ogg";
-},{}],"assets/water/*.ogg":[function(require,module,exports) {
+},{}],"plCA":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/Basement.83b7a223.mp4";
+},{}],"ap6D":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/1.fae351cc.ogg";
+},{}],"Aukw":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/10.d6248654.ogg";
+},{}],"hnNl":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/11.31f6f77f.ogg";
+},{}],"rL7Y":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/12.72d9c607.ogg";
+},{}],"D0VW":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/13.0c3b4c3a.ogg";
+},{}],"RLrt":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/14.0abb4a74.ogg";
+},{}],"c96k":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/2.7357714f.ogg";
+},{}],"YPlA":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/3.de1cea95.ogg";
+},{}],"Vz7P":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/4.7bb67e05.ogg";
+},{}],"h3SZ":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/5.b494c5e3.ogg";
+},{}],"WfmC":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/6.e60e35b2.ogg";
+},{}],"Dcqh":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/7.855bcd0b.ogg";
+},{}],"OWIQ":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/8.84740521.ogg";
+},{}],"X0a5":[function(require,module,exports) {
+module.exports = "https://ojack.xyz/flujos/9.17fb91ac.ogg";
+},{}],"cpfe":[function(require,module,exports) {
 module.exports = {
   "1": require("./1.ogg"),
   "2": require("./2.ogg"),
@@ -65165,7 +65165,7 @@ module.exports = {
   "13": require("./13.ogg"),
   "14": require("./14.ogg")
 };
-},{"./1.ogg":"assets/water/1.ogg","./10.ogg":"assets/water/10.ogg","./11.ogg":"assets/water/11.ogg","./12.ogg":"assets/water/12.ogg","./13.ogg":"assets/water/13.ogg","./14.ogg":"assets/water/14.ogg","./2.ogg":"assets/water/2.ogg","./3.ogg":"assets/water/3.ogg","./4.ogg":"assets/water/4.ogg","./5.ogg":"assets/water/5.ogg","./6.ogg":"assets/water/6.ogg","./7.ogg":"assets/water/7.ogg","./8.ogg":"assets/water/8.ogg","./9.ogg":"assets/water/9.ogg"}],"app/agua.js":[function(require,module,exports) {
+},{"./1.ogg":"ap6D","./10.ogg":"Aukw","./11.ogg":"hnNl","./12.ogg":"rL7Y","./13.ogg":"D0VW","./14.ogg":"RLrt","./2.ogg":"c96k","./3.ogg":"YPlA","./4.ogg":"Vz7P","./5.ogg":"h3SZ","./6.ogg":"WfmC","./7.ogg":"Dcqh","./8.ogg":"OWIQ","./9.ogg":"X0a5"}],"ppEG":[function(require,module,exports) {
 const reverbjs = require('./lib/reverb.js');
 
 const basementReverb = require('./../assets/Basement.mp4');
@@ -65284,7 +65284,7 @@ module.exports = {
   load: preloadAudio,
   run: aguaDialect
 };
-},{"./lib/reverb.js":"app/lib/reverb.js","./../assets/Basement.mp4":"assets/Basement.mp4","./../assets/water/*.ogg":"assets/water/*.ogg"}],"app/mouse-follower.js":[function(require,module,exports) {
+},{"./lib/reverb.js":"epwj","./../assets/Basement.mp4":"plCA","./../assets/water/*.ogg":"cpfe"}],"Fvcj":[function(require,module,exports) {
 // const peers = require('./lib/deepstream.js')()
 // const peers = require('./lib/ws.js')
 module.exports = emitter => {
@@ -65301,7 +65301,7 @@ module.exports = emitter => {
 
   return mouse;
 };
-},{}],"app/lib/countdown.js":[function(require,module,exports) {
+},{}],"SkbD":[function(require,module,exports) {
 module.exports = () => {
   var countDownDate = new Date("May 1, 2021 21:30:00 UTC").getTime();
   const el = document.createElement('span'); // Update the count down every 1 second
@@ -65326,7 +65326,7 @@ module.exports = () => {
   }, 1000);
   return el;
 };
-},{}],"app/index.js":[function(require,module,exports) {
+},{}],"IBgI":[function(require,module,exports) {
 const initStreamingMedia = require('./init-media-sources.js');
 
 const initHydra = require('./init-hydra.js');
@@ -65419,209 +65419,5 @@ function start() {
 
 document.body.appendChild(uiContainer); //  document.body.appendChild(editor)
 //}
-},{"./init-media-sources.js":"app/init-media-sources.js","./init-hydra.js":"app/init-hydra.js","nanohtml":"node_modules/nanohtml/lib/browser.js","./pixi.js":"app/pixi.js","./agua.js":"app/agua.js","events":"node_modules/events/events.js","./mouse-follower.js":"app/mouse-follower.js","./lib/countdown.js":"app/lib/countdown.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
-var global = arguments[3];
-var OVERLAY_ID = '__parcel__error__overlay__';
-var OldModule = module.bundle.Module;
-
-function Module(moduleName) {
-  OldModule.call(this, moduleName);
-  this.hot = {
-    data: module.bundle.hotData,
-    _acceptCallbacks: [],
-    _disposeCallbacks: [],
-    accept: function (fn) {
-      this._acceptCallbacks.push(fn || function () {});
-    },
-    dispose: function (fn) {
-      this._disposeCallbacks.push(fn);
-    }
-  };
-  module.bundle.hotData = null;
-}
-
-module.bundle.Module = Module;
-var checkedAssets, assetsToAccept;
-var parent = module.bundle.parent;
-
-if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = "" || location.hostname;
-  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61465" + '/');
-
-  ws.onmessage = function (event) {
-    checkedAssets = {};
-    assetsToAccept = [];
-    var data = JSON.parse(event.data);
-
-    if (data.type === 'update') {
-      var handled = false;
-      data.assets.forEach(function (asset) {
-        if (!asset.isNew) {
-          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
-
-          if (didAccept) {
-            handled = true;
-          }
-        }
-      }); // Enable HMR for CSS by default.
-
-      handled = handled || data.assets.every(function (asset) {
-        return asset.type === 'css' && asset.generated.js;
-      });
-
-      if (handled) {
-        console.clear();
-        data.assets.forEach(function (asset) {
-          hmrApply(global.parcelRequire, asset);
-        });
-        assetsToAccept.forEach(function (v) {
-          hmrAcceptRun(v[0], v[1]);
-        });
-      } else if (location.reload) {
-        // `location` global exists in a web worker context but lacks `.reload()` function.
-        location.reload();
-      }
-    }
-
-    if (data.type === 'reload') {
-      ws.close();
-
-      ws.onclose = function () {
-        location.reload();
-      };
-    }
-
-    if (data.type === 'error-resolved') {
-      console.log('[parcel] ✨ Error resolved');
-      removeErrorOverlay();
-    }
-
-    if (data.type === 'error') {
-      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
-      removeErrorOverlay();
-      var overlay = createErrorOverlay(data);
-      document.body.appendChild(overlay);
-    }
-  };
-}
-
-function removeErrorOverlay() {
-  var overlay = document.getElementById(OVERLAY_ID);
-
-  if (overlay) {
-    overlay.remove();
-  }
-}
-
-function createErrorOverlay(data) {
-  var overlay = document.createElement('div');
-  overlay.id = OVERLAY_ID; // html encode message and stack trace
-
-  var message = document.createElement('div');
-  var stackTrace = document.createElement('pre');
-  message.innerText = data.error.message;
-  stackTrace.innerText = data.error.stack;
-  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
-  return overlay;
-}
-
-function getParents(bundle, id) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return [];
-  }
-
-  var parents = [];
-  var k, d, dep;
-
-  for (k in modules) {
-    for (d in modules[k][1]) {
-      dep = modules[k][1][d];
-
-      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
-        parents.push(k);
-      }
-    }
-  }
-
-  if (bundle.parent) {
-    parents = parents.concat(getParents(bundle.parent, id));
-  }
-
-  return parents;
-}
-
-function hmrApply(bundle, asset) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return;
-  }
-
-  if (modules[asset.id] || !bundle.parent) {
-    var fn = new Function('require', 'module', 'exports', asset.generated.js);
-    asset.isNew = !modules[asset.id];
-    modules[asset.id] = [fn, asset.deps];
-  } else if (bundle.parent) {
-    hmrApply(bundle.parent, asset);
-  }
-}
-
-function hmrAcceptCheck(bundle, id) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return;
-  }
-
-  if (!modules[id] && bundle.parent) {
-    return hmrAcceptCheck(bundle.parent, id);
-  }
-
-  if (checkedAssets[id]) {
-    return;
-  }
-
-  checkedAssets[id] = true;
-  var cached = bundle.cache[id];
-  assetsToAccept.push([bundle, id]);
-
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    return true;
-  }
-
-  return getParents(global.parcelRequire, id).some(function (id) {
-    return hmrAcceptCheck(global.parcelRequire, id);
-  });
-}
-
-function hmrAcceptRun(bundle, id) {
-  var cached = bundle.cache[id];
-  bundle.hotData = {};
-
-  if (cached) {
-    cached.hot.data = bundle.hotData;
-  }
-
-  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
-    cached.hot._disposeCallbacks.forEach(function (cb) {
-      cb(bundle.hotData);
-    });
-  }
-
-  delete bundle.cache[id];
-  bundle(id);
-  cached = bundle.cache[id];
-
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    cached.hot._acceptCallbacks.forEach(function (cb) {
-      cb();
-    });
-
-    return true;
-  }
-}
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app/index.js"], null)
-//# sourceMappingURL=/app.c0e5f9db.js.map
+},{"./init-media-sources.js":"tsca","./init-hydra.js":"HQUh","nanohtml":"QR4u","./pixi.js":"GzbA","./agua.js":"ppEG","events":"wIHY","./mouse-follower.js":"Fvcj","./lib/countdown.js":"SkbD"}]},{},["IBgI"], null)
+//# sourceMappingURL=https://ojack.xyz/flujos/app.c5d5e3b6.js.map
